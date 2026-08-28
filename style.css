@@ -79,7 +79,29 @@ button { font:inherit; }
     position:relative;z-index:2;min-height:680px;
     display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:50px;
 }
-.hero-content { max-width:650px; }
+.hero-content { max-width:680px; }
+.hero-brand {
+    display:flex; flex-direction:column; align-items:flex-start;
+    margin:0 0 22px; max-width:680px; color:#fff;
+    line-height:1; text-wrap:balance;
+}
+.hero-brand-cice {
+    display:block; font-size:clamp(4.4rem,8vw,7.2rem);
+    font-weight:900; letter-spacing:2px;
+    background:linear-gradient(135deg,#ffffff 12%,#62cfff 88%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow:0 8px 30px rgba(37,200,255,.12);
+}
+.hero-brand-institute {
+    display:block; margin-top:5px;
+    font-size:clamp(1.7rem,3.4vw,3rem);
+    font-weight:800; letter-spacing:1.8px; color:#fff;
+}
+.hero-kicker {
+    display:block; margin:0 0 22px; color:#d9f5ff; font-size:.88rem;
+    font-weight:700; letter-spacing:.4px;
+}
+
 .eyebrow,.section-label {
     color:var(--blue);font-size:.66rem;font-weight:800;letter-spacing:2px;
 }
@@ -216,9 +238,11 @@ button { font:inherit; }
 .course-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:20px; }
 .course-card {
     min-height:285px;padding:28px;display:flex;flex-direction:column;
-    border:1px solid var(--border);border-radius:18px;background:#fff;
+    border:1px solid rgba(24,73,122,.08);border-radius:18px;background:#f7fbff;
     transition:.3s;
 }
+.course-card:nth-child(odd) { background:#f1f7ff; }
+.course-card:nth-child(even) { background:#f1fbfa; }
 .course-card:hover { transform:translateY(-6px);box-shadow:var(--shadow);border-color:#bdd2f3; }
 .course-number { color:#9aa9ba;font-size:.65rem;font-weight:800;letter-spacing:1.5px; }
 .course-card h3 { font-size:1.45rem;margin-top:40px; }
@@ -376,7 +400,7 @@ button { font:inherit; }
 }
 @media (max-width:600px){
     .container{width:min(100% - 30px,1180px)}
-    .hero h1{font-size:3.35rem;letter-spacing:-2.5px}
+    .hero-brand-cice{font-size:4rem;letter-spacing:1px}.hero-brand-institute{font-size:1.55rem;letter-spacing:1px}.hero-kicker{font-size:.72rem;letter-spacing:.3px;margin-bottom:18px}
     .hero-visual{min-height:340px}
     .orbit-one{width:330px;height:330px}.orbit-two{width:245px;height:245px}
     .identity-card{padding:20px;width:94%}
@@ -574,4 +598,13 @@ button { font:inherit; }
     .laptop-cards span{display:none}
     .keyboard{width:190px;gap:3px}
     .keyboard i{height:5px}
+}
+
+
+/* CICE hero name refinement */
+.hero-brand-cice { letter-spacing: 8px; }
+.hero-brand-institute { letter-spacing: .6px; color: #fff !important; }
+@media (max-width: 600px) {
+  .hero-brand-cice { letter-spacing: 5px; }
+  .hero-brand-institute { letter-spacing: .4px; color: #fff !important; }
 }
