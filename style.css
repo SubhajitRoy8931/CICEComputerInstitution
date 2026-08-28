@@ -400,7 +400,7 @@ button { font:inherit; }
 }
 @media (max-width:600px){
     .container{width:min(100% - 30px,1180px)}
-    .hero-brand-cice{font-size:4rem;letter-spacing:1px}.hero-brand-institute{font-size:1.55rem;letter-spacing:1px}.hero-kicker{font-size:.72rem;letter-spacing:.3px;margin-bottom:18px}
+    .hero-brand-cice{font-size:4.6rem;letter-spacing:2px}.hero-brand-institute{font-size:2.25rem;letter-spacing:.35px}.hero-kicker{font-size:.72rem;letter-spacing:.3px;margin-bottom:18px}
     .hero-visual{min-height:340px}
     .orbit-one{width:330px;height:330px}.orbit-two{width:245px;height:245px}
     .identity-card{padding:20px;width:94%}
@@ -605,6 +605,15 @@ button { font:inherit; }
 .hero-brand-cice { letter-spacing: 3px; }
 .hero-brand-institute { letter-spacing: .5px; color: #fff !important; }
 @media (max-width: 600px) {
-  .hero-brand-cice { letter-spacing: 2px; }
-  .hero-brand-institute { letter-spacing: .35px; color: #fff !important; }
+  .hero-brand-cice { font-size: 4.6rem; letter-spacing: 2px; }
+  .hero-brand-institute { font-size: 2.25rem; letter-spacing: .35px; color: #fff !important; }
+}
+
+/* Final mobile hero sizing */
+@media (max-width:600px){
+  .hero-brand-institute{
+    font-size:3.35rem;
+    line-height:.98;
+    letter-spacing:0;
+  }
 }
