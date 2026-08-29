@@ -1779,58 +1779,48 @@ button {
     }
 }
 
-/* ==================== MOBILE HERO TYPOGRAPHY ==================== */
-/* Fine-tunes the CICE and Computer Institute heading on small screens. */
+/* ==================== FINAL MOBILE HERO / ABOUT FIX ==================== */
+/* One authoritative mobile rule for the Hero title and About heading. */
 
 @media (max-width:600px) {
-    .hero-brand-cice {
-        letter-spacing:2px;
+    .hero-brand {
+        width:100%;
+        align-items:center;
+        text-align:center;
     }
 
-    .hero-brand-institute {
-        letter-spacing:.35px;
-        color:#fff !important;
-    }
-}
-
-@media (max-width:600px) {
     .hero-brand-cice,
     .hero-brand-institute {
-        font-family:inherit;
-        font-size:4rem;
+        display:block;
+        width:100%;
+        font-family:Poppins,Arial,sans-serif;
         font-weight:900;
         line-height:.98;
-        letter-spacing:0;
+        text-align:center;
+        white-space:nowrap;
     }
 
     .hero-brand-cice {
+        font-size:clamp(3rem,16vw,4.5rem);
         letter-spacing:0;
     }
 
     .hero-brand-institute {
+        margin-top:4px;
+        font-size:clamp(2.7rem,14vw,4rem);
+        letter-spacing:0;
         color:#fff !important;
-    }
-}
-
-/* Final hero typography adjustment. */
-
-.hero-brand-cice {
-    letter-spacing:0.12em;
-}
-
-.hero-brand-institute {
-    font-size:clamp(3.25rem,6.4vw,5.5rem);
-}
-
-@media (max-width:600px) {
-    .hero-brand-cice {
-        font-size:4rem;
-        letter-spacing:0.10em;
+        text-transform:uppercase;
     }
 
-    .hero-brand-institute {
-        font-size:3.15rem;
-        letter-spacing:0;
+    .about-copy > .section-label,
+    .about-copy > h2 {
+        width:100%;
+        text-align:center;
+    }
+
+    .about-copy > p {
+        text-align:left;
     }
 }
 
