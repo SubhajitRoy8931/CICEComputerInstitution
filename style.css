@@ -574,54 +574,6 @@ button {
     margin-top:25px;
 }
 
-/* ==================== PROFESSIONAL GRID COLOUR ACCENTS ==================== */
-/* Gives each selected grid a stronger, consistent colour treatment.
-   The page background remains white. Hero, Facilities and Contact are untouched. */
-
-/* Courses: every course card uses the same clear but professional blue tint. */
-.course-card,
-.course-card:nth-child(odd),
-.course-card:nth-child(even),
-.course-card-muted {
-    background:#e8f2ff;
-    border-color:#c6dcf7;
-}
-
-.course-card:hover {
-    background:#dfeeff;
-    border-color:#a9c9ef;
-}
-
-/* Why CICE: every feature card uses one consistent blue tint. */
-.feature-card {
-    background:#e9f4ff;
-    border-color:#c8e0f8;
-}
-
-.feature-card:hover {
-    background:#e1efff;
-    border-color:#afd0ef;
-}
-
-/* About facts: all fact cards share the same colour. */
-.about-facts > div {
-    background:#e8f2ff;
-    border-color:#c6dcf7;
-}
-
-/* Testimonials: consistent soft blue cards with a stronger visual edge. */
-.testimonial-card {
-    background:#eaf4ff;
-    border-color:#c4dcf5;
-    box-shadow:0 12px 35px rgba(7,26,51,.08);
-}
-
-/* Gallery: keep images dominant while giving every tile the same subtle blue frame. */
-.gallery-item {
-    background:#e8f2ff;
-    border:1px solid #c6dcf7;
-}
-
 /* ==================== WHY CICE / FEATURES ==================== */
 /* Controls feature cards and the college internship information. */
 
