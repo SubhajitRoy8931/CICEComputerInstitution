@@ -304,31 +304,33 @@ button { font:inherit; }
 
 .testimonials-section { background:#fff; }
 .testimonial-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:18px; }
-.testimonial-card { position:relative;padding:30px;border:1px solid var(--border);border-radius:18px;background:#fff;box-shadow:0 10px 35px rgba(7,26,51,.04); }
-.placeholder-testimonial { opacity:.8; }
-.quote-mark { position:absolute;right:22px;top:5px;color:#e2ecfa;font:5rem Georgia;line-height:1; }
-.testimonial-card>p { position:relative;z-index:1;color:#596a7e;font-size:.82rem;min-height:85px; }
-.student { display:flex;align-items:center;gap:10px;margin-top:22px; }
-.avatar { width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#eaf2ff;color:var(--blue);font-size:.62rem;font-weight:900; }
+.testimonial-card { padding:28px;border:1px solid var(--border);border-radius:18px;background:#f8fbff; }
+.quote-mark { color:var(--blue);font:800 3rem/1 Poppins; }
+.testimonial-card p { color:var(--muted);font-size:.82rem; }
+.student { display:flex;align-items:center;gap:10px;margin-top:20px; }
+.avatar { width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#e7f1ff;color:var(--blue);font-size:.6rem;font-weight:900; }
 .student strong,.student small { display:block; }
-.student strong { font-size:.72rem; }
-.student small { color:var(--muted);font-size:.62rem; }
+.student strong { font-size:.7rem; }
+.student small { color:var(--muted);font-size:.6rem;margin-top:2px; }
+.placeholder-testimonial { opacity:.85; }
 
-.about-section { background:#eef6ff;padding:100px 0; }
-.about-inner { display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center; }
-.about-copy h2 { font-size:clamp(2.2rem,4vw,3.7rem);line-height:1.08;margin:13px 0 22px; }
-.about-copy p { max-width:650px;color:#596a7d;font-size:.88rem;margin-bottom:15px; }
+.about-section { background:#f5f9fe; padding:100px 0; }
+.about-inner { display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center; }
+.about-copy h2 { font-size:clamp(2rem,4vw,3.3rem);line-height:1.1;margin:12px 0 20px; }
+.about-copy p { color:var(--muted);font-size:.86rem;margin-top:14px;max-width:650px; }
 .about-facts { display:grid;grid-template-columns:1fr 1fr;gap:14px; }
-.about-facts div { padding:28px;background:#fff;border:1px solid #dbe8f7;border-radius:17px;box-shadow:0 10px 30px rgba(7,26,51,.05); }
-.about-facts strong,.about-facts span { display:block; }
-.about-facts strong { font:800 1.7rem Poppins;color:var(--blue); }
-.about-facts span { color:var(--muted);font-size:.68rem;margin-top:4px; }
+.about-facts div { padding:25px;border:1px solid var(--border);border-radius:16px;background:#fff; }
+.about-facts strong { display:block;color:var(--blue);font:800 1.8rem Poppins; }
+.about-facts span { color:var(--muted);font-size:.62rem; }
 
-.gallery-grid { display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:220px 220px;gap:15px; }
-.gallery-item { position:relative;overflow:hidden;border-radius:16px;background:linear-gradient(135deg,#e1efff,#ccefff);display:grid;place-items:center;color:#55718f;font-weight:800;font-size:.72rem; }
+.gallery-section { background:#fff; }
+.gallery-grid { display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:200px 200px;gap:14px; }
+.gallery-item { position:relative;overflow:hidden;border-radius:16px;background:#dbeeff; }
+.gallery-item img { width:100%;height:100%;object-fit:cover;display:block;transition:.4s; }
+.gallery-item:hover img { transform:scale(1.04); }
+.gallery-item::after { content:"";position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,.6)); }
+.gallery-item span { position:absolute;z-index:2;left:16px;bottom:14px;color:#fff;font-size:.68rem;font-weight:800; }
 .gallery-item.large { grid-row:span 2; }
-.gallery-item img { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block; }
-.gallery-item span { position:relative;z-index:1;padding:9px 12px;border-radius:30px;background:rgba(255,255,255,.9); }
 
 .contact-section { padding:95px 0;background:#06172d;color:#fff; }
 .contact-inner { display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center; }
@@ -353,9 +355,10 @@ button { font:inherit; }
 .footer-links a:hover,.footer-social a:hover { color:#6bd7ff; }
 .footer-bottom { border-top:1px solid rgba(255,255,255,.08);padding-top:20px;display:flex;justify-content:space-between;color:#657b94;font-size:.64rem; }
 
+/* ==================== COURSE DETAIL PAGES ==================== */
 .course-page-hero { padding:85px 0;background:linear-gradient(135deg,#06172d,#0b3158);color:#fff; }
-.course-page-hero h1 { font-size:clamp(2.8rem,6vw,5rem);line-height:1;margin:15px 0; }
-.course-page-hero p { max-width:650px;color:#b8cbe0; }
+.course-page-hero h1 { font-size:clamp(2.8rem,6vw,5rem);line-height:1;margin:12px 0 15px; }
+.course-page-hero p { max-width:680px;color:#b8cbe0; }
 .breadcrumb { color:#80dfff;font-size:.65rem;font-weight:800;letter-spacing:1px; }
 .course-page-content { padding:80px 0; }
 .course-detail-grid { display:grid;grid-template-columns:1.25fr .75fr;gap:45px;align-items:start; }
@@ -431,8 +434,6 @@ button { font:inherit; }
     .footer-inner>div:first-child{grid-column:auto}
     .footer-bottom{flex-direction:column;gap:8px}
 }
-
-
 
 /* =========================================================
    UPDATED HERO: LAPTOP ILLUSTRATION
@@ -654,5 +655,90 @@ button { font:inherit; }
     .hero-brand-institute {
         font-size: 3.15rem;
         letter-spacing: 0;
+    }
+}
+
+
+/* =========================================================
+   MOBILE CONTACT SECTION
+   =========================================================
+   Keeps every part of the contact section inside the phone
+   viewport. In particular, the Google Maps iframe is made
+   responsive so its original 400px width cannot create
+   horizontal overflow.
+*/
+
+.contact-section {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.contact-inner,
+.contact-copy,
+.contact-card,
+.contact-actions,
+.map-wrap {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.map-wrap {
+    width: 100%;
+    overflow: hidden;
+}
+
+.map-wrap iframe {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 300px;
+    box-sizing: border-box;
+    border: 0;
+}
+
+@media (max-width: 850px) {
+    /* Stack the contact text and contact card vertically on tablets and phones. */
+    .contact-inner {
+        width: min(100% - 30px, 1180px);
+        grid-template-columns: 1fr;
+    }
+
+    .contact-copy,
+    .contact-card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    /* Give the contact section comfortable spacing on small phones. */
+    .contact-section {
+        padding: 75px 0;
+    }
+
+    /* Make both contact buttons use the available phone width. */
+    .contact-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .contact-actions .btn {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Reduce card padding slightly so content has more room on narrow screens. */
+    .contact-card {
+        width: 100%;
+        padding: 24px;
+    }
+
+    /* The map fills the card instead of keeping the desktop iframe width. */
+    .map-wrap,
+    .map-wrap iframe {
+        width: 100%;
+        max-width: 100%;
     }
 }
