@@ -575,69 +575,51 @@ button {
 }
 
 /* ==================== PROFESSIONAL GRID COLOUR ACCENTS ==================== */
-/* Adds restrained colour to selected content grids while keeping the page background white.
-   Hero, Facilities and Contact are intentionally not modified by these rules. */
+/* Gives each selected grid a stronger, consistent colour treatment.
+   The page background remains white. Hero, Facilities and Contact are untouched. */
 
-/* Courses: subtle blue/cyan variation across the course cards. */
-.course-card:nth-child(1),
-.course-card:nth-child(4) {
-    background:#f3f8ff;
-    border-color:#d8e6fa;
+/* Courses: every course card uses the same clear but professional blue tint. */
+.course-card,
+.course-card:nth-child(odd),
+.course-card:nth-child(even),
+.course-card-muted {
+    background:#e8f2ff;
+    border-color:#c6dcf7;
 }
 
-.course-card:nth-child(2),
-.course-card:nth-child(5) {
-    background:#f2fafb;
-    border-color:#d7ecef;
+.course-card:hover {
+    background:#dfeeff;
+    border-color:#a9c9ef;
 }
 
-.course-card:nth-child(3),
-.course-card:nth-child(6) {
-    background:#f7f8ff;
-    border-color:#e1e4f4;
+/* Why CICE: every feature card uses one consistent blue tint. */
+.feature-card {
+    background:#e9f4ff;
+    border-color:#c8e0f8;
 }
 
-/* Why CICE: soft alternating tints without making the grid look busy. */
-.feature-card:nth-child(1),
-.feature-card:nth-child(4),
-.feature-card:nth-child(5),
-.feature-card:nth-child(8) {
-    background:#f4f8ff;
-    border-color:#dbe7f7;
+.feature-card:hover {
+    background:#e1efff;
+    border-color:#afd0ef;
 }
 
-.feature-card:nth-child(2),
-.feature-card:nth-child(3),
-.feature-card:nth-child(6),
-.feature-card:nth-child(7) {
-    background:#f3fafb;
-    border-color:#d9ecef;
+/* About facts: all fact cards share the same colour. */
+.about-facts > div {
+    background:#e8f2ff;
+    border-color:#c6dcf7;
 }
 
-/* About facts: subtle colour helps the key figures stand out. */
-.about-facts > div:nth-child(1),
-.about-facts > div:nth-child(3) {
-    background:#f3f8ff;
-    border-color:#dbe7f7;
-}
-
-.about-facts > div:nth-child(2),
-.about-facts > div:nth-child(4) {
-    background:#f3fafb;
-    border-color:#d9ecef;
-}
-
-/* Testimonials: keep the cards white, but give them a polished blue edge/shadow. */
+/* Testimonials: consistent soft blue cards with a stronger visual edge. */
 .testimonial-card {
-    background:#fff;
-    border-color:#dbe6f4;
-    box-shadow:0 12px 35px rgba(7,26,51,.06);
+    background:#eaf4ff;
+    border-color:#c4dcf5;
+    box-shadow:0 12px 35px rgba(7,26,51,.08);
 }
 
-/* Gallery: photographs remain the main source of colour. */
+/* Gallery: keep images dominant while giving every tile the same subtle blue frame. */
 .gallery-item {
-    background:#f5f9ff;
-    border:1px solid #e0e8f2;
+    background:#e8f2ff;
+    border:1px solid #c6dcf7;
 }
 
 /* ==================== WHY CICE / FEATURES ==================== */
