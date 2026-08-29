@@ -107,4 +107,141 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.body.appendChild(whatsapp);
     }
+
+    // ==================== TESTIMONIAL SLIDER ====================
+    // Turns the testimonial cards into a horizontal slider.
+    // New testimonial cards can be added later without changing this code.
+    const testimonialGrid = document.querySelector(".testimonial-grid");
+
+    if (testimonialGrid) {
+        // Add slider-specific styling without changing the existing stylesheet.
+        const sliderStyle = document.createElement("style");
+        sliderStyle.textContent = `
+            .testimonial-slider-wrap {
+                position: relative;
+            }
+
+            .testimonial-grid {
+                display: flex !important;
+                overflow-x: auto;
+                scroll-behavior: smooth;
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+                gap: 20px;
+                padding: 4px 2px 14px;
+                cursor: grab;
+            }
+
+            .testimonial-grid::-webkit-scrollbar {
+                display: none;
+            }
+
+            .testimonial-grid:active {
+                cursor: grabbing;
+            }
+
+            .testimonial-grid .testimonial-card {
+                flex: 0 0 calc((100% - 40px) / 3);
+                scroll-snap-align: start;
+            }
+
+            .testimonial-slider-controls {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                margin-top: 18px;
+            }
+
+            .testimonial-slider-button {
+                width: 40px;
+                height: 40px;
+                border: 1px solid #dfe7f1;
+                border-radius: 50%;
+                background: #fff;
+                color: #142238;
+                display: grid;
+                place-items: center;
+                cursor: pointer;
+                font-size: 1rem;
+                transition: .2s;
+            }
+
+            .testimonial-slider-button:hover {
+                background: #f1f7ff;
+                border-color: #bdd2f3;
+            }
+
+            @media (max-width: 900px) {
+                .testimonial-grid .testimonial-card {
+                    flex-basis: calc((100% - 20px) / 2);
+                }
+            }
+
+            @media (max-width: 600px) {
+                .testimonial-grid .testimonial-card {
+                    flex-basis: 100%;
+                }
+            }
+        `;
+        document.head.appendChild(sliderStyle);
+
+        // Wrap the existing testimonial grid so the controls stay outside the scroll area.
+        const sliderWrap = document.createElement("div");
+        sliderWrap.className = "testimonial-slider-wrap container";
+        testimonialGrid.parentNode.insertBefore(sliderWrap, testimonialGrid);
+        sliderWrap.appendChild(testimonialGrid);
+
+        // Create previous and next buttons for visitors who do not want to swipe.
+        const controls = document.createElement("div");
+        controls.className = "testimonial-slider-controls";
+        controls.innerHTML = `
+            <button class="testimonial-slider-button" type="button" aria-label="Previous testimonial">←</button>
+            <button class="testimonial-slider-button" type="button" aria-label="Next testimonial">→</button>
+        `;
+        sliderWrap.appendChild(controls);
+
+        const cards = testimonialGrid.querySelectorAll(".testimonial-card");
+        const previousButton = controls.querySelector("button:first-child");
+        const nextButton = controls.querySelector("button:last-child");
+
+        // Moves the slider by approximately one card at a time.
+        const moveSlider = direction => {
+            if (!cards.length) return;
+
+            const cardWidth = cards[0].getBoundingClientRect().width + 20;
+            testimonialGrid.scrollBy({
+                left: direction * cardWidth,
+                behavior: "smooth"
+            });
+        };
+
+        previousButton.addEventListener("click", () => moveSlider(-1));
+        nextButton.addEventListener("click", () => moveSlider(1));
+
+        // Allow desktop users to drag the testimonial row with the mouse.
+        let isDragging = false;
+        let startX = 0;
+        let startScroll = 0;
+
+        testimonialGrid.addEventListener("mousedown", event => {
+            isDragging = true;
+            startX = event.pageX;
+            startScroll = testimonialGrid.scrollLeft;
+        });
+
+        testimonialGrid.addEventListener("mouseleave", () => {
+            isDragging = false;
+        });
+
+        testimonialGrid.addEventListener("mouseup", () => {
+            isDragging = false;
+        });
+
+        testimonialGrid.addEventListener("mousemove", event => {
+            if (!isDragging) return;
+            event.preventDefault();
+            testimonialGrid.scrollLeft = startScroll - (event.pageX - startX);
+        });
+    }
 });
