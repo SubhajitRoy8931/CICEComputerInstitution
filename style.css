@@ -1912,15 +1912,17 @@ button {
     }
 }
 /* ==================== MOBILE TEXT ALIGNMENT ==================== */
-/* Centers the Hero institute name and About heading on phone screens. */
+/* Centers selected Hero and About text on phone screens only. */
 
 @media (max-width: 768px) {
+    /* Centers the CICE COMPUTER INSTITUTE heading. */
     .hero-brand {
         align-items: center;
         text-align: center;
     }
 
-    .about-copy h2 {
+    /* Centers the ABOUT CICE label and About heading. */
+    .about-copy {
         text-align: center;
     }
 }
