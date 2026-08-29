@@ -1,8 +1,6 @@
-// ==================== MOBILE NAVIGATION ====================
-// Opens and closes the navigation menu on smaller screens.
-// aria-expanded and aria-label are updated so assistive technologies
-// know whether the menu is currently open or closed.
+// ==================== SITE INTERACTIONS ====================
 document.addEventListener("DOMContentLoaded", () => {
+    // ==================== MOBILE NAVIGATION ====================
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
 
@@ -10,10 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         menuToggle.addEventListener("click", () => {
             const isOpen = navLinks.classList.toggle("active");
             menuToggle.setAttribute("aria-expanded", String(isOpen));
-            menuToggle.setAttribute(
-                "aria-label",
-                isOpen ? "Close menu" : "Open menu"
-            );
+            menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
         });
 
         navLinks.querySelectorAll("a").forEach(link => {
@@ -26,28 +21,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==================== COPYRIGHT YEAR ====================
-    // Automatically displays the current year in elements with id="year".
     const year = document.getElementById("year");
-
-    if (year) {
-        year.textContent = new Date().getFullYear();
-    }
+    if (year) year.textContent = new Date().getFullYear();
 
     // ==================== ACTIVE NAVIGATION ====================
-    // Detects the current page and marks the matching navigation link as active.
     const currentPage = window.location.pathname.split("/").pop() || "index.html";
-
     document.querySelectorAll(".nav-links a").forEach(link => {
         const href = link.getAttribute("href") || "";
-
         if (href === currentPage || (currentPage === "index.html" && href === "#home")) {
             link.classList.add("active");
         }
     });
 
     // ==================== FLOATING WHATSAPP BUTTON ====================
-    // Creates a persistent WhatsApp contact button without requiring
-    // an external icon library or changes to the page HTML.
     if (!document.querySelector(".floating-whatsapp")) {
         const whatsapp = document.createElement("a");
         whatsapp.className = "floating-whatsapp";
@@ -56,428 +42,281 @@ document.addEventListener("DOMContentLoaded", () => {
         whatsapp.rel = "noopener";
         whatsapp.setAttribute("aria-label", "Contact CICE on WhatsApp");
         whatsapp.setAttribute("title", "Contact CICE on WhatsApp");
-
         whatsapp.innerHTML = `
             <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
                 <path d="M16 3.5a12.3 12.3 0 0 0-10.7 18.4L4 28l6.3-1.2A12.3 12.3 0 1 0 16 3.5Zm0 22.2a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.7.7.7-3.6-.2-.4A9.9 9.9 0 1 1 16 25.7Zm5.5-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.5-.7-2.5-1.3-3.5-2.9-.3-.5.3-.5.8-1.6.1-.2.1-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.7.9 3.7.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.3-.6-.5Z"/>
             </svg>`;
-
         Object.assign(whatsapp.style, {
-            position: "fixed",
-            right: "22px",
-            bottom: "22px",
-            width: "58px",
-            height: "58px",
-            display: "grid",
-            placeItems: "center",
-            borderRadius: "50%",
-            background: "#25D366",
-            color: "#fff",
-            boxShadow: "0 8px 24px rgba(0,0,0,.22)",
-            zIndex: "9999",
-            transition: "transform .2s ease, box-shadow .2s ease",
-            textDecoration: "none"
+            position:"fixed", right:"22px", bottom:"22px", width:"58px", height:"58px",
+            display:"grid", placeItems:"center", borderRadius:"50%", background:"#25D366",
+            color:"#fff", boxShadow:"0 8px 24px rgba(0,0,0,.22)", zIndex:"9999",
+            transition:"transform .2s ease, box-shadow .2s ease", textDecoration:"none"
         });
-
-        const icon = whatsapp.querySelector("svg");
-        Object.assign(icon.style, {
-            width: "31px",
-            height: "31px",
-            fill: "currentColor"
+        Object.assign(whatsapp.querySelector("svg").style, {
+            width:"31px", height:"31px", fill:"currentColor"
         });
-
         whatsapp.addEventListener("mouseenter", () => {
             whatsapp.style.transform = "translateY(-3px) scale(1.05)";
             whatsapp.style.boxShadow = "0 12px 28px rgba(0,0,0,.28)";
         });
-
         whatsapp.addEventListener("mouseleave", () => {
             whatsapp.style.transform = "translateY(0) scale(1)";
             whatsapp.style.boxShadow = "0 8px 24px rgba(0,0,0,.22)";
         });
-
         document.body.appendChild(whatsapp);
     }
 
-    // ==================== TESTIMONIAL CAROUSEL ====================
-    // Creates a true repeating carousel with duplicated testimonial sets.
-    // The active card is always centered. The middle copy is used as the
-    // visual reference point, while the first and third copies make both
-    // forward and backward looping continuous.
+    // ==================== INFINITE TESTIMONIAL CAROUSEL ====================
     const testimonialGrid = document.querySelector(".testimonial-grid");
 
     if (testimonialGrid) {
-        const originalCards = Array.from(
-            testimonialGrid.querySelectorAll(".testimonial-card")
-        );
+        const originals = Array.from(testimonialGrid.querySelectorAll(".testimonial-card"));
 
-        if (originalCards.length) {
-            const sliderStyle = document.createElement("style");
-            sliderStyle.textContent = `
-                .testimonial-slider-wrap {
-                    position: relative;
-                    width: min(1180px, calc(100% - 40px));
-                    margin: 0 auto;
+        if (originals.length > 1) {
+            const style = document.createElement("style");
+            style.textContent = `
+                .testimonial-slider-wrap{
+                    position:relative;
+                    width:min(1180px,calc(100% - 40px));
+                    margin:0 auto;
                 }
-
-                .testimonial-carousel-viewport {
-                    position: relative;
-                    overflow: hidden;
-                    width: 100%;
-                    padding: 28px 0 34px;
+                .testimonial-carousel-viewport{
+                    position:relative;
+                    width:100%;
+                    overflow:hidden;
+                    padding:28px 0 34px;
                 }
-
-                .testimonial-grid {
-                    display: flex !important;
-                    align-items: stretch;
-                    gap: 24px;
-                    width: max-content;
-                    max-width: none;
-                    margin: 0 !important;
-                    padding: 0 !important;
-                    overflow: visible !important;
-                    cursor: grab;
-                    will-change: transform;
-                    transition: transform .65s cubic-bezier(.22,.61,.36,1);
+                .testimonial-grid{
+                    display:flex!important;
+                    align-items:stretch;
+                    gap:24px;
+                    width:max-content!important;
+                    max-width:none!important;
+                    margin:0!important;
+                    padding:0!important;
+                    overflow:visible!important;
+                    cursor:grab;
+                    will-change:transform;
+                    transition:transform .65s cubic-bezier(.22,.61,.36,1);
                 }
-
-                .testimonial-grid.is-dragging {
-                    cursor: grabbing;
-                    transition: none;
+                .testimonial-grid.is-dragging{cursor:grabbing;transition:none}
+                .testimonial-grid .testimonial-card{
+                    flex:0 0 min(377px,calc((100vw - 88px)/3));
+                    width:min(377px,calc((100vw - 88px)/3));
+                    min-width:0;
+                    opacity:.22;
+                    transform:scale(.88);
+                    filter:saturate(.6);
+                    transition:opacity .5s ease,transform .5s ease,filter .5s ease,
+                               box-shadow .5s ease,border-color .5s ease;
                 }
-
-                .testimonial-grid .testimonial-card {
-                    flex: 0 0 calc((min(1180px, calc(100vw - 40px)) - 48px) / 3);
-                    width: calc((min(1180px, calc(100vw - 40px)) - 48px) / 3);
-                    min-width: 0;
-                    opacity: .28;
-                    transform: scale(.88);
-                    filter: saturate(.65);
-                    transition:
-                        opacity .55s ease,
-                        transform .55s ease,
-                        filter .55s ease,
-                        box-shadow .55s ease,
-                        border-color .55s ease;
-                    transform-origin: center center;
+                .testimonial-grid .testimonial-card.is-near{
+                    opacity:.5;
+                    transform:scale(.93);
+                    filter:saturate(.8);
                 }
-
-                .testimonial-grid .testimonial-card.is-near {
-                    opacity: .52;
-                    transform: scale(.92);
-                    filter: saturate(.8);
+                .testimonial-grid .testimonial-card.is-active{
+                    opacity:1;
+                    transform:scale(1.04);
+                    filter:none;
+                    background:linear-gradient(145deg,#e4f2ff,#f4fbff);
+                    border-color:#8fc4ff;
+                    box-shadow:0 20px 48px rgba(23,105,255,.18);
+                    z-index:2;
                 }
-
-                .testimonial-grid .testimonial-card.is-active {
-                    opacity: 1;
-                    transform: scale(1.04);
-                    filter: none;
-                    background: linear-gradient(145deg, #e7f3ff, #f5fbff);
-                    border-color: #8fc4ff;
-                    box-shadow: 0 20px 48px rgba(23,105,255,.16);
-                    z-index: 2;
+                .testimonial-grid .testimonial-card.is-active .quote-mark{color:var(--blue)}
+                .testimonial-slider-controls{
+                    display:flex;
+                    justify-content:center;
+                    align-items:center;
+                    gap:10px;
+                    margin-top:4px;
                 }
-
-                .testimonial-grid .testimonial-card.is-active .quote-mark {
-                    color: var(--blue);
+                .testimonial-slider-button{
+                    width:42px;height:42px;border:1px solid #cbdbea;border-radius:50%;
+                    background:#fff;color:#142238;display:grid;place-items:center;
+                    cursor:pointer;font-size:1rem;transition:.2s;
                 }
-
-                .testimonial-slider-controls {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 10px;
-                    margin-top: 4px;
+                .testimonial-slider-button:hover{
+                    background:#edf6ff;border-color:#8fc4ff;transform:translateY(-2px);
                 }
-
-                .testimonial-slider-button {
-                    width: 42px;
-                    height: 42px;
-                    border: 1px solid #cbdbea;
-                    border-radius: 50%;
-                    background: #fff;
-                    color: #142238;
-                    display: grid;
-                    place-items: center;
-                    cursor: pointer;
-                    font-size: 1rem;
-                    transition: transform .2s ease, background .2s ease, border-color .2s ease;
-                }
-
-                .testimonial-slider-button:hover {
-                    background: #edf6ff;
-                    border-color: #8fc4ff;
-                    transform: translateY(-2px);
-                }
-
-                @media (max-width: 900px) {
-                    .testimonial-grid .testimonial-card {
-                        flex-basis: calc((min(100vw - 40px, 1180px) - 24px) / 2);
-                        width: calc((min(100vw - 40px, 1180px) - 24px) / 2);
+                @media(max-width:900px){
+                    .testimonial-grid .testimonial-card{
+                        flex-basis:calc((100vw - 64px)/2);
+                        width:calc((100vw - 64px)/2);
                     }
                 }
-
-                @media (max-width: 600px) {
-                    .testimonial-slider-wrap {
-                        width: calc(100% - 30px);
-                    }
-
-                    .testimonial-carousel-viewport {
-                        padding: 18px 0 26px;
-                    }
-
+                @media(max-width:600px){
+                    .testimonial-slider-wrap{width:calc(100% - 30px)}
+                    .testimonial-carousel-viewport{padding:18px 0 26px}
                     .testimonial-grid .testimonial-card,
-                    .testimonial-grid .testimonial-card.is-active {
-                        flex-basis: calc(100vw - 30px);
-                        width: calc(100vw - 30px);
-                        transform: scale(1);
+                    .testimonial-grid .testimonial-card.is-active{
+                        flex-basis:calc(100vw - 30px);
+                        width:calc(100vw - 30px);
+                        transform:scale(1);
                     }
-
-                    .testimonial-grid .testimonial-card {
-                        opacity: .2;
-                    }
-
-                    .testimonial-grid .testimonial-card.is-near {
-                        opacity: .25;
-                    }
-
-                    .testimonial-grid .testimonial-card.is-active {
-                        opacity: 1;
-                    }
+                    .testimonial-grid .testimonial-card{opacity:.2}
+                    .testimonial-grid .testimonial-card.is-near{opacity:.25}
+                    .testimonial-grid .testimonial-card.is-active{opacity:1}
                 }
-
-                @media (prefers-reduced-motion: reduce) {
-                    .testimonial-grid {
-                        transition: none !important;
-                    }
-
-                    .testimonial-grid .testimonial-card {
-                        transition: none !important;
-                    }
+                @media(prefers-reduced-motion:reduce){
+                    .testimonial-grid,.testimonial-grid .testimonial-card{transition:none!important}
                 }
             `;
-            document.head.appendChild(sliderStyle);
+            document.head.appendChild(style);
 
-            const sliderWrap = document.createElement("div");
-            sliderWrap.className = "testimonial-slider-wrap";
-
+            const wrap = document.createElement("div");
+            wrap.className = "testimonial-slider-wrap";
             const viewport = document.createElement("div");
             viewport.className = "testimonial-carousel-viewport";
 
-            testimonialGrid.parentNode.insertBefore(sliderWrap, testimonialGrid);
-            sliderWrap.appendChild(viewport);
+            testimonialGrid.parentNode.insertBefore(wrap, testimonialGrid);
+            wrap.appendChild(viewport);
             viewport.appendChild(testimonialGrid);
 
-            // Three complete copies create enough room to travel seamlessly
-            // in both directions before the internal position is normalized.
-            const copies = 3;
-            const originalMarkup = originalCards.map(card => card.cloneNode(true));
-
+            // Three copies: previous | current | next.
+            const markup = originals.map(card => card.cloneNode(true));
             testimonialGrid.innerHTML = "";
-
-            for (let copy = 0; copy < copies; copy++) {
-                originalMarkup.forEach(card => {
+            for (let set = 0; set < 3; set++) {
+                markup.forEach(card => {
                     const clone = card.cloneNode(true);
-                    clone.setAttribute("aria-hidden", copy === 1 ? "false" : "true");
+                    clone.setAttribute("aria-hidden", set === 1 ? "false" : "true");
                     testimonialGrid.appendChild(clone);
                 });
             }
 
-            const cards = Array.from(
-                testimonialGrid.querySelectorAll(".testimonial-card")
-            );
-            const total = originalCards.length;
-
-            const controls = document.createElement("div");
-            controls.className = "testimonial-slider-controls";
-            controls.innerHTML = `
-                <button class="testimonial-slider-button" type="button"
-                    aria-label="Previous testimonial">←</button>
-                <button class="testimonial-slider-button" type="button"
-                    aria-label="Next testimonial">→</button>
-            `;
-            sliderWrap.appendChild(controls);
-
-            const previousButton = controls.querySelector("button:first-child");
-            const nextButton = controls.querySelector("button:last-child");
-
-            let currentIndex = total;
-            let autoplayTimer = null;
+            const cards = Array.from(testimonialGrid.querySelectorAll(".testimonial-card"));
+            const total = originals.length;
+            let index = total; // testimonial 1 in the middle copy
+            let timer = null;
             let resumeTimer = null;
-            let isAnimating = false;
-            let isPointerDown = false;
-            let pointerStartX = 0;
-            let pointerStartTranslate = 0;
+            let moving = false;
+            let dragging = false;
+            let startX = 0;
+            let startTranslate = 0;
 
-            const getGap = () => {
-                const styles = getComputedStyle(testimonialGrid);
-                return parseFloat(styles.columnGap || styles.gap || "24") || 24;
+            // Use the actual card offset rather than an estimated width.
+            // This is the key fix for the desktop positioning drift.
+            const centeredX = i => {
+                const card = cards[i];
+                if (!card) return 0;
+                const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+                return viewport.clientWidth / 2 - cardCenter;
             };
 
-            const getCardStep = () => {
-                if (!cards[0]) return 0;
-                return cards[0].getBoundingClientRect().width + getGap();
-            };
-
-            // Calculates the exact translation required to put the active
-            // testimonial's centre on the viewport's centre line.
-            const getCenteredTranslate = index => {
-                const step = getCardStep();
-                if (!step) return 0;
-
-                const cardWidth = cards[0].getBoundingClientRect().width;
-                return (viewport.clientWidth / 2) -
-                    (index * step + cardWidth / 2);
-            };
-
-            const setCardStates = () => {
-                cards.forEach((card, index) => {
-                    const distance = Math.abs(index - currentIndex);
-                    card.classList.toggle("is-active", distance === 0);
-                    card.classList.toggle("is-near", distance === 1);
+            const setStates = () => {
+                cards.forEach((card, i) => {
+                    const d = Math.abs(i - index);
+                    card.classList.toggle("is-active", d === 0);
+                    card.classList.toggle("is-near", d === 1);
                 });
             };
 
             const render = animate => {
-                setCardStates();
-
+                setStates();
                 testimonialGrid.style.transition = animate
                     ? "transform .65s cubic-bezier(.22,.61,.36,1)"
                     : "none";
-
-                testimonialGrid.style.transform =
-                    `translate3d(${getCenteredTranslate(currentIndex)}px,0,0)`;
+                testimonialGrid.style.transform = `translate3d(${centeredX(index)}px,0,0)`;
             };
 
-            const normalizeIfNeeded = () => {
-                // The corresponding card in the middle copy has the same
-                // position and appearance, so normalization is invisible.
-                if (currentIndex >= total * 2) {
-                    currentIndex -= total;
+            const normalize = () => {
+                if (index >= total * 2) {
+                    index -= total;
                     render(false);
-                } else if (currentIndex < total) {
-                    currentIndex += total;
+                } else if (index < total) {
+                    index += total;
                     render(false);
                 }
             };
 
             const move = direction => {
-                if (isAnimating || total < 2) return;
-
-                isAnimating = true;
-                currentIndex += direction;
+                if (moving) return;
+                moving = true;
+                index += direction;
                 render(true);
             };
 
-            const startAutoplay = () => {
-                clearInterval(autoplayTimer);
+            testimonialGrid.addEventListener("transitionend", e => {
+                if (e.propertyName !== "transform") return;
+                normalize();
+                moving = false;
+            });
 
-                autoplayTimer = setInterval(() => {
-                    if (!isPointerDown && !document.hidden) {
-                        move(1);
-                    }
+            const startAutoplay = () => {
+                clearInterval(timer);
+                timer = setInterval(() => {
+                    if (!dragging && !document.hidden) move(1);
                 }, 4000);
             };
 
             const pauseAndResume = () => {
-                clearInterval(autoplayTimer);
+                clearInterval(timer);
                 clearTimeout(resumeTimer);
                 resumeTimer = setTimeout(startAutoplay, 5000);
             };
 
-            nextButton.addEventListener("click", () => {
+            const controls = document.createElement("div");
+            controls.className = "testimonial-slider-controls";
+            controls.innerHTML = `
+                <button class="testimonial-slider-button" type="button" aria-label="Previous testimonial">←</button>
+                <button class="testimonial-slider-button" type="button" aria-label="Next testimonial">→</button>`;
+            wrap.appendChild(controls);
+
+            controls.firstElementChild.addEventListener("click", () => {
+                move(-1);
+                pauseAndResume();
+            });
+            controls.lastElementChild.addEventListener("click", () => {
                 move(1);
                 pauseAndResume();
             });
 
-            previousButton.addEventListener("click", () => {
-                move(-1);
-                pauseAndResume();
-            });
-
-            testimonialGrid.addEventListener("transitionend", event => {
-                if (event.propertyName !== "transform") return;
-
-                normalizeIfNeeded();
-                isAnimating = false;
-            });
-
-            viewport.addEventListener("mouseenter", () => {
-                clearInterval(autoplayTimer);
-            });
-
+            viewport.addEventListener("mouseenter", () => clearInterval(timer));
             viewport.addEventListener("mouseleave", () => {
-                if (!isPointerDown) startAutoplay();
+                if (!dragging) startAutoplay();
             });
 
-            // Pointer-based dragging supports both mouse dragging and mobile swiping.
-            const pointerDown = event => {
-                if (event.pointerType === "mouse" && event.button !== 0) return;
-
-                isPointerDown = true;
-                isAnimating = false;
-                clearInterval(autoplayTimer);
+            viewport.addEventListener("pointerdown", e => {
+                if (e.pointerType === "mouse" && e.button !== 0) return;
+                dragging = true;
+                moving = false;
+                clearInterval(timer);
                 clearTimeout(resumeTimer);
-
-                pointerStartX = event.clientX;
-                pointerStartTranslate = getCenteredTranslate(currentIndex);
-
+                startX = e.clientX;
+                startTranslate = centeredX(index);
                 testimonialGrid.classList.add("is-dragging");
+                testimonialGrid.setPointerCapture?.(e.pointerId);
+            });
 
-                if (testimonialGrid.setPointerCapture) {
-                    testimonialGrid.setPointerCapture(event.pointerId);
-                }
-            };
-
-            const pointerMove = event => {
-                if (!isPointerDown) return;
-
-                const delta = event.clientX - pointerStartX;
-
+            viewport.addEventListener("pointermove", e => {
+                if (!dragging) return;
                 testimonialGrid.style.transition = "none";
                 testimonialGrid.style.transform =
-                    `translate3d(${pointerStartTranslate + delta}px,0,0)`;
-            };
+                    `translate3d(${startTranslate + e.clientX - startX}px,0,0)`;
+            });
 
-            const pointerUp = event => {
-                if (!isPointerDown) return;
-
-                const delta = event.clientX - pointerStartX;
-                const threshold = Math.min(100, viewport.clientWidth * .15);
-
-                isPointerDown = false;
+            const endDrag = e => {
+                if (!dragging) return;
+                const delta = e.clientX - startX;
+                dragging = false;
                 testimonialGrid.classList.remove("is-dragging");
-
-                if (Math.abs(delta) >= threshold) {
+                if (Math.abs(delta) > Math.min(100, viewport.clientWidth * .15)) {
                     move(delta < 0 ? 1 : -1);
                 } else {
                     render(true);
                 }
-
                 pauseAndResume();
-
-                if (testimonialGrid.releasePointerCapture) {
-                    try {
-                        testimonialGrid.releasePointerCapture(event.pointerId);
-                    } catch (_) {}
-                }
+                testimonialGrid.releasePointerCapture?.(e.pointerId);
             };
 
-            viewport.addEventListener("pointerdown", pointerDown);
-            viewport.addEventListener("pointermove", pointerMove);
-            viewport.addEventListener("pointerup", pointerUp);
-            viewport.addEventListener("pointercancel", pointerUp);
+            viewport.addEventListener("pointerup", endDrag);
+            viewport.addEventListener("pointercancel", endDrag);
 
-            window.addEventListener("resize", () => {
-                render(false);
-            });
-
+            window.addEventListener("resize", () => render(false));
             document.addEventListener("visibilitychange", () => {
-                if (document.hidden) {
-                    clearInterval(autoplayTimer);
-                } else {
-                    startAutoplay();
-                }
+                if (document.hidden) clearInterval(timer);
+                else startAutoplay();
             });
 
             requestAnimationFrame(() => {
