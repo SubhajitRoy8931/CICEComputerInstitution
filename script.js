@@ -52,12 +52,4 @@ document.addEventListener("DOMContentLoaded", () => {
             link.classList.add("active");
         }
     });
-
-    // ==================== MOBILE CONTACT FIX ====================
-    // Loads the separate mobile stylesheet that prevents the contact section
-    // and Google Maps embed from becoming wider than the phone screen.
-    const mobileContactStyles = document.createElement("link");
-    mobileContactStyles.rel = "stylesheet";
-    mobileContactStyles.href = "mobile-contact-fix.css";
-    document.head.appendChild(mobileContactStyles);
 });
