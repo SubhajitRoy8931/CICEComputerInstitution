@@ -1911,21 +1911,20 @@ button {
         max-width:100%;
     }
 }
-/* ==================== MOBILE TEXT ALIGNMENT ==================== */
+/* Centers the Hero title on mobile. */
+.hero-brand {
+    align-items:center;
+    text-align:center;
+}
 
-@media (max-width: 768px) {
-    .hero-brand {
-        align-items: center;
-        text-align: center;
-    }
+/* Centers only the About label and heading. */
+.about-copy > .section-label,
+.about-copy > h2 {
+    display:block;
+    text-align:center;
+}
 
-    .about-copy {
-        text-align: left;
-    }
-
-    .about-copy > .section-label,
-    .about-copy > h2 {
-        display: block;
-        text-align: center;
-    }
+/* Keeps About paragraphs left-aligned. */
+.about-copy > p {
+    text-align:left;
 }
