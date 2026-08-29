@@ -1911,20 +1911,31 @@ button {
         max-width:100%;
     }
 }
-/* Centers the Hero title on mobile. */
-.hero-brand {
-    align-items:center;
-    text-align:center;
-}
+/* ==================== MOBILE TEXT ALIGNMENT ==================== */
+/* Centers only the requested Hero and About text on mobile screens. */
 
-/* Centers only the About label and heading. */
-.about-copy > .section-label,
-.about-copy > h2 {
-    display:block;
-    text-align:center;
-}
+@media (max-width:600px) {
 
-/* Keeps About paragraphs left-aligned. */
-.about-copy > p {
-    text-align:left;
+    /* Centers CICE COMPUTER INSTITUTE in the Hero. */
+    .hero-brand {
+        align-items:center;
+        text-align:center;
+    }
+
+    /* Centers the ABOUT CICE label. */
+    .about-copy > .section-label {
+        display:block;
+        width:100%;
+        text-align:center;
+    }
+
+    /* Centers the About heading. */
+    .about-copy > h2 {
+        text-align:center;
+    }
+
+    /* Keeps the About paragraphs left-aligned. */
+    .about-copy > p {
+        text-align:left;
+    }
 }
