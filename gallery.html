@@ -1,50 +1,515 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Declares the document character encoding. -->
     <meta charset="UTF-8">
+
+    <!-- Makes the gallery responsive on phones and tablets. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Describes the gallery page for search engines. -->
     <meta name="description" content="Gallery of CICE Computer Institute, Halakura, Dhubri, Assam — institute environment, students, practical training, internship programs and events.">
+
+    <!-- Identifies the preferred URL for this page. -->
     <link rel="canonical" href="https://subhajitroy8931.github.io/CICEComputerInstution/gallery.html">
+
+    <!-- Open Graph metadata controls the basic information used when the gallery is shared. -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Gallery | CICE Computer Institute">
     <meta property="og:description" content="Explore CICE Computer Institute, Halakura through photographs, practical learning, internship programs and events.">
     <meta property="og:url" content="https://subhajitroy8931.github.io/CICEComputerInstution/gallery.html">
+
+    <!-- Provides a simple sharing card for X (formerly Twitter). -->
     <meta name="twitter:card" content="summary">
+
+    <!-- Text shown in the browser tab and commonly used as the search-result title. -->
     <title>Gallery | CICE Computer Institute</title>
+
+    <!-- Loads the shared stylesheet used throughout the website. -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- ==================== GALLERY PAGE STYLES ==================== -->
+    <!-- These rules are specific to the full gallery page. -->
     <style>
-        .gallery-page-hero{padding:85px 0;background:radial-gradient(circle at 80% 20%,rgba(37,200,255,.16),transparent 25%),linear-gradient(135deg,#06172d,#0b3158);color:#fff}.gallery-page-hero h1{font-size:clamp(2.8rem,6vw,5rem);line-height:1;margin:15px 0}.gallery-page-hero p{max-width:700px;color:#b8cbe0}.gallery-category{margin-bottom:85px}.gallery-category-heading{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:28px}.gallery-category-heading h2{font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.1;margin-top:8px}.gallery-category-heading p{max-width:480px;color:var(--muted);font-size:.8rem}.media-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.media-card{min-height:235px;position:relative;overflow:hidden;border:1px solid var(--border);border-radius:18px;background:linear-gradient(135deg,#e1efff,#ccefff);display:flex;align-items:center;justify-content:center;text-align:center;transition:.3s}.media-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}.media-card img,.media-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.media-placeholder{position:relative;z-index:1;padding:18px;color:#56708b}.media-placeholder strong{display:block;font:700 1.05rem Poppins;color:#234b72;margin-bottom:5px}.media-placeholder span{font-size:.68rem}.media-caption{position:absolute;z-index:3;left:12px;right:12px;bottom:12px;padding:10px 13px;border-radius:10px;background:rgba(255,255,255,.93);color:#24364d;font-size:.67rem;font-weight:800}.video-card{min-height:270px}.video-card::after{content:"▶";position:absolute;z-index:2;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:rgba(7,26,51,.88);color:#fff;font-size:.9rem;padding-left:2px;box-shadow:0 10px 25px rgba(0,0,0,.2)}.video-link{position:absolute;inset:0;z-index:5}.gallery-note{padding:20px 22px;margin-top:25px;border-left:3px solid var(--blue);background:#f4f8fd;color:#607287;font-size:.72rem;border-radius:0 10px 10px 0}.back-row{display:flex;justify-content:center;margin-top:15px}@media(max-width:800px){.media-grid{grid-template-columns:repeat(2,1fr)}.gallery-category-heading{display:block}.gallery-category-heading p{margin-top:12px}}@media(max-width:560px){.media-grid{grid-template-columns:1fr}}
+        /* Large introductory banner at the top of the gallery page. */
+        .gallery-page-hero {
+            padding: 85px 0;
+            background:
+                radial-gradient(circle at 80% 20%, rgba(37,200,255,.16), transparent 25%),
+                linear-gradient(135deg, #06172d, #0b3158);
+            color: #fff;
+        }
+
+        .gallery-page-hero h1 {
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            line-height: 1;
+            margin: 15px 0;
+        }
+
+        .gallery-page-hero p {
+            max-width: 700px;
+            color: #b8cbe0;
+        }
+
+        /* Adds vertical spacing between the different gallery categories. */
+        .gallery-category {
+            margin-bottom: 85px;
+        }
+
+        /* Places a category title and its optional description side by side. */
+        .gallery-category-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 25px;
+            margin-bottom: 28px;
+        }
+
+        .gallery-category-heading h2 {
+            font-size: clamp(1.7rem, 3vw, 2.4rem);
+            line-height: 1.1;
+            margin-top: 8px;
+        }
+
+        .gallery-category-heading p {
+            max-width: 480px;
+            color: var(--muted);
+            font-size: .8rem;
+        }
+
+        /* Three-column layout for gallery images and videos on larger screens. */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        /* Individual gallery item container. */
+        .media-card {
+            min-height: 235px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: linear-gradient(135deg, #e1efff, #ccefff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: .3s;
+        }
+
+        /* Gives gallery cards a small lift when the visitor hovers over them. */
+        .media-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Images and videos fill the gallery card while preserving their aspect ratio. */
+        .media-card img,
+        .media-card video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Fallback text displayed when a real image or video is not available. */
+        .media-placeholder {
+            position: relative;
+            z-index: 1;
+            padding: 18px;
+            color: #56708b;
+        }
+
+        .media-placeholder strong {
+            display: block;
+            font: 700 1.05rem Poppins;
+            color: #234b72;
+            margin-bottom: 5px;
+        }
+
+        .media-placeholder span {
+            font-size: .68rem;
+        }
+
+        /* Caption placed over the bottom of each media card. */
+        .media-caption {
+            position: absolute;
+            z-index: 3;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            padding: 10px 13px;
+            border-radius: 10px;
+            background: rgba(255,255,255,.93);
+            color: #24364d;
+            font-size: .67rem;
+            font-weight: 800;
+        }
+
+        /* Video cards are slightly taller than ordinary image cards. */
+        .video-card {
+            min-height: 270px;
+        }
+
+        /* Creates a visual play button on video cards. */
+        .video-card::after {
+            content: "▶";
+            position: absolute;
+            z-index: 2;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: rgba(7,26,51,.88);
+            color: #fff;
+            font-size: .9rem;
+            padding-left: 2px;
+            box-shadow: 0 10px 25px rgba(0,0,0,.2);
+        }
+
+        /* Transparent link placed over a video card so the whole card is clickable. */
+        .video-link {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+        }
+
+        /* Informational note shown below gallery content. */
+        .gallery-note {
+            padding: 20px 22px;
+            margin-top: 25px;
+            border-left: 3px solid var(--blue);
+            background: #f4f8fd;
+            color: #607287;
+            font-size: .72rem;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .back-row {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        /* Tablet layout: reduce the gallery to two columns. */
+        @media (max-width: 800px) {
+            .media-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-category-heading {
+                display: block;
+            }
+
+            .gallery-category-heading p {
+                margin-top: 12px;
+            }
+        }
+
+        /* Small-phone layout: display one gallery item per row. */
+        @media (max-width: 560px) {
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
 
-<header class="site-header"><nav class="navbar container"><a href="index.html" class="brand"><span class="brand-mark">C</span><span><strong>CICE</strong><small>COMPUTER INSTITUTE</small></span></a><button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button><ul class="nav-links" id="navLinks"><li><a href="index.html#home">Home</a></li><li><a href="index.html#courses">Courses</a></li><li><a href="index.html#why">Why CICE</a></li><li><a href="index.html#facilities">Facilities</a></li><li><a href="index.html#instructor">Instructor</a></li><li><a href="index.html#testimonials">Testimonials</a></li><li><a href="index.html#about">About</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="index.html#contact">Contact</a></li></ul><a class="nav-whatsapp" href="https://wa.me/917002641470" target="_blank" rel="noopener">WhatsApp</a></nav></header>
+<!-- ==================== HEADER / NAVIGATION ==================== -->
+<!-- Reuses the same navigation structure as the homepage. -->
+<header class="site-header">
+    <nav class="navbar container">
+        <!-- CICE brand link back to the homepage. -->
+        <a href="index.html" class="brand">
+            <span class="brand-mark">C</span>
+            <span>
+                <strong>CICE</strong>
+                <small>COMPUTER INSTITUTE</small>
+            </span>
+        </a>
+
+        <!-- Mobile menu button controlled by script.js. -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+
+        <!-- Links back to sections of the homepage. -->
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#courses">Courses</a></li>
+            <li><a href="index.html#why">Why CICE</a></li>
+            <li><a href="index.html#facilities">Facilities</a></li>
+            <li><a href="index.html#instructor">Instructor</a></li>
+            <li><a href="index.html#testimonials">Testimonials</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+
+        <!-- Direct WhatsApp contact link. -->
+        <a class="nav-whatsapp" href="https://wa.me/917002641470" target="_blank" rel="noopener">WhatsApp</a>
+    </nav>
+</header>
 
 <main>
-<section class="gallery-page-hero"><div class="container"><div class="section-label" style="color:#6bd7ff;">CICE / GALLERY</div><h1>See CICE<br>in action.</h1><p>Explore photographs and videos from the institute, classroom activities, practical learning, internship programs and events.</p></div></section>
-<section class="section"><div class="container">
-<div class="gallery-category"><div class="gallery-category-heading"><div><span class="section-label">01 · INSTITUTE</span><h2>Institute & Environment</h2></div></div><div class="media-grid">
-<div class="media-card"><img src="images/gallery-1.jpg" alt="CICE institute or classroom" loading="lazy" onerror="this.style.display='none';"><div class="media-placeholder"><strong>Institute / Classroom</strong><span>Add a genuine photograph here</span></div><div class="media-caption">Institute & Classroom</div></div>
-<div class="media-card"><img src="images/gallery-2.jpg" alt="CICE computer lab" loading="lazy" onerror="this.style.display='none';"><div class="media-placeholder"><strong>Computer Lab</strong><span>Add a genuine photograph here</span></div><div class="media-caption">Computer Lab</div></div>
-<div class="media-card"><img src="images/gallery-3.jpg" alt="CICE learning environment" loading="lazy" onerror="this.style.display='none';"><div class="media-placeholder"><strong>Learning Environment</strong><span>Add a genuine photograph here</span></div><div class="media-caption">Learning Environment</div></div></div></div>
-<div class="gallery-category"><div class="gallery-category-heading"><div><span class="section-label">02 · LEARNING</span><h2>Students & Practical Learning</h2></div></div><div class="media-grid">
-<div class="media-card"><img src="images/students-1.jpg" alt="CICE students during practical training" loading="lazy" onerror="this.style.display='none';"><div class="media-placeholder"><strong>Students at Work</strong><span>Add a genuine photograph here</span></div><div class="media-caption">Students at Work</div></div>
-<div class="media-card"><img src="images/students-2.jpg" alt="CICE classroom session" loading="lazy" onerror="this.style.display='none';"><div class="media-placeholder"><strong>Classroom Session</strong><span>Add a genuine photograph here</span></div><div class="media-caption">Classroom Session</div></div>
-<div class="media-card"><img src="images/students-3.jpg" alt="CICE practical computer session" loading="lazy" onerror="this.style.display='none';"><div class="media-placeholder"><strong>Practical Session</strong><span>Add a genuine photograph here</span></div><div class="media-caption">Practical Session</div></div></div></div>
-<div class="gallery-category"><div class="gallery-category-heading"><div><span class="section-label">03 · INTERNSHIPS</span><h2>College Internship Programs</h2></div></div><div class="media-grid">
-<div class="media-card video-card"><video controls preload="metadata" poster="images/internship-1.jpg"><source src="videos/internship-halakura-college.mp4" type="video/mp4">Your browser does not support the video element.</video><div class="media-placeholder"><strong>Internship Video</strong><span>Add the video file to the videos folder</span></div><div class="media-caption">Halakura College — Internship</div></div>
-<div class="media-card video-card"><video controls preload="metadata" poster="images/internship-2.jpg"><source src="videos/internship-agomani-pragati-college.mp4" type="video/mp4">Your browser does not support the video element.</video><div class="media-placeholder"><strong>Internship Video</strong><span>Add the video file to the videos folder</span></div><div class="media-caption">Agomani (Pragati) College — Internship</div></div>
-<div class="media-card video-card"><video controls preload="metadata" poster="images/internship-3.jpg"><source src="videos/internship-chilarai-college.mp4" type="video/mp4">Your browser does not support the video element.</video><div class="media-placeholder"><strong>Internship Video</strong><span>Add the video file to the videos folder</span></div><div class="media-caption">Chilarai College — Internship</div></div>
-<div class="media-card"><img src="images/internship-4.jpg" alt="Dhubri Girls' College internship" loading="lazy" onerror="this.style.display='none';"><div class="media-placeholder"><strong>Dhubri Girls' College</strong><span>Add internship photograph</span></div><div class="media-caption">Dhubri Girls' College</div></div>
-<div class="media-card"><img src="images/internship-5.jpg" alt="Dharmasala College internship" loading="lazy" onerror="this.style.display='none';"><div class="media-placeholder"><strong>Dharmasala College</strong><span>Add internship photograph</span></div><div class="media-caption">Dharmasala College</div></div>
-<div class="media-card"><img src="images/internship-6.jpg" alt="Hatidhura College internship" loading="lazy" onerror="this.style.display='none';"><div class="media-placeholder"><strong>Hatidhura College</strong><span>Add internship photograph</span></div><div class="media-caption">Hatidhura College</div></div></div></div>
-<div class="gallery-category"><div class="gallery-category-heading"><div><span class="section-label">04 · ACTIVITIES</span><h2>Events & Activities</h2></div></div><div class="media-grid">
-<div class="media-card"><img src="images/events-1.jpg" alt="CICE event" loading="lazy" onerror="this.style.display='none';"><div class="media-placeholder"><strong>Events</strong><span>Add a genuine photograph here</span></div><div class="media-caption">Events & Activities</div></div>
-<div class="media-card"><img src="images/events-2.jpg" alt="CICE certificate distribution" loading="lazy" onerror="this.style.display='none';"><div class="media-placeholder"><strong>Certificates</strong><span>Add a genuine photograph here</span></div><div class="media-caption">Certificate Distribution</div></div>
-<div class="media-card"><img src="images/events-3.jpg" alt="CICE student activity" loading="lazy" onerror="this.style.display='none';"><div class="media-placeholder"><strong>Student Activities</strong><span>Add a genuine photograph here</span></div><div class="media-caption">Student Activities</div></div></div></div>
-<div class="back-row"><a class="btn btn-primary" href="index.html">← Back to CICE Homepage</a></div>
-</div></section></main>
-<footer class="site-footer"><div class="footer-inner container"><div><a href="index.html" class="brand footer-brand"><span class="brand-mark">C</span><span><strong>CICE</strong><small>COMPUTER INSTITUTE</small></span></a><p>Practical computer education in Halakura and surrounding areas.</p></div><div class="footer-links"><a href="index.html#courses">Courses</a><a href="index.html#why">Why CICE</a><a href="index.html#instructor">Instructor</a><a href="gallery.html">Gallery</a><a href="index.html#contact">Contact</a></div><div class="footer-social"><a href="https://www.facebook.com/p/CICE-Computer-Institute-Halakura-100089602022179/" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/cice_computer_halakura/" target="_blank" rel="noopener">Instagram</a></div></div><div class="footer-bottom container"><span>© <span id="year"></span> CICE Computer Institute. All rights reserved.</span><span>Halakura, Dhubri, Assam</span></div></footer>
+
+<!-- ==================== GALLERY HERO ==================== -->
+<!-- Introduces the purpose of the full gallery page. -->
+<section class="gallery-page-hero">
+    <div class="container">
+        <div class="section-label" style="color:#6bd7ff;">CICE / GALLERY</div>
+        <h1>See CICE<br>in action.</h1>
+        <p>Explore photographs and videos from the institute, classroom activities, practical learning, internship programs and events.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <!-- ==================== INSTITUTE GALLERY ==================== -->
+        <!-- Photos of the institute, classroom and learning environment. -->
+        <div class="gallery-category">
+            <div class="gallery-category-heading">
+                <div>
+                    <span class="section-label">01 · INSTITUTE</span>
+                    <h2>Institute &amp; Environment</h2>
+                </div>
+            </div>
+
+            <div class="media-grid">
+                <div class="media-card">
+                    <img src="images/gallery-1.jpg" alt="CICE institute or classroom" loading="lazy" onerror="this.style.display='none';">
+                    <div class="media-placeholder">
+                        <strong>Institute / Classroom</strong>
+                        <span>Add a genuine photograph here</span>
+                    </div>
+                    <div class="media-caption">Institute &amp; Classroom</div>
+                </div>
+
+                <div class="media-card">
+                    <img src="images/gallery-2.jpg" alt="CICE computer lab" loading="lazy" onerror="this.style.display='none';">
+                    <div class="media-placeholder">
+                        <strong>Computer Lab</strong>
+                        <span>Add a genuine photograph here</span>
+                    </div>
+                    <div class="media-caption">Computer Lab</div>
+                </div>
+
+                <div class="media-card">
+                    <img src="images/gallery-3.jpg" alt="CICE learning environment" loading="lazy" onerror="this.style.display='none';">
+                    <div class="media-placeholder">
+                        <strong>Learning Environment</strong>
+                        <span>Add a genuine photograph here</span>
+                    </div>
+                    <div class="media-caption">Learning Environment</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== STUDENT LEARNING GALLERY ==================== -->
+        <!-- Photos showing students and practical computer training. -->
+        <div class="gallery-category">
+            <div class="gallery-category-heading">
+                <div>
+                    <span class="section-label">02 · LEARNING</span>
+                    <h2>Students &amp; Practical Learning</h2>
+                </div>
+            </div>
+
+            <div class="media-grid">
+                <div class="media-card">
+                    <img src="images/students-1.jpg" alt="CICE students during practical training" loading="lazy" onerror="this.style.display='none';">
+                    <div class="media-placeholder">
+                        <strong>Students at Work</strong>
+                        <span>Add a genuine photograph here</span>
+                    </div>
+                    <div class="media-caption">Students at Work</div>
+                </div>
+
+                <div class="media-card">
+                    <img src="images/students-2.jpg" alt="CICE classroom session" loading="lazy" onerror="this.style.display='none';">
+                    <div class="media-placeholder">
+                        <strong>Classroom Session</strong>
+                        <span>Add a genuine photograph here</span>
+                    </div>
+                    <div class="media-caption">Classroom Session</div>
+                </div>
+
+                <div class="media-card">
+                    <img src="images/students-3.jpg" alt="CICE practical computer session" loading="lazy" onerror="this.style.display='none';">
+                    <div class="media-placeholder">
+                        <strong>Practical Session</strong>
+                        <span>Add a genuine photograph here</span>
+                    </div>
+                    <div class="media-caption">Practical Session</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== INTERNSHIP GALLERY ==================== -->
+        <!-- Contains videos and photos related to college internship programs. -->
+        <div class="gallery-category">
+            <div class="gallery-category-heading">
+                <div>
+                    <span class="section-label">03 · INTERNSHIPS</span>
+                    <h2>College Internship Programs</h2>
+                </div>
+            </div>
+
+            <div class="media-grid">
+                <!-- Video element loads metadata first instead of downloading the entire video immediately. -->
+                <div class="media-card video-card">
+                    <video controls preload="metadata" poster="images/internship-1.jpg">
+                        <source src="videos/internship-halakura-college.mp4" type="video/mp4">
+                        Your browser does not support the video element.
+                    </video>
+                    <div class="media-placeholder">
+                        <strong>Internship Video</strong>
+                        <span>Add the video file to the videos folder</span>
+                    </div>
+                    <div class="media-caption">Halakura College — Internship</div>
+                </div>
+
+                <div class="media-card video-card">
+                    <video controls preload="metadata" poster="images/internship-2.jpg">
+                        <source src="videos/internship-agomani-pragati-college.mp4" type="video/mp4">
+                        Your browser does not support the video element.
+                    </video>
+                    <div class="media-placeholder">
+                        <strong>Internship Video</strong>
+                        <span>Add the video file to the videos folder</span>
+                    </div>
+                    <div class="media-caption">Agomani (Pragati) College — Internship</div>
+                </div>
+
+                <div class="media-card video-card">
+                    <video controls preload="metadata" poster="images/internship-3.jpg">
+                        <source src="videos/internship-chilarai-college.mp4" type="video/mp4">
+                        Your browser does not support the video element.
+                    </video>
+                    <div class="media-placeholder">
+                        <strong>Internship Video</strong>
+                        <span>Add the video file to the videos folder</span>
+                    </div>
+                    <div class="media-caption">Chilarai College — Internship</div>
+                </div>
+
+                <div class="media-card">
+                    <img src="images/internship-4.jpg" alt="Dhubri Girls' College internship" loading="lazy" onerror="this.style.display='none';">
+                    <div class="media-placeholder">
+                        <strong>Dhubri Girls' College</strong>
+                        <span>Add internship photograph</span>
+                    </div>
+                    <div class="media-caption">Dhubri Girls' College</div>
+                </div>
+
+                <div class="media-card">
+                    <img src="images/internship-5.jpg" alt="Dharmasala College internship" loading="lazy" onerror="this.style.display='none';">
+                    <div class="media-placeholder">
+                        <strong>Dharmasala College</strong>
+                        <span>Add internship photograph</span>
+                    </div>
+                    <div class="media-caption">Dharmasala College</div>
+                </div>
+
+                <div class="media-card">
+                    <img src="images/internship-6.jpg" alt="Hatidhura College internship" loading="lazy" onerror="this.style.display='none';">
+                    <div class="media-placeholder">
+                        <strong>Hatidhura College</strong>
+                        <span>Add internship photograph</span>
+                    </div>
+                    <div class="media-caption">Hatidhura College</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== EVENTS GALLERY ==================== -->
+        <!-- Photos for institute events, certificates and student activities. -->
+        <div class="gallery-category">
+            <div class="gallery-category-heading">
+                <div>
+                    <span class="section-label">04 · ACTIVITIES</span>
+                    <h2>Events &amp; Activities</h2>
+                </div>
+            </div>
+
+            <div class="media-grid">
+                <div class="media-card">
+                    <img src="images/events-1.jpg" alt="CICE event" loading="lazy" onerror="this.style.display='none';">
+                    <div class="media-placeholder">
+                        <strong>Events</strong>
+                        <span>Add a genuine photograph here</span>
+                    </div>
+                    <div class="media-caption">Events &amp; Activities</div>
+                </div>
+
+                <div class="media-card">
+                    <img src="images/events-2.jpg" alt="CICE certificate distribution" loading="lazy" onerror="this.style.display='none';">
+                    <div class="media-placeholder">
+                        <strong>Certificates</strong>
+                        <span>Add a genuine photograph here</span>
+                    </div>
+                    <div class="media-caption">Certificate Distribution</div>
+                </div>
+
+                <div class="media-card">
+                    <img src="images/events-3.jpg" alt="CICE student activity" loading="lazy" onerror="this.style.display='none';">
+                    <div class="media-placeholder">
+                        <strong>Student Activities</strong>
+                        <span>Add a genuine photograph here</span>
+                    </div>
+                    <div class="media-caption">Student Activities</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Returns visitors to the homepage. -->
+        <div class="back-row">
+            <a class="btn btn-primary" href="index.html">← Back to CICE Homepage</a>
+        </div>
+    </div>
+</section>
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<!-- Reuses the shared footer structure from the homepage. -->
+<footer class="site-footer">
+    <div class="footer-inner container">
+        <div>
+            <a href="index.html" class="brand footer-brand">
+                <span class="brand-mark">C</span>
+                <span>
+                    <strong>CICE</strong>
+                    <small>COMPUTER INSTITUTE</small>
+                </span>
+            </a>
+            <p>Practical computer education in Halakura and surrounding areas.</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="index.html#courses">Courses</a>
+            <a href="index.html#why">Why CICE</a>
+            <a href="index.html#instructor">Instructor</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+
+        <div class="footer-social">
+            <a href="https://www.facebook.com/p/CICE-Computer-Institute-Halakura-100089602022179/" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://www.instagram.com/cice_computer_halakura/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom container">
+        <span>© <span id="year"></span> CICE Computer Institute. All rights reserved.</span>
+        <span>Halakura, Dhubri, Assam</span>
+    </div>
+</footer>
+
+<!-- Loads the shared JavaScript for the mobile menu and footer year. -->
 <script src="script.js"></script>
 </body>
 </html>
