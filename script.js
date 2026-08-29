@@ -10,7 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
         menuToggle.addEventListener("click", () => {
             const isOpen = navLinks.classList.toggle("active");
             menuToggle.setAttribute("aria-expanded", String(isOpen));
-            menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close menu" : "Open menu"
+            );
         });
 
         navLinks.querySelectorAll("a").forEach(link => {
@@ -25,13 +28,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==================== COPYRIGHT YEAR ====================
     // Automatically displays the current year in elements with id="year".
     const year = document.getElementById("year");
-    if (year) year.textContent = new Date().getFullYear();
+
+    if (year) {
+        year.textContent = new Date().getFullYear();
+    }
 
     // ==================== ACTIVE NAVIGATION ====================
     // Detects the current page and marks the matching navigation link as active.
     const currentPage = window.location.pathname.split("/").pop() || "index.html";
+
     document.querySelectorAll(".nav-links a").forEach(link => {
         const href = link.getAttribute("href") || "";
+
         if (href === currentPage || (currentPage === "index.html" && href === "#home")) {
             link.classList.add("active");
         }
@@ -48,234 +56,434 @@ document.addEventListener("DOMContentLoaded", () => {
         whatsapp.rel = "noopener";
         whatsapp.setAttribute("aria-label", "Contact CICE on WhatsApp");
         whatsapp.setAttribute("title", "Contact CICE on WhatsApp");
+
         whatsapp.innerHTML = `
             <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
                 <path d="M16 3.5a12.3 12.3 0 0 0-10.7 18.4L4 28l6.3-1.2A12.3 12.3 0 1 0 16 3.5Zm0 22.2a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.7.7.7-3.6-.2-.4A9.9 9.9 0 1 1 16 25.7Zm5.5-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.5-.7-2.5-1.3-3.5-2.9-.3-.5.3-.5.8-1.6.1-.2.1-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.7.9 3.7.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.3-.6-.5Z"/>
             </svg>`;
+
         Object.assign(whatsapp.style, {
-            position: "fixed", right: "22px", bottom: "22px", width: "58px", height: "58px",
-            display: "grid", placeItems: "center", borderRadius: "50%", background: "#25D366",
-            color: "#fff", boxShadow: "0 8px 24px rgba(0,0,0,.22)", zIndex: "9999",
-            transition: "transform .2s ease, box-shadow .2s ease", textDecoration: "none"
+            position: "fixed",
+            right: "22px",
+            bottom: "22px",
+            width: "58px",
+            height: "58px",
+            display: "grid",
+            placeItems: "center",
+            borderRadius: "50%",
+            background: "#25D366",
+            color: "#fff",
+            boxShadow: "0 8px 24px rgba(0,0,0,.22)",
+            zIndex: "9999",
+            transition: "transform .2s ease, box-shadow .2s ease",
+            textDecoration: "none"
         });
+
         const icon = whatsapp.querySelector("svg");
-        Object.assign(icon.style, { width: "31px", height: "31px", fill: "currentColor" });
+        Object.assign(icon.style, {
+            width: "31px",
+            height: "31px",
+            fill: "currentColor"
+        });
+
         whatsapp.addEventListener("mouseenter", () => {
             whatsapp.style.transform = "translateY(-3px) scale(1.05)";
             whatsapp.style.boxShadow = "0 12px 28px rgba(0,0,0,.28)";
         });
+
         whatsapp.addEventListener("mouseleave", () => {
             whatsapp.style.transform = "translateY(0) scale(1)";
             whatsapp.style.boxShadow = "0 8px 24px rgba(0,0,0,.22)";
         });
+
         document.body.appendChild(whatsapp);
     }
 
-    // ==================== FEATURED TESTIMONIAL CAROUSEL ====================
-    // Shows one highlighted testimonial in the centre and fades the neighbouring cards.
-    // Autoplay always moves forward. Cloned cards make the 10 -> 1 transition continue
-    // in the same direction instead of visibly jumping backwards.
+    // ==================== TESTIMONIAL CAROUSEL ====================
+    // Creates a true repeating carousel with duplicated testimonial sets.
+    // The active card is always centered. The middle copy is used as the
+    // visual reference point, while the first and third copies make both
+    // forward and backward looping continuous.
     const testimonialGrid = document.querySelector(".testimonial-grid");
 
     if (testimonialGrid) {
-        const sliderStyle = document.createElement("style");
-        sliderStyle.textContent = `
-            .testimonial-slider-wrap { position:relative; overflow:hidden; }
-            .testimonial-grid {
-                --testimonial-gap:20px;
-                display:flex !important;
-                align-items:stretch;
-                overflow:visible;
-                gap:var(--testimonial-gap);
-                padding:28px 0 30px;
-                cursor:grab;
-                transition:transform .7s cubic-bezier(.22,.61,.36,1);
-                will-change:transform;
-            }
-            .testimonial-grid:active { cursor:grabbing; }
-            .testimonial-grid .testimonial-card {
-                flex:0 0 calc((100% - (var(--testimonial-gap) * 2)) / 3);
-                min-width:0;
-                opacity:.38;
-                transform:scale(.90);
-                transform-origin:center;
-                transition:opacity .7s ease, transform .7s cubic-bezier(.22,.61,.36,1),
-                            box-shadow .7s ease, background .7s ease, border-color .7s ease;
-            }
-            .testimonial-grid .testimonial-card.testimonial-active {
-                opacity:1;
-                transform:scale(1.04);
-                z-index:2;
-                background:linear-gradient(145deg,#dff0ff,#f3fbff);
-                border-color:#6daef2;
-                box-shadow:0 20px 50px rgba(23,105,255,.18);
-            }
-            .testimonial-grid .testimonial-card.testimonial-side {
-                background:#f5f9fe;
-                border-color:#dfe7f1;
-                box-shadow:none;
-            }
-            .testimonial-slider-controls {
-                display:flex; justify-content:center; align-items:center; gap:10px; margin-top:6px;
-            }
-            .testimonial-slider-button {
-                width:40px; height:40px; border:1px solid #dfe7f1; border-radius:50%;
-                background:#fff; color:#142238; display:grid; place-items:center; cursor:pointer;
-                font-size:1rem; transition:.25s ease;
-            }
-            .testimonial-slider-button:hover {
-                background:#eaf4ff; color:#1769ff; border-color:#9fc4ed; transform:translateY(-2px);
-            }
-            @media (max-width:900px) {
-                .testimonial-grid .testimonial-card { flex-basis:calc((100% - var(--testimonial-gap)) / 2); }
-            }
-            @media (max-width:600px) {
-                .testimonial-grid { padding:20px 0 25px; }
-                .testimonial-grid .testimonial-card { flex-basis:100%; opacity:.35; transform:scale(.92); }
-                .testimonial-grid .testimonial-card.testimonial-active { transform:scale(1); }
-            }
-        `;
-        document.head.appendChild(sliderStyle);
+        const originalCards = Array.from(
+            testimonialGrid.querySelectorAll(".testimonial-card")
+        );
 
-        const sliderWrap = document.createElement("div");
-        sliderWrap.className = "testimonial-slider-wrap container";
-        testimonialGrid.parentNode.insertBefore(sliderWrap, testimonialGrid);
-        sliderWrap.appendChild(testimonialGrid);
+        if (originalCards.length) {
+            const sliderStyle = document.createElement("style");
+            sliderStyle.textContent = `
+                .testimonial-slider-wrap {
+                    position: relative;
+                    width: min(1180px, calc(100% - 40px));
+                    margin: 0 auto;
+                }
 
-        const controls = document.createElement("div");
-        controls.className = "testimonial-slider-controls";
-        controls.innerHTML = `
-            <button class="testimonial-slider-button" type="button" aria-label="Previous testimonial">←</button>
-            <button class="testimonial-slider-button" type="button" aria-label="Next testimonial">→</button>`;
-        sliderWrap.appendChild(controls);
+                .testimonial-carousel-viewport {
+                    position: relative;
+                    overflow: hidden;
+                    width: 100%;
+                    padding: 28px 0 34px;
+                }
 
-        const originalCards = Array.from(testimonialGrid.querySelectorAll(".testimonial-card"));
-        const originalCount = originalCards.length;
-        const cloneCount = Math.min(3, originalCount);
+                .testimonial-grid {
+                    display: flex !important;
+                    align-items: stretch;
+                    gap: 24px;
+                    width: max-content;
+                    max-width: none;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    overflow: visible !important;
+                    cursor: grab;
+                    will-change: transform;
+                    transition: transform .65s cubic-bezier(.22,.61,.36,1);
+                }
 
-        // Clone the first cards so the final real card can move forward into testimonial 1.
-        originalCards.slice(0, cloneCount).forEach(card => {
-            const clone = card.cloneNode(true);
-            clone.setAttribute("aria-hidden", "true");
-            clone.classList.add("testimonial-clone");
-            testimonialGrid.appendChild(clone);
-        });
+                .testimonial-grid.is-dragging {
+                    cursor: grabbing;
+                    transition: none;
+                }
 
-        const cards = Array.from(testimonialGrid.querySelectorAll(".testimonial-card"));
-        const previousButton = controls.querySelector("button:first-child");
-        const nextButton = controls.querySelector("button:last-child");
+                .testimonial-grid .testimonial-card {
+                    flex: 0 0 calc((min(1180px, calc(100vw - 40px)) - 48px) / 3);
+                    width: calc((min(1180px, calc(100vw - 40px)) - 48px) / 3);
+                    min-width: 0;
+                    opacity: .28;
+                    transform: scale(.88);
+                    filter: saturate(.65);
+                    transition:
+                        opacity .55s ease,
+                        transform .55s ease,
+                        filter .55s ease,
+                        box-shadow .55s ease,
+                        border-color .55s ease;
+                    transform-origin: center center;
+                }
 
-        let activeIndex = 0;
-        let autoplayTimer = null;
-        let interactionTimer = null;
-        let isPaused = false;
-        let isDragging = false;
-        let dragStartX = 0;
+                .testimonial-grid .testimonial-card.is-near {
+                    opacity: .52;
+                    transform: scale(.92);
+                    filter: saturate(.8);
+                }
 
-        const renderSlider = (animate = true) => {
-            if (!cards.length) return;
-            cards.forEach((card, index) => {
-                card.classList.toggle("testimonial-active", index === activeIndex);
-                card.classList.toggle("testimonial-side", index !== activeIndex);
+                .testimonial-grid .testimonial-card.is-active {
+                    opacity: 1;
+                    transform: scale(1.04);
+                    filter: none;
+                    background: linear-gradient(145deg, #e7f3ff, #f5fbff);
+                    border-color: #8fc4ff;
+                    box-shadow: 0 20px 48px rgba(23,105,255,.16);
+                    z-index: 2;
+                }
+
+                .testimonial-grid .testimonial-card.is-active .quote-mark {
+                    color: var(--blue);
+                }
+
+                .testimonial-slider-controls {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    margin-top: 4px;
+                }
+
+                .testimonial-slider-button {
+                    width: 42px;
+                    height: 42px;
+                    border: 1px solid #cbdbea;
+                    border-radius: 50%;
+                    background: #fff;
+                    color: #142238;
+                    display: grid;
+                    place-items: center;
+                    cursor: pointer;
+                    font-size: 1rem;
+                    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+                }
+
+                .testimonial-slider-button:hover {
+                    background: #edf6ff;
+                    border-color: #8fc4ff;
+                    transform: translateY(-2px);
+                }
+
+                @media (max-width: 900px) {
+                    .testimonial-grid .testimonial-card {
+                        flex-basis: calc((min(100vw - 40px, 1180px) - 24px) / 2);
+                        width: calc((min(100vw - 40px, 1180px) - 24px) / 2);
+                    }
+                }
+
+                @media (max-width: 600px) {
+                    .testimonial-slider-wrap {
+                        width: calc(100% - 30px);
+                    }
+
+                    .testimonial-carousel-viewport {
+                        padding: 18px 0 26px;
+                    }
+
+                    .testimonial-grid .testimonial-card,
+                    .testimonial-grid .testimonial-card.is-active {
+                        flex-basis: calc(100vw - 30px);
+                        width: calc(100vw - 30px);
+                        transform: scale(1);
+                    }
+
+                    .testimonial-grid .testimonial-card {
+                        opacity: .2;
+                    }
+
+                    .testimonial-grid .testimonial-card.is-near {
+                        opacity: .25;
+                    }
+
+                    .testimonial-grid .testimonial-card.is-active {
+                        opacity: 1;
+                    }
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+                    .testimonial-grid {
+                        transition: none !important;
+                    }
+
+                    .testimonial-grid .testimonial-card {
+                        transition: none !important;
+                    }
+                }
+            `;
+            document.head.appendChild(sliderStyle);
+
+            const sliderWrap = document.createElement("div");
+            sliderWrap.className = "testimonial-slider-wrap";
+
+            const viewport = document.createElement("div");
+            viewport.className = "testimonial-carousel-viewport";
+
+            testimonialGrid.parentNode.insertBefore(sliderWrap, testimonialGrid);
+            sliderWrap.appendChild(viewport);
+            viewport.appendChild(testimonialGrid);
+
+            // Three complete copies create enough room to travel seamlessly
+            // in both directions before the internal position is normalized.
+            const copies = 3;
+            const originalMarkup = originalCards.map(card => card.cloneNode(true));
+
+            testimonialGrid.innerHTML = "";
+
+            for (let copy = 0; copy < copies; copy++) {
+                originalMarkup.forEach(card => {
+                    const clone = card.cloneNode(true);
+                    clone.setAttribute("aria-hidden", copy === 1 ? "false" : "true");
+                    testimonialGrid.appendChild(clone);
+                });
+            }
+
+            const cards = Array.from(
+                testimonialGrid.querySelectorAll(".testimonial-card")
+            );
+            const total = originalCards.length;
+
+            const controls = document.createElement("div");
+            controls.className = "testimonial-slider-controls";
+            controls.innerHTML = `
+                <button class="testimonial-slider-button" type="button"
+                    aria-label="Previous testimonial">←</button>
+                <button class="testimonial-slider-button" type="button"
+                    aria-label="Next testimonial">→</button>
+            `;
+            sliderWrap.appendChild(controls);
+
+            const previousButton = controls.querySelector("button:first-child");
+            const nextButton = controls.querySelector("button:last-child");
+
+            let currentIndex = total;
+            let autoplayTimer = null;
+            let resumeTimer = null;
+            let isAnimating = false;
+            let isPointerDown = false;
+            let pointerStartX = 0;
+            let pointerStartTranslate = 0;
+
+            const getGap = () => {
+                const styles = getComputedStyle(testimonialGrid);
+                return parseFloat(styles.columnGap || styles.gap || "24") || 24;
+            };
+
+            const getCardStep = () => {
+                if (!cards[0]) return 0;
+                return cards[0].getBoundingClientRect().width + getGap();
+            };
+
+            // Calculates the exact translation required to put the active
+            // testimonial's centre on the viewport's centre line.
+            const getCenteredTranslate = index => {
+                const step = getCardStep();
+                if (!step) return 0;
+
+                const cardWidth = cards[0].getBoundingClientRect().width;
+                return (viewport.clientWidth / 2) -
+                    (index * step + cardWidth / 2);
+            };
+
+            const setCardStates = () => {
+                cards.forEach((card, index) => {
+                    const distance = Math.abs(index - currentIndex);
+                    card.classList.toggle("is-active", distance === 0);
+                    card.classList.toggle("is-near", distance === 1);
+                });
+            };
+
+            const render = animate => {
+                setCardStates();
+
+                testimonialGrid.style.transition = animate
+                    ? "transform .65s cubic-bezier(.22,.61,.36,1)"
+                    : "none";
+
+                testimonialGrid.style.transform =
+                    `translate3d(${getCenteredTranslate(currentIndex)}px,0,0)`;
+            };
+
+            const normalizeIfNeeded = () => {
+                // The corresponding card in the middle copy has the same
+                // position and appearance, so normalization is invisible.
+                if (currentIndex >= total * 2) {
+                    currentIndex -= total;
+                    render(false);
+                } else if (currentIndex < total) {
+                    currentIndex += total;
+                    render(false);
+                }
+            };
+
+            const move = direction => {
+                if (isAnimating || total < 2) return;
+
+                isAnimating = true;
+                currentIndex += direction;
+                render(true);
+            };
+
+            const startAutoplay = () => {
+                clearInterval(autoplayTimer);
+
+                autoplayTimer = setInterval(() => {
+                    if (!isPointerDown && !document.hidden) {
+                        move(1);
+                    }
+                }, 4000);
+            };
+
+            const pauseAndResume = () => {
+                clearInterval(autoplayTimer);
+                clearTimeout(resumeTimer);
+                resumeTimer = setTimeout(startAutoplay, 5000);
+            };
+
+            nextButton.addEventListener("click", () => {
+                move(1);
+                pauseAndResume();
             });
 
-            const isMobile = window.innerWidth <= 600;
-            const isTablet = window.innerWidth <= 900;
-            const visibleCount = isMobile ? 1 : (isTablet ? 2 : 3);
-            const gap = 20;
-            const cardWidth = cards[0].getBoundingClientRect().width;
-            let offset;
+            previousButton.addEventListener("click", () => {
+                move(-1);
+                pauseAndResume();
+            });
 
-            if (visibleCount === 1) {
-                offset = activeIndex * (cardWidth + gap);
-            } else if (visibleCount === 2) {
-                offset = activeIndex * (cardWidth + gap) - (cardWidth / 2);
-            } else {
-                offset = activeIndex * (cardWidth + gap) - (cardWidth + gap);
-            }
+            testimonialGrid.addEventListener("transitionend", event => {
+                if (event.propertyName !== "transform") return;
 
-            const target = offset - Math.max(0, (testimonialGrid.clientWidth - cardWidth) / 2);
-            testimonialGrid.style.transition = animate ? "transform .7s cubic-bezier(.22,.61,.36,1)" : "none";
-            testimonialGrid.style.transform = `translateX(${-target}px)`;
-        };
+                normalizeIfNeeded();
+                isAnimating = false;
+            });
 
-        // Autoplay sequence is always 1 -> 2 -> ... -> 10 -> clone of 1 -> reset to real 1.
-        const nextTestimonial = () => {
-            activeIndex += 1;
-            renderSlider(true);
+            viewport.addEventListener("mouseenter", () => {
+                clearInterval(autoplayTimer);
+            });
 
-            if (activeIndex === originalCount) {
-                setTimeout(() => {
-                    activeIndex = 0;
-                    renderSlider(false);
-                }, 720);
-            }
-        };
+            viewport.addEventListener("mouseleave", () => {
+                if (!isPointerDown) startAutoplay();
+            });
 
-        const previousTestimonial = () => {
-            activeIndex = activeIndex === 0 ? originalCount - 1 : activeIndex - 1;
-            renderSlider(true);
-        };
+            // Pointer-based dragging supports both mouse dragging and mobile swiping.
+            const pointerDown = event => {
+                if (event.pointerType === "mouse" && event.button !== 0) return;
 
-        const startAutoplay = () => {
-            clearInterval(autoplayTimer);
-            autoplayTimer = setInterval(() => {
-                if (!isPaused && !isDragging) nextTestimonial();
-            }, 4000);
-        };
+                isPointerDown = true;
+                isAnimating = false;
+                clearInterval(autoplayTimer);
+                clearTimeout(resumeTimer);
 
-        const pauseAndRestart = () => {
-            isPaused = true;
-            clearTimeout(interactionTimer);
-            clearInterval(autoplayTimer);
-            interactionTimer = setTimeout(() => {
-                isPaused = false;
+                pointerStartX = event.clientX;
+                pointerStartTranslate = getCenteredTranslate(currentIndex);
+
+                testimonialGrid.classList.add("is-dragging");
+
+                if (testimonialGrid.setPointerCapture) {
+                    testimonialGrid.setPointerCapture(event.pointerId);
+                }
+            };
+
+            const pointerMove = event => {
+                if (!isPointerDown) return;
+
+                const delta = event.clientX - pointerStartX;
+
+                testimonialGrid.style.transition = "none";
+                testimonialGrid.style.transform =
+                    `translate3d(${pointerStartTranslate + delta}px,0,0)`;
+            };
+
+            const pointerUp = event => {
+                if (!isPointerDown) return;
+
+                const delta = event.clientX - pointerStartX;
+                const threshold = Math.min(100, viewport.clientWidth * .15);
+
+                isPointerDown = false;
+                testimonialGrid.classList.remove("is-dragging");
+
+                if (Math.abs(delta) >= threshold) {
+                    move(delta < 0 ? 1 : -1);
+                } else {
+                    render(true);
+                }
+
+                pauseAndResume();
+
+                if (testimonialGrid.releasePointerCapture) {
+                    try {
+                        testimonialGrid.releasePointerCapture(event.pointerId);
+                    } catch (_) {}
+                }
+            };
+
+            viewport.addEventListener("pointerdown", pointerDown);
+            viewport.addEventListener("pointermove", pointerMove);
+            viewport.addEventListener("pointerup", pointerUp);
+            viewport.addEventListener("pointercancel", pointerUp);
+
+            window.addEventListener("resize", () => {
+                render(false);
+            });
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    clearInterval(autoplayTimer);
+                } else {
+                    startAutoplay();
+                }
+            });
+
+            requestAnimationFrame(() => {
+                render(false);
                 startAutoplay();
-            }, 5000);
-        };
-
-        previousButton.addEventListener("click", () => { previousTestimonial(); pauseAndRestart(); });
-        nextButton.addEventListener("click", () => { nextTestimonial(); pauseAndRestart(); });
-
-        sliderWrap.addEventListener("mouseenter", () => {
-            isPaused = true;
-            clearInterval(autoplayTimer);
-        });
-        sliderWrap.addEventListener("mouseleave", () => {
-            isPaused = false;
-            startAutoplay();
-        });
-
-        testimonialGrid.addEventListener("touchstart", event => {
-            isPaused = true;
-            clearInterval(autoplayTimer);
-            dragStartX = event.touches[0].clientX;
-        }, { passive:true });
-
-        testimonialGrid.addEventListener("touchend", event => {
-            const distance = event.changedTouches[0].clientX - dragStartX;
-            if (Math.abs(distance) > 45) distance < 0 ? nextTestimonial() : previousTestimonial();
-            pauseAndRestart();
-        }, { passive:true });
-
-        testimonialGrid.addEventListener("mousedown", event => {
-            isDragging = true;
-            isPaused = true;
-            clearInterval(autoplayTimer);
-            dragStartX = event.pageX;
-        });
-
-        document.addEventListener("mouseup", event => {
-            if (!isDragging) return;
-            isDragging = false;
-            const distance = event.pageX - dragStartX;
-            if (Math.abs(distance) > 50) distance < 0 ? nextTestimonial() : previousTestimonial();
-            pauseAndRestart();
-        });
-
-        window.addEventListener("resize", () => renderSlider(false));
-
-        renderSlider(false);
-        startAutoplay();
+            });
+        }
     }
 });
