@@ -1911,3 +1911,16 @@ button {
         max-width:100%;
     }
 }
+/* ==================== MOBILE TEXT ALIGNMENT ==================== */
+/* Centers the Hero institute name and About heading on phone screens. */
+
+@media (max-width: 768px) {
+    .hero-brand {
+        align-items: center;
+        text-align: center;
+    }
+
+    .about-copy h2 {
+        text-align: center;
+    }
+}
