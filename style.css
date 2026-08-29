@@ -1912,7 +1912,7 @@ button {
     }
 }
 /* ==================== MOBILE TEXT ALIGNMENT ==================== */
-/* Centers selected Hero and About text on phone screens only. */
+/* Centers only the About label and heading on phone screens. */
 
 @media (max-width: 768px) {
     /* Centers the CICE COMPUTER INSTITUTE heading. */
@@ -1921,8 +1921,14 @@ button {
         text-align: center;
     }
 
-    /* Centers the ABOUT CICE label and About heading. */
-    .about-copy {
+    /* Centers only the ABOUT CICE label and About heading. */
+    .about-copy > .section-label,
+    .about-copy > h2 {
         text-align: center;
+    }
+
+    /* Keeps the About paragraphs left-aligned. */
+    .about-copy > p {
+        text-align: left;
     }
 }
