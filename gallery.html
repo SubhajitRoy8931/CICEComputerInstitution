@@ -7,7 +7,19 @@
     <!-- Makes the gallery responsive on phones and tablets. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Describes the gallery page for search engines. -->
+    
+    <!-- ==================== FAVICON ==================== -->
+    <!-- Uses the official CICE logo as the browser tab icon. -->
+    <link rel="icon" type="image/png" href="assets/images/cice-logo.png">
+    <link rel="apple-touch-icon" href="assets/images/cice-logo.png">
+
+    <!-- ==================== SOCIAL / META IMAGE ==================== -->
+    <!-- Uses the official CICE logo when this page is shared. -->
+    <meta property="og:image" content="https://subhajitroy8931.github.io/CICEComputerInstitution/assets/images/cice-logo.png">
+    <meta property="og:image:width" content="1254">
+    <meta property="og:image:height" content="1254">
+    <meta name="twitter:image" content="https://subhajitroy8931.github.io/CICEComputerInstitution/assets/images/cice-logo.png">
+<!-- Describes the gallery page for search engines. -->
     <meta name="description" content="Gallery of CICE Computer Institute, Halakura, Dhubri, Assam — institute environment, students, practical training, internship programs and events.">
 
     <!-- Identifies the preferred URL for this page. -->
@@ -20,7 +32,7 @@
     <meta property="og:url" content="https://subhajitroy8931.github.io/CICEComputerInstitution/gallery.html">
 
     <!-- Provides a simple sharing card for X (formerly Twitter). -->
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
 
     <!-- Text shown in the browser tab and commonly used as the search-result title. -->
     <title>Gallery | CICE Computer Institute</title>
@@ -225,12 +237,13 @@
 <header class="site-header">
     <nav class="navbar container">
         <!-- CICE brand link back to the homepage. -->
-        <a href="index.html" class="brand">
-            <span class="brand-mark">C</span>
-            <span>
-                <strong>CICE</strong>
-                <small>COMPUTER INSTITUTE</small>
-            </span>
+        <a href="index.html" class="brand" aria-label="CICE Computer Institute - Home">
+            <!-- Official CICE logo supplied by the institute. -->
+            <img
+                src="assets/images/cice-logo.png"
+                alt="CICE Computer Institute official logo"
+                class="brand-logo"
+            >
         </a>
 
         <!-- Mobile menu button controlled by script.js. -->
