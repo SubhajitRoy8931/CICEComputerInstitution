@@ -326,3 +326,40 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
+
+
+// ==================== NOTICE & UPDATES CAROUSEL ====================
+document.addEventListener("DOMContentLoaded", () => {
+    const windowEl = document.getElementById("noticeWindow");
+    const track = document.getElementById("noticeTrack");
+    const upBtn = document.getElementById("noticeUp");
+    const downBtn = document.getElementById("noticeDown");
+    if (!windowEl || !track || !upBtn || !downBtn) return;
+    const originals = Array.from(track.children);
+    const count = originals.length;
+    if (count < 2) return;
+    originals.forEach(item => track.appendChild(item.cloneNode(true)));
+    originals.forEach(item => track.appendChild(item.cloneNode(true)));
+    let index = count, busy = false, timer = null;
+    const stepSize = () => {
+        const first = track.children[0], second = track.children[1];
+        if (!first) return 0;
+        if (second) { const d = second.offsetTop - first.offsetTop; if (d > 0) return d; }
+        const s = getComputedStyle(first);
+        return first.getBoundingClientRect().height + (parseFloat(s.marginTop)||0) + (parseFloat(s.marginBottom)||0);
+    };
+    const render = animate => { track.style.transition = animate ? "transform 650ms cubic-bezier(.22,.61,.36,1)" : "none"; track.style.transform = `translateY(-${index * stepSize()}px)`; };
+    const normalize = () => { if (index >= count * 2) { index -= count; render(false); } else if (index < count) { index += count; render(false); } };
+    const move = direction => { if (busy) return; busy = true; index += direction; render(true); setTimeout(() => { normalize(); busy = false; }, 680); };
+    const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+    const start = () => { stop(); timer = setInterval(() => move(1), 4200); };
+    upBtn.addEventListener("click", () => { move(-1); start(); });
+    downBtn.addEventListener("click", () => { move(1); start(); });
+    windowEl.addEventListener("mouseenter", stop);
+    windowEl.addEventListener("mouseleave", start);
+    windowEl.addEventListener("focusin", stop);
+    windowEl.addEventListener("focusout", start);
+    window.addEventListener("resize", () => render(false));
+    render(false);
+    start();
+});
