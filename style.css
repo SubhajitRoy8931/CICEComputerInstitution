@@ -1929,3 +1929,394 @@ button {
         text-align:left;
     }
 }
+
+/* ==================== NOTICE & UPDATES ==================== */
+/* Styles the Notice & Updates section, PDF notice cards,
+   scrolling notice area, navigation buttons and responsive layout. */
+
+
+/* ---------- Notice Section ---------- */
+/* Main spacing and white background for the notice area. */
+
+.notice-section {
+    padding: 70px 20px;
+    background: #fff;
+}
+
+
+/* Keeps the notice section at a controlled maximum width. */
+
+.notice-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+/* ---------- Notice Section Heading ---------- */
+
+.notice-heading {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.notice-label {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #1769e0;
+}
+
+.notice-heading h2 {
+    margin: 0;
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.15;
+}
+
+.notice-heading h2 span {
+    color: #1769e0;
+}
+
+.notice-heading p {
+    max-width: 650px;
+    margin: 12px auto 0;
+    color: #667085;
+    line-height: 1.6;
+}
+
+
+/* ---------- Notice Panel ---------- */
+/* Two-column layout on desktop:
+   left = section title
+   right = moving PDF notices. */
+
+.notice-panel {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    overflow: hidden;
+    border: 1px solid #dce4ef;
+    border-radius: 18px;
+    background: #f8fbff;
+    box-shadow: 0 14px 35px rgba(20, 45, 80, .08);
+}
+
+
+/* Left-side title area of the notice panel. */
+
+.notice-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 28px;
+    background: #172d6b;
+    color: #fff;
+}
+
+.notice-title-icon {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 46px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .13);
+    font-size: 22px;
+}
+
+.notice-title strong {
+    display: block;
+    font-size: 17px;
+    line-height: 1.25;
+}
+
+.notice-title small {
+    display: block;
+    margin-top: 5px;
+    color: rgba(255, 255, 255, .72);
+    font-size: 12px;
+}
+
+
+/* ---------- Notice Carousel ---------- */
+/* The viewport hides notices outside the visible area.
+   JavaScript moves .notice-track vertically. */
+
+.notice-window {
+    position: relative;
+    height: 360px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.notice-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 12px 20px;
+    transition: transform 650ms cubic-bezier(.22, .61, .36, 1);
+}
+
+
+/* ---------- Individual PDF Notice ---------- */
+/* Each notice is a clickable link that opens its PDF. */
+
+.notice-item {
+    min-height: 68px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 8px 0;
+    padding: 12px 16px;
+    border: 1px solid #e4eaf2;
+    border-radius: 12px;
+    background: #fff;
+    text-decoration: none;
+    color: inherit;
+    transition:
+        box-shadow .18s,
+        border-color .18s,
+        transform .18s;
+}
+
+
+/* Slight visual feedback when the user points at a notice. */
+
+.notice-item:hover {
+    border-color: #9fc4ff;
+    box-shadow: 0 8px 22px rgba(34, 91, 170, .10);
+    transform: translateY(-1px);
+}
+
+
+/* PDF label displayed at the left of every notice. */
+
+.pdf-icon {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: #eef4ff;
+    color: #1769e0;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+
+/* Allows the notice text to shrink instead of causing overflow. */
+
+.notice-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.notice-info strong {
+    display: block;
+    font-size: 14px;
+    line-height: 1.35;
+}
+
+
+/* Date and NEW badge row. */
+
+.notice-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 5px;
+    color: #7b8798;
+    font-size: 12px;
+}
+
+.new-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 7px;
+    border-radius: 999px;
+    background: #e8f7ed;
+    color: #16733b;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .4px;
+}
+
+
+/* PDF action shown on the right side of each notice. */
+
+.view-pdf {
+    flex: 0 0 auto;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1769e0;
+    white-space: nowrap;
+}
+
+
+/* ---------- Notice Navigation ---------- */
+/* The navigation controls occupy the right side of the
+   desktop grid, directly below the notice list. */
+
+.notice-controls {
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px 18px;
+    background: #fff;
+}
+
+.notice-controls button {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #d5dfeb;
+    border-radius: 50%;
+    background: #fff;
+    color: #172033;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.notice-controls button:hover {
+    border-color: #1769e0;
+    color: #1769e0;
+}
+
+
+/* ---------- Notice Responsive Layout ---------- */
+/* On tablets and phones, the left title area moves above
+   the notices and the controls span the full width. */
+
+@media (max-width: 760px) {
+    .notice-section {
+        padding: 50px 14px;
+    }
+
+    .notice-heading {
+        margin-bottom: 24px;
+    }
+
+    .notice-heading h2 {
+        font-size: 28px;
+    }
+
+    .notice-heading p {
+        font-size: 14px;
+    }
+
+    .notice-panel {
+        grid-template-columns: 1fr;
+        border-radius: 15px;
+    }
+
+    .notice-title {
+        padding: 18px;
+    }
+
+    .notice-window {
+        height: 252px;
+    }
+
+    .notice-track {
+        padding: 8px 12px;
+    }
+
+    .notice-item {
+        min-height: 68px;
+        height: 68px;
+        margin: 5px 0;
+        padding: 10px 11px;
+        gap: 10px;
+    }
+
+    .pdf-icon {
+        width: 36px;
+        height: 36px;
+        flex-basis: 36px;
+    }
+
+    .notice-info strong {
+        font-size: 13px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .notice-meta {
+        font-size: 11px;
+    }
+
+    .notice-controls {
+        grid-column: 1;
+        padding: 0 12px 14px;
+    }
+
+    .notice-controls button {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+
+/* ---------- Extra Small Phones ---------- */
+/* Reduces spacing and text size for very narrow screens. */
+
+@media (max-width: 420px) {
+    .notice-section {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .notice-heading h2 {
+        font-size: 25px;
+    }
+
+    .notice-window {
+        height: 238px;
+    }
+
+    .notice-track {
+        padding-left: 9px;
+        padding-right: 9px;
+    }
+
+    .notice-item {
+        min-height: 66px;
+        height: 66px;
+        padding: 9px;
+    }
+
+    .pdf-icon {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+    }
+
+    .notice-info strong {
+        font-size: 12px;
+    }
+
+    .notice-meta {
+        font-size: 10px;
+    }
+
+    .view-pdf {
+        display: none;
+    }
+}
+
+
+/* ---------- Reduced Motion ---------- */
+/* Respects users who have requested reduced motion
+   in their operating-system accessibility settings. */
+
+@media (prefers-reduced-motion: reduce) {
+    .notice-track {
+        transition: none;
+    }
+}
+
