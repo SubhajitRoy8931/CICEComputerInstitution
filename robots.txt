@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://subhajitroy8931.github.io/CICEComputerInstution/sitemap.xml
+Sitemap: https://subhajitroy8931.github.io/CICEComputerInstitution/sitemap.xml
