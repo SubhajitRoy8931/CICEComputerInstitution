@@ -13,12 +13,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
         navLinks.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => {
+                if (link.classList.contains("nav-dropdown-toggle") && window.innerWidth <= 850) {
+                    return;
+                }
                 navLinks.classList.remove("active");
                 menuToggle.setAttribute("aria-expanded", "false");
                 menuToggle.setAttribute("aria-label", "Open menu");
             });
         });
     }
+
+
+    // ==================== NAVIGATION DROPDOWNS ====================
+    document.querySelectorAll(".nav-dropdown").forEach(dropdown => {
+        const toggle = dropdown.querySelector(".nav-dropdown-toggle");
+        const menu = dropdown.querySelector(".nav-dropdown-menu");
+        if (!toggle || !menu) return;
+
+        toggle.addEventListener("click", event => {
+            if (window.innerWidth <= 850) {
+                // On touch/mobile, the first tap opens the submenu.
+                event.preventDefault();
+
+                document.querySelectorAll(".nav-dropdown.open").forEach(other => {
+                    if (other !== dropdown) {
+                        other.classList.remove("open");
+                        const otherToggle = other.querySelector(".nav-dropdown-toggle");
+                        if (otherToggle) otherToggle.setAttribute("aria-expanded", "false");
+                    }
+                });
+
+                const open = dropdown.classList.toggle("open");
+                toggle.setAttribute("aria-expanded", String(open));
+            }
+            // On desktop, the parent remains a normal link and the submenu
+            // is opened by hover/focus. Submenu links remain independently clickable.
+        });
+
+        dropdown.addEventListener("mouseenter", () => {
+            if (window.innerWidth > 850) {
+                dropdown.classList.add("open");
+                toggle.setAttribute("aria-expanded", "true");
+            }
+        });
+
+        dropdown.addEventListener("mouseleave", () => {
+            if (window.innerWidth > 850) {
+                dropdown.classList.remove("open");
+                toggle.setAttribute("aria-expanded", "false");
+            }
+        });
+    });
 
     // ==================== COPYRIGHT YEAR ====================
     const year = document.getElementById("year");
@@ -28,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentPage = window.location.pathname.split("/").pop() || "index.html";
     document.querySelectorAll(".nav-links a").forEach(link => {
         const href = link.getAttribute("href") || "";
-        if (href === currentPage || (currentPage === "index.html" && href === "#home")) {
+        if (href === currentPage || (currentPage === "index.html" && href === "#home") || (currentPage === "about.html" && href === "about.html")) {
             link.classList.add("active");
         }
     });
