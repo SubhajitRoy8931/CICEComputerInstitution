@@ -40,453 +40,214 @@
     <!-- Loads the shared stylesheet used throughout the website. -->
     <link rel="stylesheet" href="style.css">
 
+
     <!-- ==================== GALLERY PAGE STYLES ==================== -->
-    <!-- These rules are specific to the full gallery page. -->
     <style>
-        /* Large introductory banner at the top of the gallery page. */
-        .gallery-page-hero {
-            padding: 85px 0;
-            background:
-                radial-gradient(circle at 80% 20%, rgba(37,200,255,.16), transparent 25%),
-                linear-gradient(135deg, #06172d, #0b3158);
-            color: #fff;
-        }
-
-        .gallery-page-hero h1 {
-            font-size: clamp(2.8rem, 6vw, 5rem);
-            line-height: 1;
-            margin: 15px 0;
-        }
-
-        .gallery-page-hero p {
-            max-width: 700px;
-            color: #b8cbe0;
-        }
-
-        /* Adds vertical spacing between the different gallery categories. */
-        .gallery-category {
-            margin-bottom: 85px;
-        }
-
-        /* Places a category title and its optional description side by side. */
-        .gallery-category-heading {
-            display: flex;
-            justify-content: space-between;
-            align-items: end;
-            gap: 25px;
-            margin-bottom: 28px;
-        }
-
-        .gallery-category-heading h2 {
-            font-size: clamp(1.7rem, 3vw, 2.4rem);
-            line-height: 1.1;
-            margin-top: 8px;
-        }
-
-        .gallery-category-heading p {
-            max-width: 480px;
-            color: var(--muted);
-            font-size: .8rem;
-        }
-
-        /* Three-column layout for gallery images and videos on larger screens. */
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-
-        /* Individual gallery item container. */
-        .media-card {
-            min-height: 235px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            background: linear-gradient(135deg, #e1efff, #ccefff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            transition: .3s;
-        }
-
-        /* Gives gallery cards a small lift when the visitor hovers over them. */
-        .media-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
-        }
-
-        /* Images and videos fill the gallery card while preserving their aspect ratio. */
-        .media-card img,
-        .media-card video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Fallback text displayed when a real image or video is not available. */
-        .media-placeholder {
-            position: relative;
-            z-index: 1;
-            padding: 18px;
-            color: #56708b;
-        }
-
-        .media-placeholder strong {
-            display: block;
-            font: 700 1.05rem Poppins;
-            color: #234b72;
-            margin-bottom: 5px;
-        }
-
-        .media-placeholder span {
-            font-size: .68rem;
-        }
-
-        /* Caption placed over the bottom of each media card. */
-        .media-caption {
-            position: absolute;
-            z-index: 3;
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
-            padding: 10px 13px;
-            border-radius: 10px;
-            background: rgba(255,255,255,.93);
-            color: #24364d;
-            font-size: .67rem;
-            font-weight: 800;
-        }
-
-        /* Video cards are slightly taller than ordinary image cards. */
-        .video-card {
-            min-height: 270px;
-        }
-
-        /* Creates a visual play button on video cards. */
-        .video-card::after {
-            content: "▶";
-            position: absolute;
-            z-index: 2;
-            width: 54px;
-            height: 54px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            background: rgba(7,26,51,.88);
-            color: #fff;
-            font-size: .9rem;
-            padding-left: 2px;
-            box-shadow: 0 10px 25px rgba(0,0,0,.2);
-        }
-
-        /* Transparent link placed over a video card so the whole card is clickable. */
-        .video-link {
-            position: absolute;
-            inset: 0;
-            z-index: 5;
-        }
-
-        /* Informational note shown below gallery content. */
-        .gallery-note {
-            padding: 20px 22px;
-            margin-top: 25px;
-            border-left: 3px solid var(--blue);
-            background: #f4f8fd;
-            color: #607287;
-            font-size: .72rem;
-            border-radius: 0 10px 10px 0;
-        }
-
-        .back-row {
-            display: flex;
-            justify-content: center;
-            margin-top: 15px;
-        }
-
-        /* Tablet layout: reduce the gallery to two columns. */
-        @media (max-width: 800px) {
-            .media-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .gallery-category-heading {
-                display: block;
-            }
-
-            .gallery-category-heading p {
-                margin-top: 12px;
-            }
-        }
-
-        /* Small-phone layout: display one gallery item per row. */
-        @media (max-width: 560px) {
-            .media-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        .gallery-main { padding-top: 20px; }
+        .gallery-section { margin-bottom: 82px; scroll-margin-top: 110px; }
+        .gallery-section:last-child { margin-bottom: 25px; }
+        .gallery-section-heading { margin-bottom: 24px; }
+        .gallery-section-heading .section-label { display:block; margin-bottom: 8px; }
+        .gallery-section-heading h2 { margin:0; font-size: clamp(1.7rem, 3vw, 2.35rem); line-height:1.1; }
+        .gallery-section-heading p { max-width: 620px; margin: 10px 0 0; color: var(--muted); font-size: .82rem; line-height:1.7; }
+        .media-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+        .media-card { position:relative; aspect-ratio:4/3; overflow:hidden; border:1px solid var(--border); border-radius:18px; background:linear-gradient(135deg,#eaf7ff,#f4fbff); cursor:pointer; padding:0; transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease; }
+        .media-card:hover { transform:translateY(-4px); box-shadow:var(--shadow); border-color:#b8d9f5; }
+        .media-card img,.media-card video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+        .media-card::after { content:""; position:absolute; inset:0; background:linear-gradient(to top,rgba(5,20,40,.58),transparent 48%); pointer-events:none; }
+        .media-placeholder { position:absolute; inset:0; z-index:1; display:grid; place-items:center; padding:20px; text-align:center; color:#56708b; }
+        .media-placeholder strong { display:block; color:#234b72; font-size:1rem; margin-bottom:5px; }
+        .media-placeholder span { font-size:.7rem; }
+        .media-title { position:absolute; z-index:3; left:14px; right:14px; bottom:13px; color:#fff; font-size:.74rem; font-weight:700; line-height:1.35; text-shadow:0 1px 5px rgba(0,0,0,.28); }
+        .media-type { position:absolute; z-index:4; top:12px; left:12px; padding:6px 9px; border-radius:999px; background:rgba(255,255,255,.9); color:#234b72; font-size:.62rem; font-weight:800; letter-spacing:.04em; text-transform:uppercase; }
+        .media-play { position:absolute; z-index:4; top:50%; left:50%; transform:translate(-50%,-50%); width:48px; height:48px; border-radius:50%; display:grid; place-items:center; background:rgba(7,26,51,.86); color:#fff; font-size:.8rem; padding-left:2px; box-shadow:0 10px 25px rgba(0,0,0,.22); }
+        .media-card video { pointer-events:none; }
+        .media-more { display:flex; justify-content:center; margin-top:22px; }
+        .media-more button { cursor:pointer; }
+        .media-empty { grid-column:1/-1; padding:35px 20px; text-align:center; border:1px dashed #c8d9e8; border-radius:16px; color:var(--muted); font-size:.8rem; }
+        .media-modal { position:fixed; inset:0; z-index:9999; display:none; align-items:center; justify-content:center; padding:22px; background:rgba(4,14,28,.86); backdrop-filter:blur(7px); }
+        .media-modal.is-open { display:flex; }
+        .media-modal-content { position:relative; width:min(1080px,96vw); max-height:92vh; display:flex; flex-direction:column; align-items:center; }
+        .media-modal-close { position:absolute; right:-8px; top:-46px; width:40px; height:40px; border:0; border-radius:50%; background:#fff; color:#13243a; font-size:1.2rem; cursor:pointer; z-index:3; }
+        .media-modal-stage { width:100%; max-height:82vh; display:grid; place-items:center; }
+        .media-modal-stage img,.media-modal-stage video { max-width:100%; max-height:82vh; border-radius:14px; box-shadow:0 25px 70px rgba(0,0,0,.35); background:#08182c; }
+        .media-modal-caption { margin-top:12px; color:#fff; font-size:.8rem; text-align:center; }
+        .media-modal-nav { display:flex; gap:10px; margin-top:12px; }
+        .media-modal-nav button { width:40px; height:40px; border:1px solid rgba(255,255,255,.35); border-radius:50%; background:rgba(255,255,255,.12); color:#fff; cursor:pointer; font-size:1rem; }
+        .media-modal-nav button:hover { background:rgba(255,255,255,.2); }
+        @media(max-width:800px){ .media-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.gallery-section{margin-bottom:65px;} }
+        @media(max-width:560px){ .media-grid{grid-template-columns:1fr;}.gallery-main{padding-top:10px;}.media-card{aspect-ratio:16/11;}.media-modal{padding:14px;}.media-modal-close{right:0;top:-48px;} }
+        @media(prefers-reduced-motion:reduce){.media-card{transition:none;}}
     </style>
+
+<style id="gallery-final-media-rules">
+/* Recognition & Credentials is intentionally document/photo-only. */
+.gallery-recognition .video-badge,
+.gallery-recognition .play-icon,
+.gallery-recognition [data-media-type="video"],
+.gallery-recognition video {
+  display: none !important;
+}
+
+/* Keep the first four collections eligible for their View All controls. */
+.gallery-all-media .view-all,
+.gallery-life .view-all,
+.gallery-moments .view-all,
+.gallery-internships .view-all {
+  display: inline-flex;
+}
+</style>
+
 </head>
 <body>
-
 <!-- ==================== HEADER / NAVIGATION ==================== -->
 <!-- Reuses the same navigation structure as the homepage. -->
 <header class="site-header">
     <nav class="navbar container">
-        <!-- CICE brand link back to the homepage. -->
         <a href="index.html" class="brand" aria-label="CICE Computer Institute - Home">
-            <!-- Official CICE logo supplied by the institute. -->
-            <img
-                src="assets/images/cice-logo.png"
-                alt="CICE Computer Institute official logo"
-                class="brand-logo"
-            >
+            <img src="assets/images/cice-logo.png" alt="CICE Computer Institute official logo" class="brand-logo">
         </a>
 
-        <!-- Mobile menu button controlled by script.js. -->
         <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
 
-        <!-- Links back to sections of the homepage. -->
         <ul class="nav-links" id="navLinks">
-            <li><a href="index.html#home">Home</a></li>
-            <li><a href="index.html#courses">Courses</a></li>
-            <li><a href="index.html#why">Why CICE</a></li>
-            <li><a href="index.html#facilities">Facilities</a></li>
-            <li><a href="index.html#instructor">Instructor</a></li>
-            <li><a href="index.html#testimonials">Testimonials</a></li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
+            <li class="nav-dropdown">
+                <a href="index.html" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    Home <span aria-hidden="true">⌄</span>
+                </a>
+                <ul class="nav-dropdown-menu" aria-label="Home sections">
+                <li><a href="index.html#notices">Notice &amp; Updates</a></li>
+                <li><a href="index.html#courses">Courses</a></li>
+                <li><a href="index.html#why">Why CICE</a></li>
+                <li><a href="index.html#testimonials">Testimonials</a></li>
+                <li><a href="index.html#gallery">Gallery</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="about.html" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    About CICE <span aria-hidden="true">⌄</span>
+                </a>
+                <ul class="nav-dropdown-menu" aria-label="About CICE sections">
+                <li><a href="about.html#story">Our Story</a></li>
+                <li><a href="about.html#founder">Founder &amp; Instructor</a></li>
+                <li><a href="about.html#certificates">Certificates &amp; Registration</a></li>
+                </ul>
+            </li>
+
+            <li><a href="courses.html">Courses</a></li>
+
+            <li class="nav-dropdown">
+                <a href="gallery.html" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    Gallery <span aria-hidden="true">⌄</span>
+                </a>
+                <ul class="nav-dropdown-menu" aria-label="Gallery sections">
+                <li><a href="gallery.html#all-media">All Media</a></li>
+                <li><a href="gallery.html#life-at-cice">Life at CICE</a></li>
+                <li><a href="gallery.html#moments-of-cice">Moments</a></li>
+                <li><a href="gallery.html#internship-experiences">Internship</a></li>
+                <li><a href="gallery.html#recognition-credentials">Recognition</a></li>
+                </ul>
+            </li>
         </ul>
 
-        <!-- Direct WhatsApp contact link. -->
-        <a class="nav-whatsapp" href="https://wa.me/917002641470" target="_blank" rel="noopener">WhatsApp</a>
+        <div class="nav-actions" aria-label="Contact actions">
+            <a class="nav-action nav-whatsapp" href="https://wa.me/917002641470" target="_blank" rel="noopener"
+               aria-label="WhatsApp" title="WhatsApp">
+                <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                    <path d="M16 3.5a12.3 12.3 0 0 0-10.7 18.4L4 28l6.3-1.2A12.3 12.3 0 1 0 16 3.5Zm0 22.2a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.7.7.7-3.6-.2-.4A9.9 9.9 0 1 1 16 25.7Zm5.5-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.5-.7-2.5-1.3-3.5-2.9-.3-.5.3-.5.8-1.6.1-.2.1-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.7.9 3.7.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.3-.6-.5Z"/>
+                </svg>
+                <span class="sr-only">WhatsApp</span>
+            </a>
+
+            <a class="nav-action nav-call" href="tel:+917002641470"
+               aria-label="Call CICE" title="Call CICE">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M6.6 2.8 4.4 3.9c-.9.5-1.4 1.5-1.2 2.5 1.1 6.4 6.1 11.4 12.5 12.5 1 .2 2-.3 2.5-1.2l1.1-2.2c.3-.7.1-1.5-.5-1.9l-2.5-1.7c-.6-.4-1.4-.3-1.9.2l-1.2 1.2c-2.2-1.1-4-2.9-5.1-5.1l1.2-1.2c.5-.5.6-1.3.2-1.9L8.5 3.3c-.4-.6-1.2-.8-1.9-.5Z"/>
+                </svg>
+                <span class="sr-only">Call CICE</span>
+            </a>
+        </div>
     </nav>
 </header>
 
 <main>
-
 <!-- ==================== GALLERY HERO ==================== -->
 <!-- Introduces the purpose of the full gallery page. -->
-<section class="gallery-page-hero">
+<section class="courses-list-hero gallery-page-hero">
     <div class="container">
-        <div class="section-label" style="color:#6bd7ff;">CICE / GALLERY</div>
-        <h1>See CICE<br>in action.</h1>
+        <div class="courses-breadcrumb"><a href="index.html">Home</a><span>/</span><strong>Gallery</strong></div>
+        <span class="section-label">CICE / GALLERY</span>
+        <h1>See CICE<br><span>in action.</span></h1>
         <p>Explore photographs and videos from the institute, classroom activities, practical learning, internship programs and events.</p>
     </div>
 </section>
 
-<section class="section">
+<section class="section gallery-main" id="gallery-content">
     <div class="container">
-
-        <!-- ==================== INSTITUTE GALLERY ==================== -->
-        <!-- Photos of the institute, classroom and learning environment. -->
-        <div class="gallery-category">
-            <div class="gallery-category-heading">
-                <div>
-                    <span class="section-label">01 · INSTITUTE</span>
-                    <h2>Institute &amp; Environment</h2>
-                </div>
+        <section class="gallery-section" id="all-media">
+            <div class="gallery-section-heading">
+                <span class="section-label">ALL MEDIA</span>
+                <h2>A Glimpse Inside CICE</h2>
+                <p>Explore photos and videos from across CICE, all brought together in one place.</p>
             </div>
-
-            <div class="media-grid">
-                <div class="media-card">
-                    <img src="images/gallery-1.jpg" alt="CICE institute or classroom" loading="lazy" onerror="this.style.display='none';">
-                    <div class="media-placeholder">
-                        <strong>Institute / Classroom</strong>
-                        <span>Add a genuine photograph here</span>
-                    </div>
-                    <div class="media-caption">Institute &amp; Classroom</div>
-                </div>
-
-                <div class="media-card">
-                    <img src="images/gallery-2.jpg" alt="CICE computer lab" loading="lazy" onerror="this.style.display='none';">
-                    <div class="media-placeholder">
-                        <strong>Computer Lab</strong>
-                        <span>Add a genuine photograph here</span>
-                    </div>
-                    <div class="media-caption">Computer Lab</div>
-                </div>
-
-                <div class="media-card">
-                    <img src="images/gallery-3.jpg" alt="CICE learning environment" loading="lazy" onerror="this.style.display='none';">
-                    <div class="media-placeholder">
-                        <strong>Learning Environment</strong>
-                        <span>Add a genuine photograph here</span>
-                    </div>
-                    <div class="media-caption">Learning Environment</div>
-                </div>
+            <div class="media-grid" data-gallery-grid="all"></div>
+            <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="all">View All Media</button></div>
+        </section>
+        <section class="gallery-section" id="life-at-cice">
+            <div class="gallery-section-heading">
+                <span class="section-label">01 · LIFE</span>
+                <h2>Life at CICE</h2>
+                <p>Classrooms, students, practical sessions, and the everyday learning environment at CICE.</p>
             </div>
-        </div>
-
-        <!-- ==================== STUDENT LEARNING GALLERY ==================== -->
-        <!-- Photos showing students and practical computer training. -->
-        <div class="gallery-category">
-            <div class="gallery-category-heading">
-                <div>
-                    <span class="section-label">02 · LEARNING</span>
-                    <h2>Students &amp; Practical Learning</h2>
-                </div>
+            <div class="media-grid" data-gallery-grid="life"></div>
+            <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="life">View All</button></div>
+        </section>
+        <section class="gallery-section" id="moments-of-cice">
+            <div class="gallery-section-heading">
+                <span class="section-label">02 · MOMENTS</span>
+                <h2>Moments of CICE</h2>
+                <p>Events, activities, picnics, outings, celebrations, and other memorable moments.</p>
             </div>
-
-            <div class="media-grid">
-                <div class="media-card">
-                    <img src="images/students-1.jpg" alt="CICE students during practical training" loading="lazy" onerror="this.style.display='none';">
-                    <div class="media-placeholder">
-                        <strong>Students at Work</strong>
-                        <span>Add a genuine photograph here</span>
-                    </div>
-                    <div class="media-caption">Students at Work</div>
-                </div>
-
-                <div class="media-card">
-                    <img src="images/students-2.jpg" alt="CICE classroom session" loading="lazy" onerror="this.style.display='none';">
-                    <div class="media-placeholder">
-                        <strong>Classroom Session</strong>
-                        <span>Add a genuine photograph here</span>
-                    </div>
-                    <div class="media-caption">Classroom Session</div>
-                </div>
-
-                <div class="media-card">
-                    <img src="images/students-3.jpg" alt="CICE practical computer session" loading="lazy" onerror="this.style.display='none';">
-                    <div class="media-placeholder">
-                        <strong>Practical Session</strong>
-                        <span>Add a genuine photograph here</span>
-                    </div>
-                    <div class="media-caption">Practical Session</div>
-                </div>
+            <div class="media-grid" data-gallery-grid="moments"></div>
+            <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="moments">View All</button></div>
+        </section>
+        <section class="gallery-section" id="internship-experiences">
+            <div class="gallery-section-heading">
+                <span class="section-label">INTERNSHIP</span>
+                <h2>Internship Experiences</h2>
+                <p>Moments from CICE's college internship programs, where students strengthen their computer skills.</p>
             </div>
-        </div>
-
-        <!-- ==================== INTERNSHIP GALLERY ==================== -->
-        <!-- Contains videos and photos related to college internship programs. -->
-        <div class="gallery-category">
-            <div class="gallery-category-heading">
-                <div>
-                    <span class="section-label">03 · INTERNSHIPS</span>
-                    <h2>College Internship Programs</h2>
-                </div>
+            <div class="media-grid" data-gallery-grid="internship"></div>
+            <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="internship">View All</button></div>
+        </section>
+        <section class="gallery-section gallery-recognition" id="recognition-credentials">
+            <div class="gallery-section-heading">
+                <span class="section-label">04 · RECOGNITION</span>
+                <h2>Recognition &amp; Credentials</h2>
+                <p>Certificates, registrations, and other formal credentials or achievements associated with CICE.</p>
             </div>
-
-            <div class="media-grid">
-                <!-- Video element loads metadata first instead of downloading the entire video immediately. -->
-                <div class="media-card video-card">
-                    <video controls preload="metadata" poster="images/internship-1.jpg">
-                        <source src="videos/internship-halakura-college.mp4" type="video/mp4">
-                        Your browser does not support the video element.
-                    </video>
-                    <div class="media-placeholder">
-                        <strong>Internship Video</strong>
-                        <span>Add the video file to the videos folder</span>
-                    </div>
-                    <div class="media-caption">Halakura College — Internship</div>
-                </div>
-
-                <div class="media-card video-card">
-                    <video controls preload="metadata" poster="images/internship-2.jpg">
-                        <source src="videos/internship-agomani-pragati-college.mp4" type="video/mp4">
-                        Your browser does not support the video element.
-                    </video>
-                    <div class="media-placeholder">
-                        <strong>Internship Video</strong>
-                        <span>Add the video file to the videos folder</span>
-                    </div>
-                    <div class="media-caption">Agomani (Pragati) College — Internship</div>
-                </div>
-
-                <div class="media-card video-card">
-                    <video controls preload="metadata" poster="images/internship-3.jpg">
-                        <source src="videos/internship-chilarai-college.mp4" type="video/mp4">
-                        Your browser does not support the video element.
-                    </video>
-                    <div class="media-placeholder">
-                        <strong>Internship Video</strong>
-                        <span>Add the video file to the videos folder</span>
-                    </div>
-                    <div class="media-caption">Chilarai College — Internship</div>
-                </div>
-
-                <div class="media-card">
-                    <img src="images/internship-4.jpg" alt="Dhubri Girls' College internship" loading="lazy" onerror="this.style.display='none';">
-                    <div class="media-placeholder">
-                        <strong>Dhubri Girls' College</strong>
-                        <span>Add internship photograph</span>
-                    </div>
-                    <div class="media-caption">Dhubri Girls' College</div>
-                </div>
-
-                <div class="media-card">
-                    <img src="images/internship-5.jpg" alt="Dharmasala College internship" loading="lazy" onerror="this.style.display='none';">
-                    <div class="media-placeholder">
-                        <strong>Dharmasala College</strong>
-                        <span>Add internship photograph</span>
-                    </div>
-                    <div class="media-caption">Dharmasala College</div>
-                </div>
-
-                <div class="media-card">
-                    <img src="images/internship-6.jpg" alt="Hatidhura College internship" loading="lazy" onerror="this.style.display='none';">
-                    <div class="media-placeholder">
-                        <strong>Hatidhura College</strong>
-                        <span>Add internship photograph</span>
-                    </div>
-                    <div class="media-caption">Hatidhura College</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ==================== EVENTS GALLERY ==================== -->
-        <!-- Photos for institute events, certificates and student activities. -->
-        <div class="gallery-category">
-            <div class="gallery-category-heading">
-                <div>
-                    <span class="section-label">04 · ACTIVITIES</span>
-                    <h2>Events &amp; Activities</h2>
-                </div>
-            </div>
-
-            <div class="media-grid">
-                <div class="media-card">
-                    <img src="images/events-1.jpg" alt="CICE event" loading="lazy" onerror="this.style.display='none';">
-                    <div class="media-placeholder">
-                        <strong>Events</strong>
-                        <span>Add a genuine photograph here</span>
-                    </div>
-                    <div class="media-caption">Events &amp; Activities</div>
-                </div>
-
-                <div class="media-card">
-                    <img src="images/events-2.jpg" alt="CICE certificate distribution" loading="lazy" onerror="this.style.display='none';">
-                    <div class="media-placeholder">
-                        <strong>Certificates</strong>
-                        <span>Add a genuine photograph here</span>
-                    </div>
-                    <div class="media-caption">Certificate Distribution</div>
-                </div>
-
-                <div class="media-card">
-                    <img src="images/events-3.jpg" alt="CICE student activity" loading="lazy" onerror="this.style.display='none';">
-                    <div class="media-placeholder">
-                        <strong>Student Activities</strong>
-                        <span>Add a genuine photograph here</span>
-                    </div>
-                    <div class="media-caption">Student Activities</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Returns visitors to the homepage. -->
-        <div class="back-row">
-            <a class="btn btn-primary" href="index.html">← Back to CICE Homepage</a>
-        </div>
+            <div class="media-grid" data-gallery-grid="recognition"></div>
+            <div class="media-more">
+</div>
+        </section>
     </div>
 </section>
-</main>
 
+<div class="media-modal" id="mediaModal" aria-hidden="true">
+    <div class="media-modal-content" role="dialog" aria-modal="true" aria-label="Media viewer">
+        <button class="media-modal-close" type="button" aria-label="Close media viewer">×</button>
+        <div class="media-modal-stage" id="mediaModalStage"></div>
+        <div class="media-modal-caption" id="mediaModalCaption"></div>
+        <div class="media-modal-nav">
+            <button type="button" id="mediaPrev" aria-label="Previous media">←</button>
+            <button type="button" id="mediaNext" aria-label="Next media">→</button>
+        </div>
+    </div>
+</div>
+
+</main>
 <!-- ==================== FOOTER ==================== -->
 <!-- Reuses the shared footer structure from the homepage. -->
 <footer class="site-footer">
@@ -523,6 +284,66 @@
 </footer>
 
 <!-- Loads the shared JavaScript for the mobile menu and footer year. -->
+<script src="script.js"></script>
+</body>
+</html>
+
+<script>
+/* Add each media item once. Its category controls the section where it appears.
+   All Media automatically includes every item. */
+const CICE_MEDIA = [
+    {type:'image',category:'life',src:'assets/images/gallery/life-01.jpg',title:'CICE Learning Environment',alt:'CICE learning environment'},
+    {type:'image',category:'life',src:'assets/images/gallery/life-02.jpg',title:'Students at CICE',alt:'CICE students'},
+    {type:'image',category:'life',src:'assets/images/gallery/life-03.jpg',title:'Practical Computer Session',alt:'CICE practical computer session'},
+    {type:'video',category:'life',src:'videos/life-01.mp4',poster:'assets/images/gallery/life-03.jpg',title:'Learning at CICE',alt:'CICE learning video'},
+    {type:'video',category:'life',src:'videos/cice-advertisement-01.mp4',poster:'assets/images/gallery/life-01.jpg',title:'CICE Promotional Video',alt:'CICE promotional video'},
+    {type:'image',category:'moments',src:'assets/images/gallery/moments-01.jpg',title:'Moments of CICE',alt:'CICE event'},
+    {type:'image',category:'moments',src:'assets/images/gallery/moments-02.jpg',title:'CICE Picnic & Outing',alt:'CICE picnic or outing'},
+    {type:'image',category:'moments',src:'assets/images/gallery/moments-03.jpg',title:'CICE Activities',alt:'CICE activity'},
+    {type:'video',category:'moments',src:'videos/moments-01.mp4',poster:'assets/images/gallery/moments-01.jpg',title:'Moments of CICE',alt:'CICE moments video'},
+    {type:'image',category:'internship',src:'assets/images/gallery/internship-01.jpg',title:'Internship Program',alt:'CICE internship program'},
+    {type:'image',category:'internship',src:'assets/images/gallery/internship-02.jpg',title:'Practical Exposure',alt:'CICE internship practical exposure'},
+    {type:'video',category:'internship',src:'videos/internship-01.mp4',poster:'assets/images/gallery/internship-01.jpg',title:'Internship Program',alt:'CICE internship video'},
+    {type:'image',category:'recognition',src:'assets/images/gallery/iso-certificate.jpg',title:'ISO Certification',alt:'CICE ISO certification'},
+    {type:'image',category:'recognition',src:'assets/images/gallery/msme-registration.jpg',title:'MSME Registration',alt:'CICE MSME registration'},
+];
+const PREVIEW_LIMIT=6;
+const modal=document.getElementById('mediaModal'),stage=document.getElementById('mediaModalStage'),caption=document.getElementById('mediaModalCaption');
+let activeItems=[],activeIndex=0;
+function mediaFor(category){return category==='all'?CICE_MEDIA:CICE_MEDIA.filter(item=>item.category===category);}
+function createMediaCard(item,index,collection){
+    const card=document.createElement('button'); card.type='button'; card.className='media-card'; card.setAttribute('aria-label',`Open ${item.title}`);
+    card.addEventListener('click',()=>openMedia(collection,index));
+    const type=document.createElement('span'); type.className='media-type'; type.textContent=item.type==='video'?'Video':'Photo'; card.appendChild(type);
+    if(item.type==='video'){
+        const video=document.createElement('video'); video.src=item.src; video.muted=true; video.preload='metadata'; video.playsInline=true; if(item.poster)video.poster=item.poster; card.appendChild(video);
+        const play=document.createElement('span'); play.className='media-play'; play.setAttribute('aria-hidden','true'); play.textContent='▶'; card.appendChild(play);
+    } else {
+        const img=document.createElement('img'); img.src=item.src; img.alt=item.alt||item.title; img.loading='lazy';
+        img.onerror=()=>{img.style.display='none'; const ph=document.createElement('div'); ph.className='media-placeholder'; ph.innerHTML=`<div><strong>${item.title}</strong><span>Add the media file here</span></div>`; card.appendChild(ph);};
+        card.appendChild(img);
+    }
+    const title=document.createElement('span'); title.className='media-title'; title.textContent=item.title; card.appendChild(title); return card;
+}
+function renderSection(category){
+    const grid=document.querySelector(`[data-gallery-grid="${category}"]`); if(!grid)return; grid.innerHTML=''; const items=mediaFor(category); const preview=items.slice(0,PREVIEW_LIMIT);
+    preview.forEach((item,index)=>grid.appendChild(createMediaCard(item,index,items)));
+    if(!preview.length)grid.innerHTML='<div class="media-empty">Media will appear here when files are added.</div>';
+    const button=document.querySelector(`[data-view-all="${category}"]`); if(button)button.style.display=items.length>PREVIEW_LIMIT?'':(items.length?'none':'');
+}
+function renderAll(){['all','life','moments','internship','recognition'].forEach(renderSection);}
+function openMedia(items,index){activeItems=items;activeIndex=index;updateModal();modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+function updateModal(){const item=activeItems[activeIndex];if(!item)return;stage.innerHTML='';if(item.type==='video'){const v=document.createElement('video');v.src=item.src;v.controls=true;v.autoplay=true;v.playsInline=true;if(item.poster)v.poster=item.poster;stage.appendChild(v);}else{const img=document.createElement('img');img.src=item.src;img.alt=item.alt||item.title;stage.appendChild(img);}caption.textContent=item.title;}
+function closeMedia(){modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');stage.innerHTML='';document.body.style.overflow='';}
+function stepMedia(direction){if(!activeItems.length)return;activeIndex=(activeIndex+direction+activeItems.length)%activeItems.length;updateModal();}
+document.querySelectorAll('[data-view-all]').forEach(button=>button.addEventListener('click',()=>{const items=mediaFor(button.dataset.viewAll);if(items.length)openMedia(items,0);}));
+document.querySelector('.media-modal-close').addEventListener('click',closeMedia);
+document.getElementById('mediaPrev').addEventListener('click',()=>stepMedia(-1));
+document.getElementById('mediaNext').addEventListener('click',()=>stepMedia(1));
+modal.addEventListener('click',e=>{if(e.target===modal)closeMedia();});
+document.addEventListener('keydown',e=>{if(!modal.classList.contains('is-open'))return;if(e.key==='Escape')closeMedia();if(e.key==='ArrowLeft')stepMedia(-1);if(e.key==='ArrowRight')stepMedia(1);});
+renderAll();
+</script>
 <script src="script.js"></script>
 </body>
 </html>
