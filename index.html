@@ -71,35 +71,71 @@
 <!-- Contains the CICE branding, navigation links, mobile menu button and WhatsApp button. -->
 <header class="site-header">
     <nav class="navbar container">
-        <!-- Website brand/logo area. -->
         <a href="index.html" class="brand" aria-label="CICE Computer Institute - Home">
-            <!-- Official CICE logo supplied by the institute. -->
-            <img
-                src="assets/images/cice-logo.png"
-                alt="CICE Computer Institute official logo"
-                class="brand-logo"
-            >
+            <img src="assets/images/cice-logo.png" alt="CICE Computer Institute official logo" class="brand-logo">
         </a>
 
-        <!-- Mobile menu button. JavaScript opens and closes the navigation links. -->
         <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
 
-        <!-- Main navigation. The # links scroll to sections on the homepage. -->
         <ul class="nav-links" id="navLinks">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#notices">Notices &amp; Updates</a></li>
-            <li><a href="#courses">Courses</a></li>
-            <li><a href="#why">Why CICE</a></li>
-            <li><a href="#facilities">Facilities</a></li>
-            <li><a href="#instructor">Instructor</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class="nav-dropdown">
+                <a href="index.html" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    Home <span aria-hidden="true">⌄</span>
+                </a>
+                <ul class="nav-dropdown-menu" aria-label="Home sections">
+                <li><a href="index.html#notices">Notice &amp; Updates</a></li>
+                <li><a href="index.html#courses">Courses</a></li>
+                <li><a href="index.html#why">Why CICE</a></li>
+                <li><a href="index.html#testimonials">Testimonials</a></li>
+                <li><a href="index.html#gallery">Gallery</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="about.html" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    About CICE <span aria-hidden="true">⌄</span>
+                </a>
+                <ul class="nav-dropdown-menu" aria-label="About CICE sections">
+                <li><a href="about.html#story">Our Story</a></li>
+                <li><a href="about.html#founder">Founder &amp; Instructor</a></li>
+                <li><a href="about.html#certificates">Certificates &amp; Registration</a></li>
+                </ul>
+            </li>
+
+            <li><a href="courses.html">Courses</a></li>
+
+            <li class="nav-dropdown">
+                <a href="gallery.html" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    Gallery <span aria-hidden="true">⌄</span>
+                </a>
+                <ul class="nav-dropdown-menu" aria-label="Gallery sections">
+                <li><a href="gallery.html#all-media">All Media</a></li>
+                <li><a href="gallery.html#life-at-cice">Life at CICE</a></li>
+                <li><a href="gallery.html#moments-of-cice">Moments</a></li>
+                <li><a href="gallery.html#internship-experiences">Internship</a></li>
+                <li><a href="gallery.html#recognition-credentials">Recognition</a></li>
+                </ul>
+            </li>
         </ul>
 
-        <!-- Opens WhatsApp in a new browser tab/window. -->
-        <a class="nav-whatsapp" href="https://wa.me/917002641470" target="_blank" rel="noopener">WhatsApp</a>
+        <div class="nav-actions" aria-label="Contact actions">
+            <a class="nav-action nav-whatsapp" href="https://wa.me/917002641470" target="_blank" rel="noopener"
+               aria-label="WhatsApp" title="WhatsApp">
+                <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                    <path d="M16 3.5a12.3 12.3 0 0 0-10.7 18.4L4 28l6.3-1.2A12.3 12.3 0 1 0 16 3.5Zm0 22.2a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.7.7.7-3.6-.2-.4A9.9 9.9 0 1 1 16 25.7Zm5.5-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.5-.7-2.5-1.3-3.5-2.9-.3-.5.3-.5.8-1.6.1-.2.1-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.7.9 3.7.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.3-.6-.5Z"/>
+                </svg>
+                <span class="sr-only">WhatsApp</span>
+            </a>
+
+            <a class="nav-action nav-call" href="tel:+917002641470"
+               aria-label="Call CICE" title="Call CICE">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M6.6 2.8 4.4 3.9c-.9.5-1.4 1.5-1.2 2.5 1.1 6.4 6.1 11.4 12.5 12.5 1 .2 2-.3 2.5-1.2l1.1-2.2c.3-.7.1-1.5-.5-1.9l-2.5-1.7c-.6-.4-1.4-.3-1.9.2l-1.2 1.2c-2.2-1.1-4-2.9-5.1-5.1l1.2-1.2c.5-.5.6-1.3.2-1.9L8.5 3.3c-.4-.6-1.2-.8-1.9-.5Z"/>
+                </svg>
+                <span class="sr-only">Call CICE</span>
+            </a>
+        </div>
     </nav>
 </header>
 
@@ -214,167 +250,176 @@
 </section>
 
 <!-- ==================== COURSES SECTION ==================== -->
-<!-- Displays the courses offered by CICE. Each course links to its own details page. -->
 <section class="section courses-section" id="courses">
     <div class="section-heading">
         <span class="section-label">OUR COURSES</span>
-        <h2>Choose a course<br><span>Build useful skills</span></h2>
-        <p>Explore the computer education and training programs offered by CICE Computer Institute.</p>
+        <h2>Explore our <span>courses</span></h2>
+        <p>Choose from our computer education and practical training programs.</p>
     </div>
 
-    <div class="course-grid container">
-        <!-- Course 01: PGDCA -->
-        <article class="course-card">
-            <div class="course-number">01</div>
-            <h3>PGDCA</h3>
-            <p>Post Graduate Diploma in Computer Applications.</p>
-            <a href="courses/pgdca.html" class="course-link">View Course Details <span>→</span></a>
-        </article>
+    <div class="course-grid course-grid-home container">
 
-        <!-- Course 02: ADCA -->
-        <article class="course-card">
-            <div class="course-number">02</div>
+        <article class="course-card course-card-compact">
+            <div class="course-number">01</div>
             <h3>ADCA</h3>
             <p>Advanced Diploma in Computer Applications.</p>
-            <a href="courses/adca.html" class="course-link">View Course Details <span>→</span></a>
+            <a href="courses.html#adca" class="course-link">
+                View Course Details <span>→</span>
+            </a>
         </article>
 
-        <!-- Course 03: DCA -->
-        <article class="course-card">
+        <article class="course-card course-card-compact">
+            <div class="course-number">02</div>
+            <h3>PGDCA</h3>
+            <p>Post Graduate Diploma in Computer Applications.</p>
+            <a href="courses.html#pgdca" class="course-link">
+                View Course Details <span>→</span>
+            </a>
+        </article>
+
+        <article class="course-card course-card-compact">
             <div class="course-number">03</div>
-            <h3>DCA</h3>
-            <p>Diploma in Computer Applications for essential computer skills.</p>
-            <a href="courses/dca.html" class="course-link">View Course Details <span>→</span></a>
-        </article>
-
-        <!-- Course 04: DTP -->
-        <article class="course-card">
-            <div class="course-number">04</div>
-            <h3>DTP</h3>
-            <p>Desktop Publishing and computer-based document design training.</p>
-            <a href="courses/dtp.html" class="course-link">View Course Details <span>→</span></a>
-        </article>
-
-        <!-- Course 05: Tally -->
-        <article class="course-card">
-            <div class="course-number">05</div>
             <h3>Tally</h3>
             <p>Computerised accounting and Tally-focused practical training.</p>
-            <a href="courses/tally.html" class="course-link">View Course Details <span>→</span></a>
+            <a href="courses.html#tally" class="course-link">
+                View Course Details <span>→</span>
+            </a>
         </article>
 
-        <!-- Placeholder for additional courses that may be confirmed later. -->
-        <article class="course-card course-card-muted">
-            <div class="course-number">06</div>
-            <h3>Other Programs</h3>
-            <p>Additional programs can be added here after confirmation from the institute.</p>
-            <a href="#contact" class="course-link">Ask About Courses <span>→</span></a>
-        </article>
+    </div>
+
+    <div class="courses-view-all">
+        <a href="courses.html" class="btn btn-primary">
+            Explore All Courses <span>→</span>
+        </a>
     </div>
 </section>
 
-<!-- ==================== WHY CICE SECTION ==================== -->
-<!-- Explains the practical advantages presented by the institute. -->
-<section class="section why-section" id="why">
-    <div class="section-heading">
-        <span class="section-label">WHY CHOOSE CICE</span>
-        <h2>A learning environment built around <span>practical training</span></h2>
-        <p>Simple, useful advantages for learners who want guided computer education.</p>
-    </div>
+<!-- ==================== DISCOVER CICE ==================== -->
+<section class="section discover-cice-section" id="why">
+    <div class="container">
 
-    <div class="feature-grid container">
-        <article class="feature-card">
-            <div class="feature-icon">01</div>
-            <h3>Practical Training</h3>
-            <p>Learning is supported by hands-on computer practice.</p>
-        </article>
-        <article class="feature-card">
-            <div class="feature-icon">02</div>
-            <h3>Individual Computer Access</h3>
-            <p>Students can work directly on computers during practical learning.</p>
-        </article>
-        <article class="feature-card">
-            <div class="feature-icon">03</div>
-            <h3>Small Batches</h3>
-            <p>A smaller learning environment can make individual guidance easier.</p>
-        </article>
-        <article class="feature-card">
-            <div class="feature-icon">04</div>
-            <h3>Personal Attention</h3>
-            <p>Students can receive direct guidance and clarification from the instructor.</p>
-        </article>
-        <article class="feature-card">
-            <div class="feature-icon">05</div>
-            <h3>Experienced Instructor</h3>
-            <p>Training is led by founder and instructor Mihir Roy.</p>
-        </article>
-        <article class="feature-card">
-            <div class="feature-icon">06</div>
-            <h3>Affordable Learning</h3>
-            <p>Course fees and batch information can be discussed directly with CICE.</p>
-        </article>
-        <article class="feature-card">
-            <div class="feature-icon">07</div>
-            <h3>Convenient Location</h3>
-            <p>Located near Halakura Bazar for learners in the surrounding area.</p>
-        </article>
-        <article class="feature-card internship-card">
-            <div class="feature-icon">08</div>
-            <h3>College Internship Programs</h3>
-            <p>CICE conducts internship programs at colleges for participating college students.</p>
-            <div class="college-list">
-                <span>Halakura College</span>
-                <span>Agomani (Pragati) College</span>
-                <span>Chilarai College</span>
-                <span>Dhubri Girls' College</span>
-                <span>Dharmasala College</span>
-                <span>Hatidhura College</span>
+        <div class="section-heading discover-cice-heading">
+            <span class="section-label">WHY CICE</span>
+            <h2>Discover <span class="discover-cyan-word">CICE</span></h2>
+        </div>
+
+        <div class="discover-subsection">
+            <div class="discover-group-heading">
+                <span>THE CICE ADVANTAGE</span>
             </div>
-        </article>
-    </div>
-</section>
 
-<!-- ==================== FACILITIES SECTION ==================== -->
-<!-- Lists facilities claimed to be available at the institute. -->
-<section class="dark-section" id="facilities">
-    <div class="section container">
-        <div class="section-heading light">
-            <span class="section-label">FACILITIES</span>
-            <h2>Facilities that support <span>hands-on learning</span></h2>
-            <p>A practical environment for classroom instruction and computer-based work.</p>
-        </div>
+            <div class="discover-grid discover-advantage-grid">
 
-        <div class="facility-grid">
-            <article class="facility-card"><div class="facility-symbol" aria-hidden="true">💻</div><h3>32+ Computers</h3><p>Computer systems available for practical training.</p></article>
-            <article class="facility-card"><div class="facility-symbol" aria-hidden="true">🌐</div><h3>Internet &amp; Wi-Fi</h3><p>Connectivity to support digital learning and online work.</p></article>
-            <article class="facility-card"><div class="facility-symbol" aria-hidden="true">🖨️</div><h3>Printer &amp; Scanner</h3><p>Facilities for practical document-related tasks.</p></article>
-            <article class="facility-card"><div class="facility-symbol" aria-hidden="true">📽️</div><h3>Projector</h3><p>Visual support for classroom teaching and demonstrations.</p></article>
-            <article class="facility-card"><div class="facility-symbol" aria-hidden="true">🔋</div><h3>Inverter Backup</h3><p>Power backup to support classroom continuity.</p></article>
-            <article class="facility-card"><div class="facility-symbol" aria-hidden="true">❄️</div><h3>AC &amp; Fans</h3><p>A comfortable environment for classroom learning.</p></article>
-        </div>
-    </div>
-</section>
+                <article class="discover-card advantage-card discover-reveal discover-row-1">
+                    <div class="discover-card-top">
+                        <span class="discover-number">01</span>
+                        <h3>Practical Training</h3>
+                    </div>
+                    <p>Turn classroom concepts into practical computer skills.</p>
+                </article>
 
-<!-- ==================== INSTRUCTOR SECTION ==================== -->
-<!-- Introduces the founder/instructor. Replace placeholder details with verified information later. -->
-<section class="section instructor-section" id="instructor">
-    <div class="instructor-layout container">
-        <div class="instructor-photo">
-            <img src="images/sir-mihir-roy.jpg" alt="Mihir Roy, Founder and Instructor at CICE Computer Institute" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="photo-placeholder"><strong>MR</strong><span>Add Sir's photograph</span></div>
-        </div>
-        <div class="instructor-content">
-            <span class="section-label">MEET THE INSTRUCTOR</span>
-            <h2>Mihir Roy</h2>
-            <p class="role">Founder &amp; Instructor</p>
-            <div class="divider"></div>
-            <p>Mihir Roy is the founder and instructor of CICE Computer Institute. He leads computer education and practical training at the institute.</p>
-            <div class="verified-details">
-                <div><strong>Qualification</strong><span>To be confirmed</span></div>
-                <div><strong>Professional Certifications</strong><span>To be confirmed</span></div>
-                <div><strong>Teaching Experience</strong><span>To be confirmed</span></div>
+                <article class="discover-card advantage-card discover-reveal discover-row-1">
+                    <div class="discover-card-top">
+                        <span class="discover-number">02</span>
+                        <h3>Personal Attention</h3>
+                    </div>
+                    <p>Individual guidance to help students understand and progress confidently.</p>
+                </article>
+
+                <article class="discover-card advantage-card discover-reveal discover-row-1">
+                    <div class="discover-card-top">
+                        <span class="discover-number">03</span>
+                        <h3>Individual Computer Access</h3>
+                    </div>
+                    <p>Dedicated computer access for each student during practical sessions.</p>
+                </article>
+
+                <article class="discover-card advantage-card discover-reveal discover-row-2">
+                    <div class="discover-card-top">
+                        <span class="discover-number">04</span>
+                        <h3>Experienced Instructor</h3>
+                    </div>
+                    <p><strong>10+ years</strong> of experience in computer education and training.</p>
+                </article>
+
+                <article class="discover-card advantage-card discover-reveal discover-row-2">
+                    <div class="discover-card-top">
+                        <span class="discover-number">05</span>
+                        <h3>College Internship Programs</h3>
+                    </div>
+                    <p>Trusted by 6 colleges to conduct internship programs for their students.</p>
+                </article>
+
+                <article class="discover-card advantage-card discover-reveal discover-row-2">
+                    <div class="discover-card-top">
+                        <span class="discover-number">06</span>
+                        <h3>Convenient Location</h3>
+                    </div>
+                    <p>Located near Halakura Bazar for learners in the surrounding area.</p>
+                </article>
+
             </div>
         </div>
+
+        <div class="discover-subsection facilities-subsection">
+            <div class="discover-group-heading facilities-heading">
+                <span>OUR FACILITIES</span>
+            </div>
+
+            <div class="discover-grid discover-facility-grid">
+
+                <article class="discover-card facility-card discover-reveal discover-row-3">
+                    <div class="discover-card-top">
+                        <span class="facility-emoji" aria-hidden="true">🖥️</span>
+                        <h3>32+ Computers</h3>
+                    </div>
+                    <p>Ample computer availability for students during practical sessions.</p>
+                </article>
+
+                <article class="discover-card facility-card discover-reveal discover-row-3">
+                    <div class="discover-card-top">
+                        <span class="facility-emoji" aria-hidden="true">🖨️</span>
+                        <h3>Printer &amp; Scanner</h3>
+                    </div>
+                    <p>Convenient access for printing and scanning academic work.</p>
+                </article>
+
+                <article class="discover-card facility-card discover-reveal discover-row-3">
+                    <div class="discover-card-top">
+                        <span class="facility-emoji" aria-hidden="true">📽️</span>
+                        <h3>Projector</h3>
+                    </div>
+                    <p>Supports visual demonstrations and classroom presentations.</p>
+                </article>
+
+                <article class="discover-card facility-card discover-reveal discover-row-4">
+                    <div class="discover-card-top">
+                        <span class="facility-emoji" aria-hidden="true">🔋</span>
+                        <h3>Power Backup</h3>
+                    </div>
+                    <p>Keeps classes running during power interruptions.</p>
+                </article>
+
+                <article class="discover-card facility-card discover-reveal discover-row-4">
+                    <div class="discover-card-top">
+                        <span class="facility-emoji" aria-hidden="true">❄️</span>
+                        <h3>AC &amp; Fans</h3>
+                    </div>
+                    <p>Helps maintain comfortable conditions during classes.</p>
+                </article>
+
+                <article class="discover-card facility-card discover-reveal discover-row-4">
+                    <div class="discover-card-top">
+                        <span class="facility-emoji" aria-hidden="true">📹</span>
+                        <h3>CCTV</h3>
+                    </div>
+                    <p>Security monitoring across the institute premises.</p>
+                </article>
+
+            </div>
+        </div>
+
     </div>
 </section>
 
@@ -502,22 +547,7 @@
 
 <!-- ==================== ABOUT SECTION ==================== -->
 <!-- Gives visitors a short introduction to CICE and key facts about the institute. -->
-<section class="about-section" id="about">
-    <div class="about-inner container">
-        <div class="about-copy">
-            <span class="section-label">ABOUT CICE</span>
-            <h2>Computer education with a <span>local foundation</span></h2>
-            <p>CICE Computer Institute is a coaching institute located in Bidyadabri Pt V, Halakura, Dhubri, Assam. The institute was established in 2016 and provides computer education and practical training to learners.</p>
-            <p>The institute's detailed history, mission, vision, founder story and development journey will be added after collecting the information from CICE.</p>
-        </div>
-        <div class="about-facts">
-            <div><strong>2016</strong><span>Year established</span></div>
-            <div><strong>Halakura</strong><span>Locality</span></div>
-            <div><strong>32+</strong><span>Computers</span></div>
-            <div><strong>1000+</strong><span>Students taught</span></div>
-        </div>
-    </div>
-</section>
+
 
 <!-- ==================== GALLERY PREVIEW SECTION ==================== -->
 <!-- Shows a few gallery images and links visitors to the full gallery page. -->
@@ -589,11 +619,11 @@
             <p>Computer education and practical training for students, job seekers and aspiring professionals.</p>
         </div>
         <div class="footer-links">
-            <a href="#courses">Courses</a>
-            <a href="#why">Why CICE</a>
-            <a href="#instructor">Instructor</a>
+            <a href="courses.html">Courses</a>
+            <a href="about.html">About CICE</a>
+            <a href="about.html#founder">Founder &amp; Instructor</a>
             <a href="gallery.html">Gallery</a>
-            <a href="#contact">Contact</a>
+            <a href="index.html#contact">Contact</a>
         </div>
         <div class="footer-social">
             <a href="https://www.facebook.com/p/CICE-Computer-Institute-Halakura-100089602022179/" target="_blank" rel="noopener">Facebook</a>
@@ -608,5 +638,67 @@
 
 <!-- Loads JavaScript for the mobile menu, dynamic copyright year and navigation behavior. -->
 <script src="script.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script>
+(function () {
+    function initDiscoverCiceReveal() {
+        const section = document.querySelector('.discover-cice-section');
+        const cards = section ? section.querySelectorAll('.discover-reveal') : [];
+
+        if (!section || !cards.length) return;
+
+        if (window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return;
+        }
+
+        if (!('IntersectionObserver' in window)) {
+            return;
+        }
+
+        const observer = new IntersectionObserver(function (entries, obs) {
+            if (!entries.some(function (entry) { return entry.isIntersecting; })) {
+                return;
+            }
+
+            /* Hide only after the observer has confirmed the section is
+               about to be shown, preventing the permanent-invisible bug. */
+            cards.forEach(function (card) {
+                card.classList.add('reveal-pending');
+            });
+
+            requestAnimationFrame(function () {
+                cards.forEach(function (card) {
+                    card.classList.add('reveal-visible');
+                    card.classList.remove('reveal-pending');
+                });
+            });
+
+            obs.disconnect();
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -8% 0px'
+        });
+
+        observer.observe(section);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initDiscoverCiceReveal, {once:true});
+    } else {
+        initDiscoverCiceReveal();
+    }
+})();
+</script>
+
 </body>
 </html>
