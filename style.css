@@ -61,171 +61,8 @@ button {
     margin:auto;
 }
 
-/* ==================== HEADER & NAVIGATION ==================== */
-/* Controls the sticky header, logo, navigation links and mobile menu. */
-
-.site-header {
-    position:sticky;
-    top:0;
-    z-index:1000;
-    background:rgba(255,255,255,.94);
-    backdrop-filter:blur(14px);
-    border-bottom:1px solid rgba(223,231,241,.8);
-}
-
-.navbar {
-    min-height:76px;
-    display:flex;
-    align-items:center;
-    gap:25px;
-}
-
-.brand {
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-right:auto;
-}
-
-.brand-mark {
-    width:43px;
-    height:43px;
-    border-radius:12px;
-    display:grid;
-    place-items:center;
-    background:linear-gradient(135deg,var(--blue),var(--cyan));
-    color:#fff;
-    font:800 1.35rem Poppins;
-    box-shadow:0 8px 20px rgba(23,105,255,.2);
-}
-
-.brand strong,
-.brand small {
-    display:block;
-}
-
-.brand strong {
-    font:700 1.05rem Poppins;
-    letter-spacing:.7px;
-}
-
-.brand small {
-    color:#75869a;
-    font-size:.52rem;
-    font-weight:800;
-    letter-spacing:1.1px;
-}
 
 
-/* ==================== NAVIGATION ==================== */
-.navbar {
-    min-height:76px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:28px;
-    position:relative;
-    z-index:1200;
-}
-
-.nav-links {
-    display:flex;
-    align-items:center;
-    gap:24px;
-    list-style:none;
-    margin:0;
-    padding:0;
-}
-
-.nav-links > li {
-    position:relative;
-}
-
-.nav-links a {
-    color:#526276;
-    font-size:.82rem;
-    font-weight:700;
-    text-decoration:none;
-}
-
-.nav-links a:hover,
-.nav-links a:focus-visible,
-.nav-links a.active {
-    color:var(--blue);
-}
-
-
-
-.nav-dropdown:hover .nav-dropdown-toggle span,
-.nav-dropdown:focus-within .nav-dropdown-toggle span,
-
-
-.nav-dropdown:hover .nav-dropdown-menu,
-.nav-dropdown:focus-within .nav-dropdown-menu,
-
-
-.nav-dropdown-menu a:hover,
-
-.nav-actions {
-    display:flex;
-    align-items:center;
-    gap:10px;
-    flex-shrink:0;
-}
-
-.nav-action {
-    width:42px;
-    height:42px;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:10px;
-    text-decoration:none;
-    transition:transform .2s ease, background .2s ease, box-shadow .2s ease;
-}
-
-.nav-action svg {
-    width:20px;
-    height:20px;
-    fill:currentColor;
-}
-
-.nav-whatsapp {
-    background:#25D366;
-    color:#fff;
-}
-
-.nav-call {
-    background:var(--navy);
-    color:#fff;
-}
-
-.nav-action:hover,
-.nav-action:focus-visible {
-    transform:translateY(-2px);
-    box-shadow:0 8px 18px rgba(7,26,51,.15);
-}
-
-.sr-only {
-    position:absolute !important;
-    width:1px !important;
-    height:1px !important;
-    padding:0 !important;
-    margin:-1px !important;
-    overflow:hidden !important;
-    clip:rect(0,0,0,0) !important;
-    white-space:nowrap !important;
-    border:0 !important;
-}
-
-.menu-toggle {
-    display:none;
-    border:0;
-    background:none;
-    font-size:1.5rem;
-    color:var(--navy);
-    cursor:pointer;
-}
 
 /* ==================== HERO SECTION ==================== */
 /* Styles the main introductory section at the top of the homepage. */
@@ -1158,58 +995,6 @@ button {
 }
 
 /* ==================== FOOTER ==================== */
-/* Styles footer navigation, social links and copyright information. */
-
-.site-footer {
-    background:#041225;
-    color:#fff;
-    padding:60px 0 20px;
-}
-
-.footer-inner {
-    display:grid;
-    grid-template-columns:2fr 1fr 1fr;
-    gap:50px;
-    padding-bottom:45px;
-}
-
-.footer-brand {
-    display:inline-flex;
-    margin-bottom:18px;
-}
-
-.footer-inner>div>p {
-    max-width:330px;
-    color:#8196ad;
-    font-size:.75rem;
-}
-
-.footer-links,
-.footer-social {
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.footer-links a,
-.footer-social a {
-    color:#8196ad;
-    font-size:.72rem;
-}
-
-.footer-links a:hover,
-.footer-social a:hover {
-    color:#6bd7ff;
-}
-
-.footer-bottom {
-    border-top:1px solid rgba(255,255,255,.08);
-    padding-top:20px;
-    display:flex;
-    justify-content:space-between;
-    color:#657b94;
-    font-size:.64rem;
-}
 
 /* ==================== COURSE DETAIL PAGES ==================== */
 /* Controls the individual course pages. */
@@ -1323,175 +1108,6 @@ button {
 }
 
 /* ==================== RESPONSIVE: TABLET ==================== */
-/* Adjusts navigation, grids and multi-column layouts for smaller screens. */
-
-@media (max-width:1050px) {
-    .nav-links {
-        gap:12px;
-    }
-
-    .feature-grid {
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .instructor-layout {
-        gap:45px;
-    }
-}
-
-@media (max-width:850px) {
-    .navbar {
-        min-height:76px;
-        gap:12px;
-    }
-
-    .menu-toggle {
-        display:block;
-        order:2;
-    }
-
-    .nav-links {
-        display:none;
-        position:absolute;
-        left:0;
-        right:0;
-        top:76px;
-        background:#fff;
-        padding:12px 20px 18px;
-        flex-direction:column;
-        align-items:stretch;
-        gap:0;
-        border-bottom:1px solid var(--border);
-        box-shadow:0 15px 30px rgba(7,26,51,.08);
-    }
-
-    .nav-links.active {
-        display:flex;
-    }
-
-    .nav-links > li {
-        padding:0;
-        border-bottom:1px solid #edf1f6;
-    }
-
-    .nav-links > li > a {
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        padding:13px 0;
-    }
-
-
-
-
-    .nav-actions {
-        order:3;
-        gap:7px;
-    }
-
-    .nav-action {
-        width:38px;
-        height:38px;
-        border-radius:9px;
-    }
-
-    .nav-action svg {
-        width:18px;
-        height:18px;
-    }
-
-    .hero-grid,
-    .instructor-layout,
-    .about-inner,
-    .contact-inner,
-    .course-detail-grid {
-        grid-template-columns:1fr;
-    }
-
-    .hero-grid {
-        padding-top:75px;
-        padding-bottom:90px;
-    }
-
-    .hero-content {
-        text-align:center;
-        margin:auto;
-    }
-
-    .hero-content>p {
-        margin:auto;
-    }
-
-    .hero-actions,
-    .hero-note {
-        justify-content:center;
-    }
-
-    .hero-visual {
-        min-height:390px;
-    }
-
-    .identity-card {
-        padding:24px;
-    }
-
-    .identity-main {
-        padding:42px 0 30px;
-    }
-
-    .identity-monogram {
-        width:78px;
-        height:78px;
-        flex-basis:78px;
-        font-size:3rem;
-    }
-
-    .identity-main h2 {
-        font-size:1.35rem;
-    }
-
-    .course-grid {
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .facility-grid {
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .testimonial-grid {
-        grid-template-columns:1fr;
-    }
-
-    .gallery-grid {
-        grid-template-columns:1fr 1fr;
-        grid-template-rows:190px 190px 190px;
-    }
-
-    .gallery-item.large {
-        grid-row:span 2;
-    }
-
-    .instructor-content {
-        text-align:center;
-    }
-
-    .divider {
-        margin-left:auto;
-        margin-right:auto;
-    }
-
-    .verified-details {
-        text-align:left;
-    }
-
-    .footer-inner {
-        grid-template-columns:1fr 1fr;
-    }
-
-    .footer-inner>div:first-child {
-        grid-column:1/-1;
-    }
-}
 
 /* ==================== RESPONSIVE: MOBILE ==================== */
 /* Changes grids, buttons, typography and spacing for phone-sized screens. */
@@ -2262,7 +1878,7 @@ button {
 }
 
 
-/* ---------- Notice Navigation ---------- */
+
 /* The navigation controls occupy the right side of the
    desktop grid, directly below the notice list. */
 
@@ -2716,118 +2332,6 @@ button {
     line-height:1;
 }
 
-/* Progressive reveal: all cards remain visible if JS is unavailable. */
-.discover-reveal{
-    opacity:1;
-    transform:none;
-}
-
-.discover-reveal.reveal-pending{
-    opacity:0;
-    transform:translateY(12px);
-}
-
-.discover-reveal.reveal-visible{
-    opacity:1;
-    transform:translateY(0);
-    transition:opacity .42s ease-out,transform .42s ease-out;
-}
-
-.discover-row-1.reveal-visible{transition-delay:0ms;}
-.discover-row-2.reveal-visible{transition-delay:120ms;}
-.discover-row-3.reveal-visible{transition-delay:240ms;}
-.discover-row-4.reveal-visible{transition-delay:360ms;}
-
-@media(max-width:1050px){
-    .discover-grid{
-        grid-template-columns:repeat(3,minmax(0,1fr));
-    }
-}
-
-@media(max-width:700px){
-    /* Two cards must remain visible side-by-side on phones. */
-    .discover-grid{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-        gap:10px;
-    }
-
-    .discover-card{
-        padding:16px 14px 17px;
-        border-radius:14px;
-    }
-
-    .discover-card-top{
-        gap:6px;
-        margin-bottom:7px;
-    }
-
-    .discover-number{
-        font-size:.56rem;
-    }
-
-    .discover-card h3{
-        font-size:.75rem;
-        line-height:1.25;
-    }
-
-    .discover-card p{
-        font-size:.62rem;
-        line-height:1.42;
-    }
-
-    .facility-emoji{
-        width:28px;
-        height:28px;
-        border-radius:7px;
-        font-size:.92rem;
-    }
-
-    .facilities-subsection{
-        margin-top:30px;
-    }
-
-    .discover-row-1.reveal-visible,
-    .discover-row-2.reveal-visible,
-    .discover-row-3.reveal-visible,
-    .discover-row-4.reveal-visible{
-        transition-delay:0ms;
-    }
-}
-
-@media(max-width:360px){
-    .discover-card{
-        padding:14px 11px 15px;
-    }
-
-    .discover-card h3{
-        font-size:.69rem;
-    }
-
-    .discover-card p{
-        font-size:.58rem;
-    }
-
-    .facility-emoji{
-        width:26px;
-        height:26px;
-        font-size:.84rem;
-    }
-}
-
-@media(prefers-reduced-motion:reduce){
-    .discover-reveal,
-    .discover-reveal.reveal-pending,
-    .discover-reveal.reveal-visible{
-        opacity:1;
-        transform:none;
-        transition:none;
-    }
-
-    .discover-card{
-        transition:none;
-    }
-}
-
 
 /* =========================================================
    DISCOVER CICE — final Facilities visual style
@@ -2948,11 +2452,6 @@ button {
 @media(max-width:600px){.courses-list-hero{padding:52px 0 48px}.courses-list-section{padding:52px 0 68px}.course-detail-header{padding:23px 19px;gap:15px}.course-detail-number{width:42px;height:42px}.course-detail-header h2{font-size:1.65rem}.course-about-panel,.course-syllabus-panel{padding:25px 19px}.course-meta{grid-template-columns:1fr}.course-enquiry-bar{flex-direction:column;align-items:stretch;padding:18px 19px}.course-enquiry-bar .btn{text-align:center}.course-grid-home{grid-template-columns:1fr}}
 
 
-/* ==================== ABOUT NAV DROPDOWN ==================== */
-.nav-dropdown:hover .nav-dropdown-toggle span,
-.nav-dropdown:hover .nav-dropdown-menu,
-.nav-dropdown:focus-within .nav-dropdown-menu,
-.nav-dropdown-menu a:hover,
 
 /* ==================== ABOUT PAGE ==================== */
 .about-hero {
@@ -3033,7 +2532,7 @@ button {
 .credential-card h3 { margin:0 0 8px; font-size:1.45rem; } .credential-card p { color:var(--muted); font-size:.9rem; line-height:1.65; margin:0 0 18px; }
 .credential-link { color:var(--blue); font-size:.78rem; font-weight:800; }
 @media (max-width:900px) {
-    .nav-links { gap:14px; }
+    
     .glance-grid { grid-template-columns:repeat(2,1fr); }
     .story-chapter, .founder-grid { grid-template-columns:1fr; gap:40px; }
     .story-chapter.reverse .story-media, .story-chapter.reverse .story-copy { order:initial; }
@@ -3041,10 +2540,13 @@ button {
 }
 @media (max-width:700px) {
     .navbar { gap:15px; }
-    .nav-links { position:absolute; left:0; right:0; top:76px; display:none; flex-direction:column; gap:0; padding:10px 20px 18px; background:rgba(255,255,255,.98); border-bottom:1px solid var(--border); box-shadow:0 16px 30px rgba(7,26,51,.08); }
+    
     .nav-links.active { display:flex; }
     .nav-links > li > a { display:block; padding:12px 0; }
     .nav-whatsapp { display:none; }
+    
+    .nav-dropdown.open 
+    .nav-dropdown-menu a { padding:9px 10px; }
     .about-section { padding:78px 0; }
     .about-hero { min-height:500px; }
     .about-hero-inner { padding:78px 0 90px; }
@@ -3289,55 +2791,125 @@ button {
 
 
 
+/* Keep the dropdown physically connected to its parent so it cannot disappear
+   while the pointer moves downward from the navigation item. */
 
 
 
-/* ==================== SIMPLE NAVIGATION - NO DROPDOWNS ==================== */
-.nav-links > li > a {
-    text-decoration: none;
+
+/* A small invisible hover bridge above the menu prevents accidental loss of
+   :hover during the mouse movement from the parent link into the dropdown. */
+.nav-dropdown::after {
+    content: "";
+    position: absolute;
+    left: -12px;
+    right: -12px;
+    top: 100%;
+    height: 14px;
+    background: transparent;
+    pointer-events: auto;
 }
 
+
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu,
+.nav-dropdown.open 
+
+/* Make both action buttons visually consistent and unmistakable. */
+
+
+
+
+.nav-action svg {
+    width: 20px !important;
+    height: 20px !important;
+    display: block !important;
+    fill: currentColor !important;
+}
+
+/* Mobile: parent items open their submenu by tapping the parent. */
 @media (max-width: 850px) {
-    .navbar {
-        position: relative !important;
-        z-index: 10000 !important;
+    .nav-dropdown::after {
+        display: none;
     }
 
-    .menu-toggle {
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        position: relative !important;
-        z-index: 10002 !important;
-        cursor: pointer !important;
-        touch-action: manipulation !important;
-    }
+    
 
-    .nav-links {
-        display: none !important;
-        position: absolute !important;
-        top: 100% !important;
-        left: 0 !important;
-        right: 0 !important;
-        z-index: 10001 !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-        max-height: calc(100vh - 76px) !important;
-        overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch !important;
-    }
-
-    .nav-links.active {
-        display: flex !important;
-    }
-
-    .nav-links > li {
-        width: 100% !important;
-    }
+    .nav-dropdown.open 
 
     .nav-links > li > a {
-        display: block !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
         width: 100% !important;
+    }
+}
+
+
+
+
+/* ==================== MOBILE DROPDOWN FINAL FIX ==================== */
+
+
+
+
+.nav-arrow:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+}
+
+.nav-dropdown.is-open > 
+
+@media (max-width: 850px) {
+    
+
+    .nav-item-with-dropdown > a {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
         padding: 13px 0 !important;
     }
+
+    
+
+    /* Explicitly hide every dropdown until its arrow opens it. */
+    .nav-links .nav-dropdown > 
+
+    .nav-links .nav-dropdown.is-open > 
+
+    /* Old hover/focus behavior cannot open menus on mobile. */
+    .nav-links .nav-dropdown:hover > .nav-dropdown-menu,
+    .nav-links .nav-dropdown:focus-within > 
+
+    .nav-links .nav-dropdown.is-open:hover > .nav-dropdown-menu,
+    .nav-links .nav-dropdown.is-open:focus-within > 
+}
+
+/* CICE NAVIGATION - SINGLE AUTHORITATIVE IMPLEMENTATION */
+.navbar{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px;position:relative;z-index:1000}
+.nav-links{display:flex;align-items:center;gap:24px;list-style:none;margin:0;padding:0}
+.nav-links>li{position:relative}
+.nav-links a{color:#526276;font-size:.82rem;font-weight:700;text-decoration:none}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--blue)}
+.nav-item-with-dropdown{display:inline-flex;align-items:center;gap:2px}
+.nav-arrow{appearance:none;-webkit-appearance:none;border:0;background:transparent;color:#526276;width:28px;height:28px;padding:0;margin:0;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;cursor:pointer;font:inherit;line-height:1;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.nav-arrow:hover,.nav-arrow:focus-visible{color:var(--blue);background:#f1f7ff;outline:none}
+.nav-dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(5px);min-width:235px;margin:8px 0 0;padding:8px;list-style:none;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 18px 45px rgba(7,26,51,.14);opacity:0;visibility:hidden;pointer-events:none;z-index:99999;transition:opacity .16s ease,transform .16s ease,visibility .16s ease}
+.nav-dropdown:hover>.nav-dropdown-menu,.nav-dropdown:focus-within>.nav-dropdown-menu,.nav-dropdown.is-open>.nav-dropdown-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-dropdown-menu a{display:block;padding:10px 12px;border-radius:9px;color:#526276;font-size:.76rem;font-weight:700}
+.nav-dropdown-menu a:hover,.nav-dropdown-menu a:focus-visible{background:#f1f7ff;color:var(--blue)}
+.nav-actions{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.nav-action{width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;text-decoration:none;flex-shrink:0}
+.nav-action svg{width:20px;height:20px;fill:currentColor}
+.nav-whatsapp{background:#25D366;color:#fff}.nav-call{background:var(--navy);color:#fff}
+.menu-toggle{display:none;border:0;background:transparent;color:var(--navy);cursor:pointer;font-size:1.5rem;line-height:1}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+@media(max-width:850px){
+.navbar{z-index:10000}.menu-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;position:relative;z-index:10002;touch-action:manipulation}
+.nav-links{display:none;position:absolute;top:100%;left:0;right:0;z-index:10001;flex-direction:column;align-items:stretch;gap:0;padding:10px 20px 18px;margin:0;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 16px 30px rgba(7,26,51,.10);max-height:calc(100vh - 76px);overflow-y:auto;-webkit-overflow-scrolling:touch}
+.nav-links.active{display:flex}.nav-links>li{width:100%;border-bottom:1px solid #edf1f6}.nav-links>li:last-child{border-bottom:0}
+.nav-item-with-dropdown{width:100%;display:flex;align-items:center;justify-content:space-between}.nav-item-with-dropdown>a{flex:1 1 auto;min-width:0;padding:13px 0}.nav-arrow{width:48px;height:48px;flex:0 0 48px;font-size:1rem}
+.nav-dropdown-menu,.nav-dropdown:hover>.nav-dropdown-menu,.nav-dropdown:focus-within>.nav-dropdown-menu{position:static;display:none;width:100%;min-width:0;transform:none;opacity:1;visibility:visible;pointer-events:auto;margin:0 0 8px;padding:5px 8px;box-shadow:none;border-radius:10px}
+.nav-dropdown.is-open>.nav-dropdown-menu{display:block}
+.nav-dropdown-menu a{padding:10px}.nav-actions{position:relative;z-index:10002}.nav-action{width:40px;height:40px}
 }
