@@ -3563,3 +3563,100 @@ button {
         touch-action: manipulation !important;
     }
 }
+
+/* ==================== SPLIT NAVIGATION: PAGE LINK + ARROW ==================== */
+.nav-item-with-dropdown {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.nav-item-with-dropdown > a {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+}
+
+.nav-arrow {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    padding: 5px 4px;
+    margin: 0;
+    font: inherit;
+    font-size: .82rem;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 5px;
+    touch-action: manipulation;
+}
+
+.nav-arrow:hover,
+.nav-arrow:focus-visible {
+    color: var(--blue);
+    background: #f1f7ff;
+    outline: none;
+}
+
+.nav-dropdown.open > .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 850px) {
+    .nav-item-with-dropdown {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .nav-item-with-dropdown > a {
+        flex: 1;
+        min-width: 0;
+        padding: 13px 0 !important;
+    }
+
+    .nav-arrow {
+        width: 44px;
+        height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 44px;
+        font-size: 1rem;
+        padding: 0;
+    }
+
+    .nav-dropdown-menu {
+        display: none !important;
+        position: static !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        margin: 0 0 8px !important;
+        box-shadow: none !important;
+    }
+
+    .nav-dropdown.open > .nav-dropdown-menu {
+        display: block !important;
+    }
+
+    /* Do not let hover/focus automatically open menus on touch devices. */
+    .nav-dropdown:hover > .nav-dropdown-menu,
+    .nav-dropdown:focus-within > .nav-dropdown-menu {
+        display: none !important;
+    }
+
+    .nav-dropdown.open:hover > .nav-dropdown-menu,
+    .nav-dropdown.open:focus-within > .nav-dropdown-menu {
+        display: block !important;
+    }
+}
