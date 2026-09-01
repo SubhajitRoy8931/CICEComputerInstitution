@@ -3,44 +3,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    // ==================== MOBILE NAVIGATION ====================
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
+    // ==================== SPLIT NAVIGATION ====================
+    (() => {
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
 
-    if (menuToggle && navLinks) {
+        if (!menuToggle || !navLinks) return;
+
         menuToggle.addEventListener("click", (event) => {
             event.preventDefault();
             event.stopPropagation();
-
-            const isOpen = navLinks.classList.toggle("active");
-            menuToggle.setAttribute("aria-expanded", String(isOpen));
-            menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+            const open = navLinks.classList.toggle("active");
+            menuToggle.setAttribute("aria-expanded", String(open));
+            menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
         });
 
-        // Mobile dropdowns: parent tap opens/closes; child links navigate normally.
-        navLinks.querySelectorAll(".nav-dropdown-toggle").forEach(toggle => {
-            toggle.addEventListener("click", (event) => {
-                if (window.innerWidth > 850) return;
-
+        document.querySelectorAll(".nav-arrow").forEach(arrow => {
+            arrow.addEventListener("click", (event) => {
                 event.preventDefault();
                 event.stopPropagation();
 
-                const dropdown = toggle.closest(".nav-dropdown");
+                const dropdown = arrow.closest(".nav-dropdown");
                 if (!dropdown) return;
 
-                const isOpen = dropdown.classList.toggle("open");
-                toggle.setAttribute("aria-expanded", String(isOpen));
+                const willOpen = !dropdown.classList.contains("open");
 
-                navLinks.querySelectorAll(".nav-dropdown.open").forEach(other => {
+                document.querySelectorAll(".nav-dropdown.open").forEach(other => {
                     if (other !== dropdown) {
                         other.classList.remove("open");
-                        const otherToggle = other.querySelector(".nav-dropdown-toggle");
-                        if (otherToggle) otherToggle.setAttribute("aria-expanded", "false");
+                        const otherArrow = other.querySelector(".nav-arrow");
+                        if (otherArrow) otherArrow.setAttribute("aria-expanded", "false");
                     }
                 });
+
+                dropdown.classList.toggle("open", willOpen);
+                arrow.setAttribute("aria-expanded", String(willOpen));
             });
         });
 
+        // Subsection links navigate normally and close the mobile menu.
         navLinks.querySelectorAll(".nav-dropdown-menu a").forEach(link => {
             link.addEventListener("click", () => {
                 navLinks.classList.remove("active");
@@ -49,47 +50,34 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // Normal top-level links close the mobile menu after selection.
-        navLinks.querySelectorAll(":scope > li > a:not(.nav-dropdown-toggle)").forEach(link => {
-            link.addEventListener("click", () => {
-                navLinks.classList.remove("active");
-                menuToggle.setAttribute("aria-expanded", "false");
-                menuToggle.setAttribute("aria-label", "Open menu");
+        // Clicking a top-level page link should navigate normally.
+        navLinks.querySelectorAll(".nav-item-with-dropdown > a, .nav-links > li:not(.nav-dropdown) > a")
+            .forEach(link => {
+                link.addEventListener("click", () => {
+                    navLinks.classList.remove("active");
+                    menuToggle.setAttribute("aria-expanded", "false");
+                    menuToggle.setAttribute("aria-label", "Open menu");
+                });
             });
+
+        document.addEventListener("click", (event) => {
+            if (!event.target.closest(".nav-dropdown")) {
+                document.querySelectorAll(".nav-dropdown.open").forEach(dropdown => {
+                    dropdown.classList.remove("open");
+                    const arrow = dropdown.querySelector(".nav-arrow");
+                    if (arrow) arrow.setAttribute("aria-expanded", "false");
+                });
+            }
         });
 
-        // Close the mobile menu when tapping outside it.
-        document.addEventListener("click", (event) => {
-            if (window.innerWidth <= 850 &&
-                navLinks.classList.contains("active") &&
-                !navLinks.contains(event.target) &&
-                !menuToggle.contains(event.target)) {
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 850) {
                 navLinks.classList.remove("active");
                 menuToggle.setAttribute("aria-expanded", "false");
                 menuToggle.setAttribute("aria-label", "Open menu");
             }
         });
-    }
-
-    // ==================== DESKTOP NAVIGATION ====================
-    document.querySelectorAll(".nav-dropdown").forEach(dropdown => {
-        const toggle = dropdown.querySelector(".nav-dropdown-toggle");
-        if (!toggle) return;
-
-        dropdown.addEventListener("mouseenter", () => {
-            if (window.innerWidth > 850) {
-                dropdown.classList.add("open");
-                toggle.setAttribute("aria-expanded", "true");
-            }
-        });
-
-        dropdown.addEventListener("mouseleave", () => {
-            if (window.innerWidth > 850) {
-                dropdown.classList.remove("open");
-                toggle.setAttribute("aria-expanded", "false");
-            }
-        });
-    });
+    })();
 
     // ==================== COPYRIGHT YEAR ====================
     const year = document.getElementById("year");
