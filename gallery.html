@@ -1,156 +1,219 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/png" href="assets/images/cice-logo.png"><link rel="apple-touch-icon" href="assets/images/cice-logo.png"><meta property="og:image" content="https://subhajitroy8931.github.io/CICEComputerInstitution/assets/images/cice-logo.png"><meta property="og:image:width" content="1254"><meta property="og:image:height" content="1254"><meta name="twitter:image" content="https://subhajitroy8931.github.io/CICEComputerInstitution/assets/images/cice-logo.png"><meta name="description" content="Explore courses offered by CICE Computer Institute, Halakura, Dhubri, Assam."><link rel="canonical" href="https://subhajitroy8931.github.io/CICEComputerInstitution/courses.html"><meta property="og:type" content="website"><meta property="og:title" content="Courses | CICE Computer Institute"><meta property="og:description" content="Explore courses offered by CICE Computer Institute, Halakura, Dhubri, Assam."><meta property="og:url" content="https://subhajitroy8931.github.io/CICEComputerInstitution/courses.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Courses | CICE Computer Institute"><meta name="twitter:description" content="Explore courses offered by CICE Computer Institute, Halakura, Dhubri, Assam."><title>Courses | CICE Computer Institute</title><link rel="stylesheet" href="style.css"></head><body><header class="site-header">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Declares the document character encoding. -->
+    <meta charset="UTF-8">
+
+    <!-- Makes the gallery responsive on phones and tablets. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <!-- ==================== FAVICON ==================== -->
+    <!-- Uses the official CICE logo as the browser tab icon. -->
+    <link rel="icon" type="image/png" href="assets/images/cice-logo.png">
+    <link rel="apple-touch-icon" href="assets/images/cice-logo.png">
+
+    <!-- ==================== SOCIAL / META IMAGE ==================== -->
+    <!-- Uses the official CICE logo when this page is shared. -->
+    <meta property="og:image" content="https://subhajitroy8931.github.io/CICEComputerInstitution/assets/images/cice-logo.png">
+    <meta property="og:image:width" content="1254">
+    <meta property="og:image:height" content="1254">
+    <meta name="twitter:image" content="https://subhajitroy8931.github.io/CICEComputerInstitution/assets/images/cice-logo.png">
+<!-- Describes the gallery page for search engines. -->
+    <meta name="description" content="Gallery of CICE Computer Institute, Halakura, Dhubri, Assam — institute environment, students, practical training, internship programs and events.">
+
+    <!-- Identifies the preferred URL for this page. -->
+    <link rel="canonical" href="https://subhajitroy8931.github.io/CICEComputerInstitution/gallery.html">
+
+    <!-- Open Graph metadata controls the basic information used when the gallery is shared. -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Gallery | CICE Computer Institute">
+    <meta property="og:description" content="Explore CICE Computer Institute, Halakura through photographs, practical learning, internship programs and events.">
+    <meta property="og:url" content="https://subhajitroy8931.github.io/CICEComputerInstitution/gallery.html">
+
+    <!-- Provides a simple sharing card for X (formerly Twitter). -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Text shown in the browser tab and commonly used as the search-result title. -->
+    <title>Gallery | CICE Computer Institute</title>
+
+    <!-- Loads the shared stylesheet used throughout the website. -->
+    <link rel="stylesheet" href="style.css">
+
+
+    <!-- ==================== GALLERY PAGE STYLES ==================== -->
+    <style>
+        .gallery-main { padding-top: 20px; }
+        .gallery-section { margin-bottom: 82px; scroll-margin-top: 110px; }
+        .gallery-section:last-child { margin-bottom: 25px; }
+        .gallery-section-heading { margin-bottom: 24px; }
+        .gallery-section-heading .section-label { display:block; margin-bottom: 8px; }
+        .gallery-section-heading h2 { margin:0; font-size: clamp(1.7rem, 3vw, 2.35rem); line-height:1.1; }
+        .gallery-section-heading p { max-width: 620px; margin: 10px 0 0; color: var(--muted); font-size: .82rem; line-height:1.7; }
+        .media-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+        .media-card { position:relative; aspect-ratio:4/3; overflow:hidden; border:1px solid var(--border); border-radius:18px; background:linear-gradient(135deg,#eaf7ff,#f4fbff); cursor:pointer; padding:0; transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease; }
+        .media-card:hover { transform:translateY(-4px); box-shadow:var(--shadow); border-color:#b8d9f5; }
+        .media-card img,.media-card video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+        .media-card::after { content:""; position:absolute; inset:0; background:linear-gradient(to top,rgba(5,20,40,.58),transparent 48%); pointer-events:none; }
+        .media-placeholder { position:absolute; inset:0; z-index:1; display:grid; place-items:center; padding:20px; text-align:center; color:#56708b; }
+        .media-placeholder strong { display:block; color:#234b72; font-size:1rem; margin-bottom:5px; }
+        .media-placeholder span { font-size:.7rem; }
+        .media-title { position:absolute; z-index:3; left:14px; right:14px; bottom:13px; color:#fff; font-size:.74rem; font-weight:700; line-height:1.35; text-shadow:0 1px 5px rgba(0,0,0,.28); }
+        .media-type { position:absolute; z-index:4; top:12px; left:12px; padding:6px 9px; border-radius:999px; background:rgba(255,255,255,.9); color:#234b72; font-size:.62rem; font-weight:800; letter-spacing:.04em; text-transform:uppercase; }
+        .media-play { position:absolute; z-index:4; top:50%; left:50%; transform:translate(-50%,-50%); width:48px; height:48px; border-radius:50%; display:grid; place-items:center; background:rgba(7,26,51,.86); color:#fff; font-size:.8rem; padding-left:2px; box-shadow:0 10px 25px rgba(0,0,0,.22); }
+        .media-card video { pointer-events:none; }
+        .media-more { display:flex; justify-content:center; margin-top:22px; }
+        .media-more button { cursor:pointer; }
+        .media-empty { grid-column:1/-1; padding:35px 20px; text-align:center; border:1px dashed #c8d9e8; border-radius:16px; color:var(--muted); font-size:.8rem; }
+        .media-modal { position:fixed; inset:0; z-index:9999; display:none; align-items:center; justify-content:center; padding:22px; background:rgba(4,14,28,.86); backdrop-filter:blur(7px); }
+        .media-modal.is-open { display:flex; }
+        .media-modal-content { position:relative; width:min(1080px,96vw); max-height:92vh; display:flex; flex-direction:column; align-items:center; }
+        .media-modal-close { position:absolute; right:-8px; top:-46px; width:40px; height:40px; border:0; border-radius:50%; background:#fff; color:#13243a; font-size:1.2rem; cursor:pointer; z-index:3; }
+        .media-modal-stage { width:100%; max-height:82vh; display:grid; place-items:center; }
+        .media-modal-stage img,.media-modal-stage video { max-width:100%; max-height:82vh; border-radius:14px; box-shadow:0 25px 70px rgba(0,0,0,.35); background:#08182c; }
+        .media-modal-caption { margin-top:12px; color:#fff; font-size:.8rem; text-align:center; }
+        .media-modal-nav { display:flex; gap:10px; margin-top:12px; }
+        .media-modal-nav button { width:40px; height:40px; border:1px solid rgba(255,255,255,.35); border-radius:50%; background:rgba(255,255,255,.12); color:#fff; cursor:pointer; font-size:1rem; }
+        .media-modal-nav button:hover { background:rgba(255,255,255,.2); }
+        @media(max-width:800px){ .media-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.gallery-section{margin-bottom:65px;} }
+        @media(max-width:560px){ .media-grid{grid-template-columns:1fr;}.gallery-main{padding-top:10px;}.media-card{aspect-ratio:16/11;}.media-modal{padding:14px;}.media-modal-close{right:0;top:-48px;} }
+        @media(prefers-reduced-motion:reduce){.media-card{transition:none;}}
+    </style>
+
+<style id="gallery-final-media-rules">
+/* Recognition & Credentials is intentionally document/photo-only. */
+.gallery-recognition .video-badge,
+.gallery-recognition .play-icon,
+.gallery-recognition [data-media-type="video"],
+.gallery-recognition video {
+  display: none !important;
+}
+
+/* Keep the first four collections eligible for their View All controls. */
+.gallery-all-media .view-all,
+.gallery-life .view-all,
+.gallery-moments .view-all,
+.gallery-internships .view-all {
+  display: inline-flex;
+}
+</style>
+
+</head>
+<body>
+<!-- ==================== HEADER / NAVIGATION ==================== -->
+<!-- Reuses the same navigation structure as the homepage. -->
+<header class="site-header">
     <nav class="navbar container">
-    <a href="index.html" class="brand" aria-label="CICE Computer Institute - Home">
-        <img src="assets/images/cice-logo.png" alt="CICE Computer Institute official logo" class="brand-logo">
-    </a>
+<a href="index.html" class="brand" aria-label="CICE Computer Institute - Home"><img src="assets/images/cice-logo.png" alt="CICE Computer Institute official logo" class="brand-logo"></a>
+<button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+<ul class="nav-links" id="navLinks">
+<li class="nav-dropdown"><div class="nav-item-with-dropdown"><a href="index.html">Home</a><button class="nav-arrow" type="button" aria-label="Open Home menu" aria-expanded="false">⌄</button></div><ul class="nav-dropdown-menu" aria-label="Home sections">
+                <li><a href="index.html#notices">Notice &amp; Updates</a></li>
+                <li><a href="index.html#courses">Courses</a></li>
+                <li><a href="index.html#why">Why CICE</a></li>
+                <li><a href="index.html#testimonials">Testimonials</a></li>
+                <li><a href="index.html#gallery">Gallery</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+</ul></li>
+<li class="nav-dropdown"><div class="nav-item-with-dropdown"><a href="about.html">About CICE</a><button class="nav-arrow" type="button" aria-label="Open About CICE menu" aria-expanded="false">⌄</button></div><ul class="nav-dropdown-menu" aria-label="About CICE sections">
+                <li><a href="about.html#story">Our Story</a></li>
+                <li><a href="about.html#founder">Founder &amp; Instructor</a></li>
+                <li><a href="about.html#certificates">Certificates &amp; Registration</a></li>
+</ul></li>
+<li><a href="courses.html">Courses</a></li>
+<li class="nav-dropdown"><div class="nav-item-with-dropdown"><a href="gallery.html">Gallery</a><button class="nav-arrow" type="button" aria-label="Open Gallery menu" aria-expanded="false">⌄</button></div><ul class="nav-dropdown-menu" aria-label="Gallery sections">
+                <li><a href="gallery.html#all-media">All Media</a></li>
+                <li><a href="gallery.html#life-at-cice">Life at CICE</a></li>
+                <li><a href="gallery.html#moments-of-cice">Moments</a></li>
+                <li><a href="gallery.html#internship-experiences">Internship</a></li>
+                <li><a href="gallery.html#recognition-credentials">Recognition</a></li>
+</ul></li>
+</ul>
+<div class="nav-actions" aria-label="Contact actions">
+<a class="nav-action nav-whatsapp" href="https://wa.me/917002641470" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><span aria-hidden="true">◉</span><span class="sr-only">WhatsApp</span></a>
+<a class="nav-action nav-call" href="tel:+917002641470" aria-label="Call CICE" title="Call CICE"><span aria-hidden="true">☎</span><span class="sr-only">Call CICE</span></a>
+</div></nav>
+</header>
 
-    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
-
-    <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About CICE</a></li>
-        <li><a href="courses.html">Courses</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-    </ul>
-
-    <div class="nav-actions" aria-label="Contact actions">
-        <a class="nav-action nav-whatsapp" href="https://wa.me/917002641470" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
-            <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-                <path d="M16 3.5a12.3 12.3 0 0 0-10.7 18.4L4 28l6.3-1.2A12.3 12.3 0 1 0 16 3.5Zm0 22.2a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.7.7.7-3.6-.2-.4A9.9 9.9 0 1 1 16 25.7Zm5.5-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.5-.7-2.5-1.3-3.5-2.9-.3-.5.3-.5.8-1.6.1-.2.1-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.7.9 3.7.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.3-.6-.5Z"/>
-            </svg>
-            <span class="sr-only">WhatsApp</span>
-        </a>
-        <a class="nav-action nav-call" href="tel:+917002641470" aria-label="Call CICE" title="Call CICE">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M6.6 2.8 4.4 3.9c-.9.5-1.4 1.5-1.2 2.5 1.1 6.4 6.1 11.4 12.5 12.5 1 .2 2-.3 2.5-1.2l1.1-2.2c.3-.7.1-1.5-.5-1.9l-2.5-1.7c-.6-.4-1.4-.3-1.9.2l-1.2 1.2c-2.2-1.1-4-2.9-5.1-5.1l1.2-1.2c.5-.5.6-1.3.2-1.9L8.5 3.3c-.4-.6-1.2-.8-1.9-.5Z"/>
-            </svg>
-            <span class="sr-only">Call CICE</span>
-        </a>
+<main>
+<!-- ==================== GALLERY HERO ==================== -->
+<!-- Introduces the purpose of the full gallery page. -->
+<section class="courses-list-hero gallery-page-hero">
+    <div class="container">
+        <div class="courses-breadcrumb"><a href="index.html">Home</a><span>/</span><strong>Gallery</strong></div>
+        <span class="section-label">CICE / GALLERY</span>
+        <h1>See CICE<br><span>in action.</span></h1>
+        <p>Explore photographs and videos from the institute, classroom activities, practical learning, internship programs and events.</p>
     </div>
-</nav>
-</header><main>
-<section class="courses-list-hero"><div class="container"><div class="courses-breadcrumb"><a href="index.html">Home</a><span>/</span><strong>Courses</strong></div><span class="section-label">OUR COURSES</span><h1>Learn skills.<br><span>Build your future.</span></h1><p>Explore the computer education and practical training programmes offered by CICE Computer Institute.</p></div></section>
-<section class="courses-list-section" id="courses"><div class="container"><article class="course-detail-card" id="adca">
-  <div class="course-detail-header"><div class="course-detail-number">01</div><div><span class="course-detail-label">CICE COURSE</span><h2>ADCA</h2><p>Advanced Diploma in Computer Applications.</p></div></div>
-  <div class="course-detail-columns">
-    <section class="course-about-panel">
-      <span class="course-panel-label">ABOUT THE COURSE</span>
-      <h3>Advanced Diploma in Computer Applications</h3>
-      <p>Advanced Diploma in Computer Applications.</p>
-      <p class="course-note">The exact module structure and assessment details will be updated after confirmation from CICE Computer Institute.</p>
-      <div class="course-meta">
-        <div class="course-meta-item"><span>DURATION</span><strong>To be confirmed</strong></div>
-        <div class="course-meta-item"><span>ELIGIBILITY</span><strong>To be confirmed</strong></div>
-      </div>
-    </section>
-    <section class="course-syllabus-panel">
-      <span class="course-panel-label">SYLLABUS</span>
-      <h3>Course syllabus</h3>
-      <div class="syllabus-list">
-        <div class="syllabus-item"><span>01</span><p>Detailed syllabus to be added</p></div>
-        <div class="syllabus-item"><span>02</span><p>Module structure to be confirmed</p></div>
-        <div class="syllabus-item"><span>03</span><p>Additional topics as confirmed by the institute</p></div>
-      </div>
-    </section>
-  </div>
-  <div class="course-enquiry-bar"><span>Interested in ADCA?</span><a href="https://wa.me/917002641470?text=Hello%20CICE,%20I%20would%20like%20to%20know%20more%20about%20the%20ADCA%20course." class="btn btn-primary" target="_blank" rel="noopener">Enquire on WhatsApp →</a></div>
-</article><article class="course-detail-card" id="pgdca">
-  <div class="course-detail-header"><div class="course-detail-number">02</div><div><span class="course-detail-label">CICE COURSE</span><h2>PGDCA</h2><p>Post Graduate Diploma in Computer Applications.</p></div></div>
-  <div class="course-detail-columns">
-    <section class="course-about-panel">
-      <span class="course-panel-label">ABOUT THE COURSE</span>
-      <h3>Post Graduate Diploma in Computer Applications</h3>
-      <p>Post Graduate Diploma in Computer Applications.</p>
-      <p class="course-note">The exact module structure and assessment details will be updated after confirmation from CICE Computer Institute.</p>
-      <div class="course-meta">
-        <div class="course-meta-item"><span>DURATION</span><strong>To be confirmed</strong></div>
-        <div class="course-meta-item"><span>ELIGIBILITY</span><strong>To be confirmed</strong></div>
-      </div>
-    </section>
-    <section class="course-syllabus-panel">
-      <span class="course-panel-label">SYLLABUS</span>
-      <h3>Course syllabus</h3>
-      <div class="syllabus-list">
-        <div class="syllabus-item"><span>01</span><p>Detailed syllabus to be added</p></div>
-        <div class="syllabus-item"><span>02</span><p>Module structure to be confirmed</p></div>
-        <div class="syllabus-item"><span>03</span><p>Additional topics as confirmed by the institute</p></div>
-      </div>
-    </section>
-  </div>
-  <div class="course-enquiry-bar"><span>Interested in PGDCA?</span><a href="https://wa.me/917002641470?text=Hello%20CICE,%20I%20would%20like%20to%20know%20more%20about%20the%20PGDCA%20course." class="btn btn-primary" target="_blank" rel="noopener">Enquire on WhatsApp →</a></div>
-</article><article class="course-detail-card" id="dca">
-  <div class="course-detail-header"><div class="course-detail-number">03</div><div><span class="course-detail-label">CICE COURSE</span><h2>DCA</h2><p>Diploma in Computer Applications for essential computer skills.</p></div></div>
-  <div class="course-detail-columns">
-    <section class="course-about-panel">
-      <span class="course-panel-label">ABOUT THE COURSE</span>
-      <h3>Diploma in Computer Applications</h3>
-      <p>Diploma in Computer Applications for essential computer skills.</p>
-      <p class="course-note">The exact module structure and assessment details will be updated after confirmation from CICE Computer Institute.</p>
-      <div class="course-meta">
-        <div class="course-meta-item"><span>DURATION</span><strong>To be confirmed</strong></div>
-        <div class="course-meta-item"><span>ELIGIBILITY</span><strong>To be confirmed</strong></div>
-      </div>
-    </section>
-    <section class="course-syllabus-panel">
-      <span class="course-panel-label">SYLLABUS</span>
-      <h3>Course syllabus</h3>
-      <div class="syllabus-list">
-        <div class="syllabus-item"><span>01</span><p>Detailed syllabus to be added</p></div>
-        <div class="syllabus-item"><span>02</span><p>Module structure to be confirmed</p></div>
-        <div class="syllabus-item"><span>03</span><p>Additional topics as confirmed by the institute</p></div>
-      </div>
-    </section>
-  </div>
-  <div class="course-enquiry-bar"><span>Interested in DCA?</span><a href="https://wa.me/917002641470?text=Hello%20CICE,%20I%20would%20like%20to%20know%20more%20about%20the%20DCA%20course." class="btn btn-primary" target="_blank" rel="noopener">Enquire on WhatsApp →</a></div>
-</article><article class="course-detail-card" id="dtp">
-  <div class="course-detail-header"><div class="course-detail-number">04</div><div><span class="course-detail-label">CICE COURSE</span><h2>DTP</h2><p>Desktop Publishing and computer-based document design training.</p></div></div>
-  <div class="course-detail-columns">
-    <section class="course-about-panel">
-      <span class="course-panel-label">ABOUT THE COURSE</span>
-      <h3>Desktop Publishing</h3>
-      <p>Desktop Publishing and computer-based document design training.</p>
-      <p class="course-note">The exact module structure and assessment details will be updated after confirmation from CICE Computer Institute.</p>
-      <div class="course-meta">
-        <div class="course-meta-item"><span>DURATION</span><strong>To be confirmed</strong></div>
-        <div class="course-meta-item"><span>ELIGIBILITY</span><strong>To be confirmed</strong></div>
-      </div>
-    </section>
-    <section class="course-syllabus-panel">
-      <span class="course-panel-label">SYLLABUS</span>
-      <h3>Course syllabus</h3>
-      <div class="syllabus-list">
-        <div class="syllabus-item"><span>01</span><p>Detailed syllabus to be added</p></div>
-        <div class="syllabus-item"><span>02</span><p>Module structure to be confirmed</p></div>
-        <div class="syllabus-item"><span>03</span><p>Additional topics as confirmed by the institute</p></div>
-      </div>
-    </section>
-  </div>
-  <div class="course-enquiry-bar"><span>Interested in DTP?</span><a href="https://wa.me/917002641470?text=Hello%20CICE,%20I%20would%20like%20to%20know%20more%20about%20the%20DTP%20course." class="btn btn-primary" target="_blank" rel="noopener">Enquire on WhatsApp →</a></div>
-</article><article class="course-detail-card" id="tally">
-  <div class="course-detail-header"><div class="course-detail-number">05</div><div><span class="course-detail-label">CICE COURSE</span><h2>Tally</h2><p>Computerised accounting and Tally-focused practical training.</p></div></div>
-  <div class="course-detail-columns">
-    <section class="course-about-panel">
-      <span class="course-panel-label">ABOUT THE COURSE</span>
-      <h3>Computerised Accounting & Tally</h3>
-      <p>Computerised accounting and Tally-focused practical training.</p>
-      <p class="course-note">The exact module structure and assessment details will be updated after confirmation from CICE Computer Institute.</p>
-      <div class="course-meta">
-        <div class="course-meta-item"><span>DURATION</span><strong>To be confirmed</strong></div>
-        <div class="course-meta-item"><span>ELIGIBILITY</span><strong>To be confirmed</strong></div>
-      </div>
-    </section>
-    <section class="course-syllabus-panel">
-      <span class="course-panel-label">SYLLABUS</span>
-      <h3>Course syllabus</h3>
-      <div class="syllabus-list">
-        <div class="syllabus-item"><span>01</span><p>Detailed syllabus to be added</p></div>
-        <div class="syllabus-item"><span>02</span><p>Module structure to be confirmed</p></div>
-        <div class="syllabus-item"><span>03</span><p>Additional topics as confirmed by the institute</p></div>
-      </div>
-    </section>
-  </div>
-  <div class="course-enquiry-bar"><span>Interested in Tally?</span><a href="https://wa.me/917002641470?text=Hello%20CICE,%20I%20would%20like%20to%20know%20more%20about%20the%20Tally%20course." class="btn btn-primary" target="_blank" rel="noopener">Enquire on WhatsApp →</a></div>
-</article></div></section></main><footer class="site-footer">
+</section>
+
+<section class="section gallery-main" id="gallery-content">
+    <div class="container">
+        <section class="gallery-section" id="all-media">
+            <div class="gallery-section-heading">
+                <span class="section-label">ALL MEDIA</span>
+                <h2>A Glimpse Inside CICE</h2>
+                <p>Explore photos and videos from across CICE, all brought together in one place.</p>
+            </div>
+            <div class="media-grid" data-gallery-grid="all"></div>
+            <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="all">View All Media</button></div>
+        </section>
+        <section class="gallery-section" id="life-at-cice">
+            <div class="gallery-section-heading">
+                <span class="section-label">01 · LIFE</span>
+                <h2>Life at CICE</h2>
+                <p>Classrooms, students, practical sessions, and the everyday learning environment at CICE.</p>
+            </div>
+            <div class="media-grid" data-gallery-grid="life"></div>
+            <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="life">View All</button></div>
+        </section>
+        <section class="gallery-section" id="moments-of-cice">
+            <div class="gallery-section-heading">
+                <span class="section-label">02 · MOMENTS</span>
+                <h2>Moments of CICE</h2>
+                <p>Events, activities, picnics, outings, celebrations, and other memorable moments.</p>
+            </div>
+            <div class="media-grid" data-gallery-grid="moments"></div>
+            <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="moments">View All</button></div>
+        </section>
+        <section class="gallery-section" id="internship-experiences">
+            <div class="gallery-section-heading">
+                <span class="section-label">INTERNSHIP</span>
+                <h2>Internship Experiences</h2>
+                <p>Moments from CICE's college internship programs, where students strengthen their computer skills.</p>
+            </div>
+            <div class="media-grid" data-gallery-grid="internship"></div>
+            <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="internship">View All</button></div>
+        </section>
+        <section class="gallery-section gallery-recognition" id="recognition-credentials">
+            <div class="gallery-section-heading">
+                <span class="section-label">04 · RECOGNITION</span>
+                <h2>Recognition &amp; Credentials</h2>
+                <p>Certificates, registrations, and other formal credentials or achievements associated with CICE.</p>
+            </div>
+            <div class="media-grid" data-gallery-grid="recognition"></div>
+            <div class="media-more">
+</div>
+        </section>
+    </div>
+</section>
+
+<div class="media-modal" id="mediaModal" aria-hidden="true">
+    <div class="media-modal-content" role="dialog" aria-modal="true" aria-label="Media viewer">
+        <button class="media-modal-close" type="button" aria-label="Close media viewer">×</button>
+        <div class="media-modal-stage" id="mediaModalStage"></div>
+        <div class="media-modal-caption" id="mediaModalCaption"></div>
+        <div class="media-modal-nav">
+            <button type="button" id="mediaPrev" aria-label="Previous media">←</button>
+            <button type="button" id="mediaNext" aria-label="Next media">→</button>
+        </div>
+    </div>
+</div>
+
+</main>
+<!-- ==================== FOOTER ==================== -->
+<!-- Reuses the shared footer structure from the homepage. -->
+<footer class="site-footer">
     <div class="footer-inner container">
         <div>
             <a href="index.html" class="brand footer-brand">
@@ -160,22 +223,88 @@
                     <small>COMPUTER INSTITUTE</small>
                 </span>
             </a>
-            <p>Computer education and practical training for students, job seekers and aspiring professionals.</p>
+            <p>Practical computer education in Halakura and surrounding areas.</p>
         </div>
+
         <div class="footer-links">
-            <a href="courses.html">Courses</a>
-            <a href="about.html">About CICE</a>
-            <a href="about.html#founder">Founder &amp; Instructor</a>
+            <a href="index.html#courses">Courses</a>
+            <a href="index.html#why">Why CICE</a>
+            <a href="index.html#instructor">Instructor</a>
             <a href="gallery.html">Gallery</a>
             <a href="index.html#contact">Contact</a>
         </div>
+
         <div class="footer-social">
             <a href="https://www.facebook.com/p/CICE-Computer-Institute-Halakura-100089602022179/" target="_blank" rel="noopener">Facebook</a>
             <a href="https://www.instagram.com/cice_computer_halakura/" target="_blank" rel="noopener">Instagram</a>
         </div>
     </div>
+
     <div class="footer-bottom container">
         <span>© <span id="year"></span> CICE Computer Institute. All rights reserved.</span>
         <span>Halakura, Dhubri, Assam</span>
     </div>
-</footer><script src="script.js"></script></body></html>
+</footer>
+
+<!-- Loads the shared JavaScript for the mobile menu and footer year. -->
+
+<script>
+/* Add each media item once. Its category controls the section where it appears.
+   All Media automatically includes every item. */
+const CICE_MEDIA = [
+    {type:'image',category:'life',src:'assets/images/gallery/life-01.jpg',title:'CICE Learning Environment',alt:'CICE learning environment'},
+    {type:'image',category:'life',src:'assets/images/gallery/life-02.jpg',title:'Students at CICE',alt:'CICE students'},
+    {type:'image',category:'life',src:'assets/images/gallery/life-03.jpg',title:'Practical Computer Session',alt:'CICE practical computer session'},
+    {type:'video',category:'life',src:'videos/life-01.mp4',poster:'assets/images/gallery/life-03.jpg',title:'Learning at CICE',alt:'CICE learning video'},
+    {type:'video',category:'life',src:'videos/cice-advertisement-01.mp4',poster:'assets/images/gallery/life-01.jpg',title:'CICE Promotional Video',alt:'CICE promotional video'},
+    {type:'image',category:'moments',src:'assets/images/gallery/moments-01.jpg',title:'Moments of CICE',alt:'CICE event'},
+    {type:'image',category:'moments',src:'assets/images/gallery/moments-02.jpg',title:'CICE Picnic & Outing',alt:'CICE picnic or outing'},
+    {type:'image',category:'moments',src:'assets/images/gallery/moments-03.jpg',title:'CICE Activities',alt:'CICE activity'},
+    {type:'video',category:'moments',src:'videos/moments-01.mp4',poster:'assets/images/gallery/moments-01.jpg',title:'Moments of CICE',alt:'CICE moments video'},
+    {type:'image',category:'internship',src:'assets/images/gallery/internship-01.jpg',title:'Internship Program',alt:'CICE internship program'},
+    {type:'image',category:'internship',src:'assets/images/gallery/internship-02.jpg',title:'Practical Exposure',alt:'CICE internship practical exposure'},
+    {type:'video',category:'internship',src:'videos/internship-01.mp4',poster:'assets/images/gallery/internship-01.jpg',title:'Internship Program',alt:'CICE internship video'},
+    {type:'image',category:'recognition',src:'assets/images/gallery/iso-certificate.jpg',title:'ISO Certification',alt:'CICE ISO certification'},
+    {type:'image',category:'recognition',src:'assets/images/gallery/msme-registration.jpg',title:'MSME Registration',alt:'CICE MSME registration'},
+];
+const PREVIEW_LIMIT=6;
+const modal=document.getElementById('mediaModal'),stage=document.getElementById('mediaModalStage'),caption=document.getElementById('mediaModalCaption');
+let activeItems=[],activeIndex=0;
+function mediaFor(category){return category==='all'?CICE_MEDIA:CICE_MEDIA.filter(item=>item.category===category);}
+function createMediaCard(item,index,collection){
+    const card=document.createElement('button'); card.type='button'; card.className='media-card'; card.setAttribute('aria-label',`Open ${item.title}`);
+    card.addEventListener('click',()=>openMedia(collection,index));
+    const type=document.createElement('span'); type.className='media-type'; type.textContent=item.type==='video'?'Video':'Photo'; card.appendChild(type);
+    if(item.type==='video'){
+        const video=document.createElement('video'); video.src=item.src; video.muted=true; video.preload='metadata'; video.playsInline=true; if(item.poster)video.poster=item.poster; card.appendChild(video);
+        const play=document.createElement('span'); play.className='media-play'; play.setAttribute('aria-hidden','true'); play.textContent='▶'; card.appendChild(play);
+    } else {
+        const img=document.createElement('img'); img.src=item.src; img.alt=item.alt||item.title; img.loading='lazy';
+        img.onerror=()=>{img.style.display='none'; const ph=document.createElement('div'); ph.className='media-placeholder'; ph.innerHTML=`<div><strong>${item.title}</strong><span>Add the media file here</span></div>`; card.appendChild(ph);};
+        card.appendChild(img);
+    }
+    const title=document.createElement('span'); title.className='media-title'; title.textContent=item.title; card.appendChild(title); return card;
+}
+function renderSection(category){
+    const grid=document.querySelector(`[data-gallery-grid="${category}"]`); if(!grid)return; grid.innerHTML=''; const items=mediaFor(category); const preview=items.slice(0,PREVIEW_LIMIT);
+    preview.forEach((item,index)=>grid.appendChild(createMediaCard(item,index,items)));
+    if(!preview.length)grid.innerHTML='<div class="media-empty">Media will appear here when files are added.</div>';
+    const button=document.querySelector(`[data-view-all="${category}"]`); if(button)button.style.display=items.length>PREVIEW_LIMIT?'':(items.length?'none':'');
+}
+function renderAll(){['all','life','moments','internship','recognition'].forEach(renderSection);}
+function openMedia(items,index){activeItems=items;activeIndex=index;updateModal();modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+function updateModal(){const item=activeItems[activeIndex];if(!item)return;stage.innerHTML='';if(item.type==='video'){const v=document.createElement('video');v.src=item.src;v.controls=true;v.autoplay=true;v.playsInline=true;if(item.poster)v.poster=item.poster;stage.appendChild(v);}else{const img=document.createElement('img');img.src=item.src;img.alt=item.alt||item.title;stage.appendChild(img);}caption.textContent=item.title;}
+function closeMedia(){modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');stage.innerHTML='';document.body.style.overflow='';}
+function stepMedia(direction){if(!activeItems.length)return;activeIndex=(activeIndex+direction+activeItems.length)%activeItems.length;updateModal();}
+document.querySelectorAll('[data-view-all]').forEach(button=>button.addEventListener('click',()=>{const items=mediaFor(button.dataset.viewAll);if(items.length)openMedia(items,0);}));
+document.querySelector('.media-modal-close').addEventListener('click',closeMedia);
+document.getElementById('mediaPrev').addEventListener('click',()=>stepMedia(-1));
+document.getElementById('mediaNext').addEventListener('click',()=>stepMedia(1));
+modal.addEventListener('click',e=>{if(e.target===modal)closeMedia();});
+document.addEventListener('keydown',e=>{if(!modal.classList.contains('is-open'))return;if(e.key==='Escape')closeMedia();if(e.key==='ArrowLeft')stepMedia(-1);if(e.key==='ArrowRight')stepMedia(1);});
+renderAll();
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
