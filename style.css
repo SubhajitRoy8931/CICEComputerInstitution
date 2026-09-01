@@ -3480,3 +3480,86 @@ button {
         width: 100% !important;
     }
 }
+
+
+/* ==================== MOBILE NAVIGATION FINAL FIX ==================== */
+@media (max-width: 850px) {
+    .site-header {
+        position: relative;
+        z-index: 10000;
+    }
+
+    .navbar {
+        position: relative !important;
+        z-index: 10001 !important;
+    }
+
+    .menu-toggle {
+        display: inline-flex !important;
+        position: relative !important;
+        z-index: 10005 !important;
+        align-items: center !important;
+        justify-content: center !important;
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+    }
+
+    .nav-links {
+        display: none !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 10004 !important;
+        background: #fff !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        max-height: calc(100vh - 76px) !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        pointer-events: auto !important;
+    }
+
+    .nav-links.active {
+        display: flex !important;
+    }
+
+    .nav-dropdown-menu {
+        display: none !important;
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 0 8px !important;
+        box-shadow: none !important;
+    }
+
+    .nav-dropdown.open > .nav-dropdown-menu {
+        display: block !important;
+    }
+
+    .nav-dropdown:hover > .nav-dropdown-menu,
+    .nav-dropdown:focus-within > .nav-dropdown-menu {
+        display: none !important;
+    }
+
+    .nav-dropdown.open:hover > .nav-dropdown-menu,
+    .nav-dropdown.open:focus-within > .nav-dropdown-menu {
+        display: block !important;
+    }
+
+    .nav-actions {
+        position: relative !important;
+        z-index: 10005 !important;
+    }
+
+    .nav-action {
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+    }
+}
