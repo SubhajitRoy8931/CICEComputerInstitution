@@ -9,64 +9,89 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const dropdowns = [...navLinks.querySelectorAll(".nav-dropdown")];
 
-        const closeDropdown = d => {
-            d.classList.remove("is-open");
-            const b = d.querySelector(".nav-arrow");
-            if (b) b.setAttribute("aria-expanded", "false");
+        const closeDropdown = dropdown => {
+            dropdown.classList.remove("is-open");
+            const arrow = dropdown.querySelector(".nav-arrow");
+            if (arrow) arrow.setAttribute("aria-expanded", "false");
         };
-        const closeOthers = except => dropdowns.forEach(d => { if (d !== except) closeDropdown(d); });
 
-        menuToggle.addEventListener("click", e => {
-            e.preventDefault();
-            e.stopPropagation();
+        const closeAllDropdowns = except => {
+            dropdowns.forEach(dropdown => {
+                if (dropdown !== except) closeDropdown(dropdown);
+            });
+        };
+
+        menuToggle.addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+
             const open = !navLinks.classList.contains("active");
             navLinks.classList.toggle("active", open);
             menuToggle.setAttribute("aria-expanded", String(open));
             menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-            if (!open) dropdowns.forEach(closeDropdown);
+
+            if (!open) closeAllDropdowns();
         });
 
-        navLinks.querySelectorAll(".nav-arrow").forEach(button => {
-            button.addEventListener("click", e => {
-                e.preventDefault();
-                e.stopPropagation();
-                const d = button.closest(".nav-dropdown");
-                if (!d) return;
-                const open = !d.classList.contains("is-open");
-                closeOthers(d);
-                d.classList.toggle("is-open", open);
-                button.setAttribute("aria-expanded", String(open));
+        // The arrow is the ONLY control that opens a dropdown.
+        navLinks.querySelectorAll(".nav-arrow").forEach(arrow => {
+            arrow.addEventListener("click", event => {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const dropdown = arrow.closest(".nav-dropdown");
+                if (!dropdown) return;
+
+                const open = !dropdown.classList.contains("is-open");
+                closeAllDropdowns(dropdown);
+                dropdown.classList.toggle("is-open", open);
+                arrow.setAttribute("aria-expanded", String(open));
             });
         });
 
-        // Never prevent page navigation from text links.
+        // Main page links and submenu links are never intercepted.
         navLinks.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => {
-                if (window.innerWidth <= 850) {
-                    navLinks.classList.remove("active");
-                    menuToggle.setAttribute("aria-expanded", "false");
-                    menuToggle.setAttribute("aria-label", "Open menu");
-                    dropdowns.forEach(closeDropdown);
-                }
+                navLinks.classList.remove("active");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Open menu");
+                closeAllDropdowns();
             });
         });
 
-        dropdowns.forEach(d => {
-            d.addEventListener("mouseenter", () => {
+        // Desktop hover: keep the submenu open while the pointer travels
+        // from the parent item into the dropdown. The CSS hover bridge fills
+        // the small visual gap between them.
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener("mouseenter", () => {
                 if (window.innerWidth > 850) {
-                    closeOthers(d);
-                    d.classList.add("is-open");
-                    const b = d.querySelector(".nav-arrow");
-                    if (b) b.setAttribute("aria-expanded", "true");
+                    closeAllDropdowns(dropdown);
+                    dropdown.classList.add("is-open");
+                    const arrow = dropdown.querySelector(".nav-arrow");
+                    if (arrow) arrow.setAttribute("aria-expanded", "true");
                 }
             });
-            d.addEventListener("mouseleave", () => {
-                if (window.innerWidth > 850) closeDropdown(d);
+
+            dropdown.addEventListener("mouseleave", event => {
+                if (window.innerWidth <= 850) return;
+
+                const related = event.relatedTarget;
+                if (related && dropdown.contains(related)) return;
+
+                // Only close when the pointer actually leaves the combined
+                // parent/dropdown hover region. Moving through the CSS bridge
+                // must not close it.
+                dropdown.classList.remove("is-open");
+                const arrow = dropdown.querySelector(".nav-arrow");
+                if (arrow) arrow.setAttribute("aria-expanded", "false");
             });
         });
 
-        document.addEventListener("click", e => {
-            if (!e.target.closest(".nav-dropdown")) dropdowns.forEach(closeDropdown);
+        document.addEventListener("click", event => {
+            if (!event.target.closest(".nav-dropdown") &&
+                !event.target.closest("#menuToggle")) {
+                closeAllDropdowns();
+            }
         });
 
         window.addEventListener("resize", () => {
@@ -74,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 navLinks.classList.remove("active");
                 menuToggle.setAttribute("aria-expanded", "false");
                 menuToggle.setAttribute("aria-label", "Open menu");
-                dropdowns.forEach(closeDropdown);
+                closeAllDropdowns();
             }
         });
     })();
