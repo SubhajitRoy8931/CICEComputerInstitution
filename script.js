@@ -3,70 +3,84 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    // ==================== SPLIT NAVIGATION ====================
+    // ==================== NAVIGATION: SPLIT LINK + ARROW ====================
     (() => {
         const menuToggle = document.getElementById("menuToggle");
         const navLinks = document.getElementById("navLinks");
 
         if (!menuToggle || !navLinks) return;
 
-        menuToggle.addEventListener("click", (event) => {
+        const closeAllDropdowns = (except = null) => {
+            navLinks.querySelectorAll(".nav-dropdown.is-open").forEach(dropdown => {
+                if (dropdown !== except) {
+                    dropdown.classList.remove("is-open");
+                    const arrow = dropdown.querySelector(".nav-arrow");
+                    if (arrow) {
+                        arrow.setAttribute("aria-expanded", "false");
+                    }
+                }
+            });
+        };
+
+        // Main mobile menu button.
+        menuToggle.addEventListener("click", event => {
             event.preventDefault();
             event.stopPropagation();
-            const open = navLinks.classList.toggle("active");
-            menuToggle.setAttribute("aria-expanded", String(open));
-            menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+
+            const isOpen = navLinks.classList.toggle("active");
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+            menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+
+            if (!isOpen) closeAllDropdowns();
         });
 
-        document.querySelectorAll(".nav-arrow").forEach(arrow => {
-            arrow.addEventListener("click", (event) => {
+        // Only the arrow opens a submenu. The text link remains a normal page link.
+        navLinks.querySelectorAll(".nav-arrow").forEach(arrow => {
+            arrow.addEventListener("click", event => {
                 event.preventDefault();
                 event.stopPropagation();
 
                 const dropdown = arrow.closest(".nav-dropdown");
                 if (!dropdown) return;
 
-                const willOpen = !dropdown.classList.contains("open");
+                const isOpen = dropdown.classList.contains("is-open");
+                closeAllDropdowns(dropdown);
 
-                document.querySelectorAll(".nav-dropdown.open").forEach(other => {
-                    if (other !== dropdown) {
-                        other.classList.remove("open");
-                        const otherArrow = other.querySelector(".nav-arrow");
-                        if (otherArrow) otherArrow.setAttribute("aria-expanded", "false");
-                    }
-                });
-
-                dropdown.classList.toggle("open", willOpen);
-                arrow.setAttribute("aria-expanded", String(willOpen));
+                dropdown.classList.toggle("is-open", !isOpen);
+                arrow.setAttribute("aria-expanded", String(!isOpen));
             });
         });
 
-        // Subsection links navigate normally and close the mobile menu.
+        // Submenu links are ordinary links.
         navLinks.querySelectorAll(".nav-dropdown-menu a").forEach(link => {
             link.addEventListener("click", () => {
                 navLinks.classList.remove("active");
                 menuToggle.setAttribute("aria-expanded", "false");
                 menuToggle.setAttribute("aria-label", "Open menu");
+                closeAllDropdowns();
             });
         });
 
-        // Clicking a top-level page link should navigate normally.
+        // Top-level page links are ordinary links too.
         navLinks.querySelectorAll(".nav-item-with-dropdown > a, .nav-links > li:not(.nav-dropdown) > a")
             .forEach(link => {
                 link.addEventListener("click", () => {
                     navLinks.classList.remove("active");
                     menuToggle.setAttribute("aria-expanded", "false");
                     menuToggle.setAttribute("aria-label", "Open menu");
+                    closeAllDropdowns();
                 });
             });
 
-        document.addEventListener("click", (event) => {
-            if (!event.target.closest(".nav-dropdown")) {
-                document.querySelectorAll(".nav-dropdown.open").forEach(dropdown => {
-                    dropdown.classList.remove("open");
-                    const arrow = dropdown.querySelector(".nav-arrow");
-                    if (arrow) arrow.setAttribute("aria-expanded", "false");
-                });
+        // Outside tap closes dropdown/menu.
+        document.addEventListener("click", event => {
+            if (!event.target.closest("#navLinks") && !event.target.closest("#menuToggle")) {
+                closeAllDropdowns();
+                if (window.innerWidth <= 850) {
+                    navLinks.classList.remove("active");
+                    menuToggle.setAttribute("aria-expanded", "false");
+                    menuToggle.setAttribute("aria-label", "Open menu");
+                }
             }
         });
 
@@ -75,6 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 navLinks.classList.remove("active");
                 menuToggle.setAttribute("aria-expanded", "false");
                 menuToggle.setAttribute("aria-label", "Open menu");
+                closeAllDropdowns();
             }
         });
     })();
