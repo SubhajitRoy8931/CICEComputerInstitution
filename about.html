@@ -358,7 +358,7 @@
     <div class="footer-inner container">
         <div>
             <a href="index.html" class="brand footer-brand">
-                <span class="brand-mark">C</span>
+                <span class="brand-mark"><img src="assets/images/cice-logo.png" alt="CICE Institute logo" class="footer-brand-logo"></span>
                 <span>
                     <strong>CICE</strong>
                     <small>COMPUTER INSTITUTE</small>
@@ -367,9 +367,9 @@
             <p>Computer education and practical training for students, job seekers and aspiring professionals.</p>
         </div>
         <div class="footer-links">
-            <a href="courses.html">Courses</a>
+            <a href="index.html">Home</a>
             <a href="about.html">About CICE</a>
-            <a href="about.html#founder">Founder &amp; Instructor</a>
+            <a href="courses.html">Courses</a>
             <a href="gallery.html">Gallery</a>
             
         </div>
@@ -383,6 +383,22 @@
         <span>Halakura, Dhubri, Assam</span>
     </div>
 </footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const dropdown = document.querySelector('.nav-dropdown');
+  const toggle = document.querySelector('.nav-dropdown-toggle');
+  if (dropdown && toggle) {
+    toggle.addEventListener('click', function (e) {
+      if (window.innerWidth <= 700) {
+        e.preventDefault();
+        const open = dropdown.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+      }
+    });
+  }
+});
+</script>
+
 <script src="script.js"></script>
 </body>
 </html>
