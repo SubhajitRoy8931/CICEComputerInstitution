@@ -3761,3 +3761,27 @@ button {
     object-fit: contain !important;
     display: block !important;
 }
+/* Footer social label: same text size as the existing footer links. */
+.footer-social {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+}
+.footer-social a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 25px !important;
+    height: 25px !important;
+    min-width: 25px !important;
+    min-height: 25px !important;
+    padding: 0 !important;
+}
+.footer-social .footer-social-icon {
+    width: 25px !important;
+    height: 25px !important;
+    max-width: 25px !important;
+    max-height: 25px !important;
+    display: block !important;
+}
