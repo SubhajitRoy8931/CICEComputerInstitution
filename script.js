@@ -1,87 +1,72 @@
 // ==================== SITE INTERACTIONS ====================
 document.addEventListener("DOMContentLoaded", () => {
 
-
-
-    // ==================== NAVIGATION: SPLIT LINK + ARROW ====================
+    // ==================== CICE NAVIGATION ====================
     (() => {
         const menuToggle = document.getElementById("menuToggle");
         const navLinks = document.getElementById("navLinks");
-
         if (!menuToggle || !navLinks) return;
 
-        const closeAllDropdowns = (except = null) => {
-            navLinks.querySelectorAll(".nav-dropdown.is-open").forEach(dropdown => {
-                if (dropdown !== except) {
-                    dropdown.classList.remove("is-open");
-                    const arrow = dropdown.querySelector(".nav-arrow");
-                    if (arrow) {
-                        arrow.setAttribute("aria-expanded", "false");
-                    }
-                }
-            });
+        const dropdowns = [...navLinks.querySelectorAll(".nav-dropdown")];
+
+        const closeDropdown = d => {
+            d.classList.remove("is-open");
+            const b = d.querySelector(".nav-arrow");
+            if (b) b.setAttribute("aria-expanded", "false");
         };
+        const closeOthers = except => dropdowns.forEach(d => { if (d !== except) closeDropdown(d); });
 
-        // Main mobile menu button.
-        menuToggle.addEventListener("click", event => {
-            event.preventDefault();
-            event.stopPropagation();
-
-            const isOpen = navLinks.classList.toggle("active");
-            menuToggle.setAttribute("aria-expanded", String(isOpen));
-            menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
-
-            if (!isOpen) closeAllDropdowns();
+        menuToggle.addEventListener("click", e => {
+            e.preventDefault();
+            e.stopPropagation();
+            const open = !navLinks.classList.contains("active");
+            navLinks.classList.toggle("active", open);
+            menuToggle.setAttribute("aria-expanded", String(open));
+            menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+            if (!open) dropdowns.forEach(closeDropdown);
         });
 
-        // Only the arrow opens a submenu. The text link remains a normal page link.
-        navLinks.querySelectorAll(".nav-arrow").forEach(arrow => {
-            arrow.addEventListener("click", event => {
-                event.preventDefault();
-                event.stopPropagation();
-
-                const dropdown = arrow.closest(".nav-dropdown");
-                if (!dropdown) return;
-
-                const isOpen = dropdown.classList.contains("is-open");
-                closeAllDropdowns(dropdown);
-
-                dropdown.classList.toggle("is-open", !isOpen);
-                arrow.setAttribute("aria-expanded", String(!isOpen));
+        navLinks.querySelectorAll(".nav-arrow").forEach(button => {
+            button.addEventListener("click", e => {
+                e.preventDefault();
+                e.stopPropagation();
+                const d = button.closest(".nav-dropdown");
+                if (!d) return;
+                const open = !d.classList.contains("is-open");
+                closeOthers(d);
+                d.classList.toggle("is-open", open);
+                button.setAttribute("aria-expanded", String(open));
             });
         });
 
-        // Submenu links are ordinary links.
-        navLinks.querySelectorAll(".nav-dropdown-menu a").forEach(link => {
+        // Never prevent page navigation from text links.
+        navLinks.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => {
-                navLinks.classList.remove("active");
-                menuToggle.setAttribute("aria-expanded", "false");
-                menuToggle.setAttribute("aria-label", "Open menu");
-                closeAllDropdowns();
-            });
-        });
-
-        // Top-level page links are ordinary links too.
-        navLinks.querySelectorAll(".nav-item-with-dropdown > a, .nav-links > li:not(.nav-dropdown) > a")
-            .forEach(link => {
-                link.addEventListener("click", () => {
-                    navLinks.classList.remove("active");
-                    menuToggle.setAttribute("aria-expanded", "false");
-                    menuToggle.setAttribute("aria-label", "Open menu");
-                    closeAllDropdowns();
-                });
-            });
-
-        // Outside tap closes dropdown/menu.
-        document.addEventListener("click", event => {
-            if (!event.target.closest("#navLinks") && !event.target.closest("#menuToggle")) {
-                closeAllDropdowns();
                 if (window.innerWidth <= 850) {
                     navLinks.classList.remove("active");
                     menuToggle.setAttribute("aria-expanded", "false");
                     menuToggle.setAttribute("aria-label", "Open menu");
+                    dropdowns.forEach(closeDropdown);
                 }
-            }
+            });
+        });
+
+        dropdowns.forEach(d => {
+            d.addEventListener("mouseenter", () => {
+                if (window.innerWidth > 850) {
+                    closeOthers(d);
+                    d.classList.add("is-open");
+                    const b = d.querySelector(".nav-arrow");
+                    if (b) b.setAttribute("aria-expanded", "true");
+                }
+            });
+            d.addEventListener("mouseleave", () => {
+                if (window.innerWidth > 850) closeDropdown(d);
+            });
+        });
+
+        document.addEventListener("click", e => {
+            if (!e.target.closest(".nav-dropdown")) dropdowns.forEach(closeDropdown);
         });
 
         window.addEventListener("resize", () => {
@@ -89,49 +74,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 navLinks.classList.remove("active");
                 menuToggle.setAttribute("aria-expanded", "false");
                 menuToggle.setAttribute("aria-label", "Open menu");
-                closeAllDropdowns();
+                dropdowns.forEach(closeDropdown);
             }
         });
     })();
 
 
 
-    // ==================== SIMPLE MOBILE NAVIGATION ====================
-    (() => {
-        if (window.__ciceSimpleNavigationInitialized) return;
-        window.__ciceSimpleNavigationInitialized = true;
-
-        const menuToggle = document.getElementById("menuToggle");
-        const navLinks = document.getElementById("navLinks");
-
-        if (!menuToggle || !navLinks) return;
-
-        menuToggle.addEventListener("click", event => {
-            event.preventDefault();
-            event.stopPropagation();
-
-            const open = !navLinks.classList.contains("active");
-            navLinks.classList.toggle("active", open);
-            menuToggle.setAttribute("aria-expanded", String(open));
-            menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-        });
-
-        navLinks.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", () => {
-                navLinks.classList.remove("active");
-                menuToggle.setAttribute("aria-expanded", "false");
-                menuToggle.setAttribute("aria-label", "Open menu");
-            });
-        });
-
-        document.addEventListener("click", event => {
-            if (!event.target.closest("#navLinks") && !event.target.closest("#menuToggle")) {
-                navLinks.classList.remove("active");
-                menuToggle.setAttribute("aria-expanded", "false");
-                menuToggle.setAttribute("aria-label", "Open menu");
-            }
-        });
-    })();
 
     // ==================== COPYRIGHT YEAR ====================
     const year = document.getElementById("year");
