@@ -1,54 +1,80 @@
 // ==================== SITE INTERACTIONS ====================
 document.addEventListener("DOMContentLoaded", () => {
+
+
+
     // ==================== MOBILE NAVIGATION ====================
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
 
     if (menuToggle && navLinks) {
-        menuToggle.addEventListener("click", () => {
+        menuToggle.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
             const isOpen = navLinks.classList.toggle("active");
             menuToggle.setAttribute("aria-expanded", String(isOpen));
             menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
         });
 
-        navLinks.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", () => {
-                if (link.classList.contains("nav-dropdown-toggle") && window.innerWidth <= 850) {
-                    return;
-                }
-                navLinks.classList.remove("active");
-                menuToggle.setAttribute("aria-expanded", "false");
-                menuToggle.setAttribute("aria-label", "Open menu");
-            });
-        });
-    }
+        // Mobile dropdowns: parent tap opens/closes; child links navigate normally.
+        navLinks.querySelectorAll(".nav-dropdown-toggle").forEach(toggle => {
+            toggle.addEventListener("click", (event) => {
+                if (window.innerWidth > 850) return;
 
-
-    // ==================== NAVIGATION DROPDOWNS ====================
-    document.querySelectorAll(".nav-dropdown").forEach(dropdown => {
-        const toggle = dropdown.querySelector(".nav-dropdown-toggle");
-        const menu = dropdown.querySelector(".nav-dropdown-menu");
-        if (!toggle || !menu) return;
-
-        toggle.addEventListener("click", event => {
-            if (window.innerWidth <= 850) {
-                // On touch/mobile, the first tap opens the submenu.
                 event.preventDefault();
+                event.stopPropagation();
 
-                document.querySelectorAll(".nav-dropdown.open").forEach(other => {
+                const dropdown = toggle.closest(".nav-dropdown");
+                if (!dropdown) return;
+
+                const isOpen = dropdown.classList.toggle("open");
+                toggle.setAttribute("aria-expanded", String(isOpen));
+
+                navLinks.querySelectorAll(".nav-dropdown.open").forEach(other => {
                     if (other !== dropdown) {
                         other.classList.remove("open");
                         const otherToggle = other.querySelector(".nav-dropdown-toggle");
                         if (otherToggle) otherToggle.setAttribute("aria-expanded", "false");
                     }
                 });
-
-                const open = dropdown.classList.toggle("open");
-                toggle.setAttribute("aria-expanded", String(open));
-            }
-            // On desktop, the parent remains a normal link and the submenu
-            // is opened by hover/focus. Submenu links remain independently clickable.
+            });
         });
+
+        navLinks.querySelectorAll(".nav-dropdown-menu a").forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("active");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Open menu");
+            });
+        });
+
+        // Normal top-level links close the mobile menu after selection.
+        navLinks.querySelectorAll(":scope > li > a:not(.nav-dropdown-toggle)").forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("active");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Open menu");
+            });
+        });
+
+        // Close the mobile menu when tapping outside it.
+        document.addEventListener("click", (event) => {
+            if (window.innerWidth <= 850 &&
+                navLinks.classList.contains("active") &&
+                !navLinks.contains(event.target) &&
+                !menuToggle.contains(event.target)) {
+                navLinks.classList.remove("active");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Open menu");
+            }
+        });
+    }
+
+    // ==================== DESKTOP NAVIGATION ====================
+    document.querySelectorAll(".nav-dropdown").forEach(dropdown => {
+        const toggle = dropdown.querySelector(".nav-dropdown-toggle");
+        if (!toggle) return;
 
         dropdown.addEventListener("mouseenter", () => {
             if (window.innerWidth > 850) {
