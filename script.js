@@ -94,6 +94,105 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     })();
 
+
+    // ==================== NAVIGATION - RELIABLE SPLIT MENU ====================
+    (() => {
+        if (window.__ciceNavigationInitialized) return;
+        window.__ciceNavigationInitialized = true;
+
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+        if (!menuToggle || !navLinks) return;
+
+        const closeDropdowns = (except = null) => {
+            navLinks.querySelectorAll(".nav-dropdown.is-open").forEach(dropdown => {
+                if (dropdown !== except) {
+                    dropdown.classList.remove("is-open");
+                    const button = dropdown.querySelector(":scope > .nav-item-with-dropdown > .nav-arrow");
+                    if (button) button.setAttribute("aria-expanded", "false");
+                }
+            });
+        };
+
+        menuToggle.addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+            const open = !navLinks.classList.contains("active");
+            navLinks.classList.toggle("active", open);
+            menuToggle.setAttribute("aria-expanded", String(open));
+            menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+            if (!open) closeDropdowns();
+        });
+
+        // IMPORTANT: only the arrow button controls dropdowns.
+        // The adjacent text link is never intercepted.
+        navLinks.querySelectorAll(".nav-arrow").forEach(button => {
+            button.addEventListener("click", event => {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const dropdown = button.closest(".nav-dropdown");
+                if (!dropdown) return;
+
+                const open = !dropdown.classList.contains("is-open");
+                closeDropdowns(dropdown);
+                dropdown.classList.toggle("is-open", open);
+                button.setAttribute("aria-expanded", String(open));
+            });
+        });
+
+        // Submenu links and main page links are normal navigation.
+        navLinks.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", event => {
+                // Do not interfere with navigation at all.
+                if (window.innerWidth <= 850) {
+                    setTimeout(() => {
+                        navLinks.classList.remove("active");
+                        menuToggle.setAttribute("aria-expanded", "false");
+                        menuToggle.setAttribute("aria-label", "Open menu");
+                        closeDropdowns();
+                    }, 0);
+                }
+            });
+        });
+
+        // Desktop: allow hover to show dropdown, while arrow click also works.
+        navLinks.querySelectorAll(".nav-dropdown").forEach(dropdown => {
+            const button = dropdown.querySelector(":scope > .nav-item-with-dropdown > .nav-arrow");
+
+            dropdown.addEventListener("mouseenter", () => {
+                if (window.innerWidth > 850) {
+                    closeDropdowns(dropdown);
+                    dropdown.classList.add("is-open");
+                    if (button) button.setAttribute("aria-expanded", "true");
+                }
+            });
+
+            dropdown.addEventListener("mouseleave", () => {
+                if (window.innerWidth > 850) {
+                    dropdown.classList.remove("is-open");
+                    if (button) button.setAttribute("aria-expanded", "false");
+                }
+            });
+        });
+
+        document.addEventListener("click", event => {
+            if (!event.target.closest(".nav-dropdown") &&
+                !event.target.closest("#menuToggle")) {
+                closeDropdowns();
+            }
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 850) {
+                navLinks.classList.remove("active");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Open menu");
+                closeDropdowns();
+            }
+        });
+    })();
+
     // ==================== COPYRIGHT YEAR ====================
     const year = document.getElementById("year");
     if (year) year.textContent = new Date().getFullYear();
