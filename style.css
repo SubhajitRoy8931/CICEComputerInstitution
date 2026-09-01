@@ -3660,3 +3660,95 @@ button {
         display: block !important;
     }
 }
+
+/* ==================== MOBILE DROPDOWN FINAL FIX ==================== */
+.nav-item-with-dropdown {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.nav-arrow {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    line-height: 1;
+    padding: 6px;
+    margin: 0;
+    border-radius: 6px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.nav-arrow:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+}
+
+.nav-dropdown.is-open > .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 850px) {
+    .nav-item-with-dropdown {
+        display: flex !important;
+        width: 100% !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+    }
+
+    .nav-item-with-dropdown > a {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        padding: 13px 0 !important;
+    }
+
+    .nav-arrow {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 48px !important;
+        height: 48px !important;
+        flex: 0 0 48px !important;
+        padding: 0 !important;
+        font-size: 1rem !important;
+        z-index: 10010 !important;
+    }
+
+    /* Explicitly hide every dropdown until its arrow opens it. */
+    .nav-links .nav-dropdown > .nav-dropdown-menu {
+        display: none !important;
+        position: static !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 0 8px !important;
+        padding: 5px 8px !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        box-shadow: none !important;
+    }
+
+    .nav-links .nav-dropdown.is-open > .nav-dropdown-menu {
+        display: block !important;
+    }
+
+    /* Old hover/focus behavior cannot open menus on mobile. */
+    .nav-links .nav-dropdown:hover > .nav-dropdown-menu,
+    .nav-links .nav-dropdown:focus-within > .nav-dropdown-menu {
+        display: none !important;
+    }
+
+    .nav-links .nav-dropdown.is-open:hover > .nav-dropdown-menu,
+    .nav-links .nav-dropdown.is-open:focus-within > .nav-dropdown-menu {
+        display: block !important;
+    }
+}
