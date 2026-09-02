@@ -1,3 +1,4 @@
+// CICE shared JavaScript: handles site-wide interactive behaviour.
 // ==================== SITE INTERACTIONS ====================
 document.addEventListener("DOMContentLoaded", () => {
 
