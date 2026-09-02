@@ -43,41 +43,245 @@
 
     <!-- ==================== GALLERY PAGE STYLES ==================== -->
     <style>
-        .gallery-main { padding-top: 20px; }
-        .gallery-section { margin-bottom: 82px; scroll-margin-top: 110px; }
-        .gallery-section:last-child { margin-bottom: 25px; }
-        .gallery-section-heading { margin-bottom: 24px; }
-        .gallery-section-heading .section-label { display:block; margin-bottom: 8px; }
-        .gallery-section-heading h2 { margin:0; font-size: clamp(1.7rem, 3vw, 2.35rem); line-height:1.1; }
-        .gallery-section-heading p { max-width: 620px; margin: 10px 0 0; color: var(--muted); font-size: .82rem; line-height:1.7; }
-        .media-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
-        .media-card { position:relative; aspect-ratio:4/3; overflow:hidden; border:1px solid var(--border); border-radius:18px; background:linear-gradient(135deg,#eaf7ff,#f4fbff); cursor:pointer; padding:0; transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease; }
-        .media-card:hover { transform:translateY(-4px); box-shadow:var(--shadow); border-color:#b8d9f5; }
-        .media-card img,.media-card video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-        .media-card::after { content:""; position:absolute; inset:0; background:linear-gradient(to top,rgba(5,20,40,.58),transparent 48%); pointer-events:none; }
-        .media-placeholder { position:absolute; inset:0; z-index:1; display:grid; place-items:center; padding:20px; text-align:center; color:#56708b; }
-        .media-placeholder strong { display:block; color:#234b72; font-size:1rem; margin-bottom:5px; }
-        .media-placeholder span { font-size:.7rem; }
-        .media-title { position:absolute; z-index:3; left:14px; right:14px; bottom:13px; color:#fff; font-size:.74rem; font-weight:700; line-height:1.35; text-shadow:0 1px 5px rgba(0,0,0,.28); }
-        .media-type { position:absolute; z-index:4; top:12px; left:12px; padding:6px 9px; border-radius:999px; background:rgba(255,255,255,.9); color:#234b72; font-size:.62rem; font-weight:800; letter-spacing:.04em; text-transform:uppercase; }
-        .media-play { position:absolute; z-index:4; top:50%; left:50%; transform:translate(-50%,-50%); width:48px; height:48px; border-radius:50%; display:grid; place-items:center; background:rgba(7,26,51,.86); color:#fff; font-size:.8rem; padding-left:2px; box-shadow:0 10px 25px rgba(0,0,0,.22); }
-        .media-card video { pointer-events:none; }
-        .media-more { display:flex; justify-content:center; margin-top:22px; }
-        .media-more button { cursor:pointer; }
-        .media-empty { grid-column:1/-1; padding:35px 20px; text-align:center; border:1px dashed #c8d9e8; border-radius:16px; color:var(--muted); font-size:.8rem; }
-        .media-modal { position:fixed; inset:0; z-index:9999; display:none; align-items:center; justify-content:center; padding:22px; background:rgba(4,14,28,.86); backdrop-filter:blur(7px); }
-        .media-modal.is-open { display:flex; }
-        .media-modal-content { position:relative; width:min(1080px,96vw); max-height:92vh; display:flex; flex-direction:column; align-items:center; }
-        .media-modal-close { position:absolute; right:-8px; top:-46px; width:40px; height:40px; border:0; border-radius:50%; background:#fff; color:#13243a; font-size:1.2rem; cursor:pointer; z-index:3; }
-        .media-modal-stage { width:100%; max-height:82vh; display:grid; place-items:center; }
-        .media-modal-stage img,.media-modal-stage video { max-width:100%; max-height:82vh; border-radius:14px; box-shadow:0 25px 70px rgba(0,0,0,.35); background:#08182c; }
-        .media-modal-caption { margin-top:12px; color:#fff; font-size:.8rem; text-align:center; }
-        .media-modal-nav { display:flex; gap:10px; margin-top:12px; }
-        .media-modal-nav button { width:40px; height:40px; border:1px solid rgba(255,255,255,.35); border-radius:50%; background:rgba(255,255,255,.12); color:#fff; cursor:pointer; font-size:1rem; }
-        .media-modal-nav button:hover { background:rgba(255,255,255,.2); }
-        @media(max-width:800px){ .media-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.gallery-section{margin-bottom:65px;} }
-        @media(max-width:560px){ .media-grid{grid-template-columns:1fr;}.gallery-main{padding-top:10px;}.media-card{aspect-ratio:16/11;}.media-modal{padding:14px;}.media-modal-close{right:0;top:-48px;} }
-        @media(prefers-reduced-motion:reduce){.media-card{transition:none;}}
+.gallery-main {
+    padding-top: 20px
+}
+.gallery-section {
+    margin-bottom: 82px;
+    scroll-margin-top: 110px
+}
+.gallery-section:last-child {
+    margin-bottom: 25px
+}
+.gallery-section-heading {
+    margin-bottom: 24px
+}
+.gallery-section-heading .section-label {
+    display:block;
+    margin-bottom: 8px
+}
+.gallery-section-heading h2 {
+    margin:0;
+    font-size: clamp(1.7rem, 3vw, 2.35rem);
+    line-height:1.1
+}
+.gallery-section-heading p {
+    max-width: 620px;
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: .82rem;
+    line-height:1.7
+}
+.media-grid {
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:16px
+}
+.media-card {
+    position:relative;
+    aspect-ratio:4/3;
+    overflow:hidden;
+    border:1px solid var(--border);
+    border-radius:18px;
+    background:linear-gradient(135deg,#eaf7ff,#f4fbff);
+    cursor:pointer;
+    padding:0;
+    transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease
+}
+.media-card:hover {
+    transform:translateY(-4px);
+    box-shadow:var(--shadow);
+    border-color:#b8d9f5
+}
+.media-card img,.media-card video {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover
+}
+.media-card::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top,rgba(5,20,40,.58),transparent 48%);
+    pointer-events:none
+}
+.media-placeholder {
+    position:absolute;
+    inset:0;
+    z-index:1;
+    display:grid;
+    place-items:center;
+    padding:20px;
+    text-align:center;
+    color:#56708b
+}
+.media-placeholder strong {
+    display:block;
+    color:#234b72;
+    font-size:1rem;
+    margin-bottom:5px
+}
+.media-placeholder span {
+    font-size:.7rem
+}
+.media-title {
+    position:absolute;
+    z-index:3;
+    left:14px;
+    right:14px;
+    bottom:13px;
+    color:#fff;
+    font-size:.74rem;
+    font-weight:700;
+    line-height:1.35;
+    text-shadow:0 1px 5px rgba(0,0,0,.28)
+}
+.media-type {
+    position:absolute;
+    z-index:4;
+    top:12px;
+    left:12px;
+    padding:6px 9px;
+    border-radius:999px;
+    background:rgba(255,255,255,.9);
+    color:#234b72;
+    font-size:.62rem;
+    font-weight:800;
+    letter-spacing:.04em;
+    text-transform:uppercase
+}
+.media-play {
+    position:absolute;
+    z-index:4;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    background:rgba(7,26,51,.86);
+    color:#fff;
+    font-size:.8rem;
+    padding-left:2px;
+    box-shadow:0 10px 25px rgba(0,0,0,.22)
+}
+.media-card video {
+    pointer-events:none
+}
+.media-more {
+    display:flex;
+    justify-content:center;
+    margin-top:22px
+}
+.media-more button {
+    cursor:pointer
+}
+.media-empty {
+    grid-column:1/-1;
+    padding:35px 20px;
+    text-align:center;
+    border:1px dashed #c8d9e8;
+    border-radius:16px;
+    color:var(--muted);
+    font-size:.8rem
+}
+.media-modal {
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:22px;
+    background:rgba(4,14,28,.86);
+    backdrop-filter:blur(7px)
+}
+.media-modal.is-open {
+    display:flex
+}
+.media-modal-content {
+    position:relative;
+    width:min(1080px,96vw);
+    max-height:92vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center
+}
+.media-modal-close {
+    position:absolute;
+    right:-8px;
+    top:-46px;
+    width:40px;
+    height:40px;
+    border:0;
+    border-radius:50%;
+    background:#fff;
+    color:#13243a;
+    font-size:1.2rem;
+    cursor:pointer;
+    z-index:3
+}
+.media-modal-stage {
+    width:100%;
+    max-height:82vh;
+    display:grid;
+    place-items:center
+}
+.media-modal-stage img,.media-modal-stage video {
+    max-width:100%;
+    max-height:82vh;
+    border-radius:14px;
+    box-shadow:0 25px 70px rgba(0,0,0,.35);
+    background:#08182c
+}
+.media-modal-caption {
+    margin-top:12px;
+    color:#fff;
+    font-size:.8rem;
+    text-align:center
+}
+.media-modal-nav {
+    display:flex;
+    gap:10px;
+    margin-top:12px
+}
+.media-modal-nav button {
+    width:40px;
+    height:40px;
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:50%;
+    background:rgba(255,255,255,.12);
+    color:#fff;
+    cursor:pointer;
+    font-size:1rem
+}
+.media-modal-nav button:hover {
+    background:rgba(255,255,255,.2)
+}
+        @media(max-width:800px){.media-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr))
+}.gallery-section {
+    margin-bottom:65px
+} }
+        @media(max-width:560px){.media-grid {
+    grid-template-columns:1fr
+}.gallery-main {
+    padding-top:10px
+}.media-card {
+    aspect-ratio:16/11
+}.media-modal {
+    padding:14px
+}.media-modal-close {
+    right:0;
+    top:-48px
+} }
+        @media(prefers-reduced-motion:reduce){.media-card {
+    transition:none
+}}
     </style>
 
 <style id="gallery-final-media-rules">
@@ -187,7 +391,7 @@
         <div class="courses-breadcrumb"><a href="index.html">Home</a><span>/</span><strong>Gallery</strong></div>
         <span class="section-label">CICE GALLERY</span>
         <h1>See CICE<br><span>in action.</span></h1>
-        <p>Explore photographs and videos from the institute, classroom activities, practical learning, internship programs and events.</p>
+        <p>Explore photographs from the institute, classroom activities, practical learning and events.</p>
     </div>
 </section>
 
@@ -197,7 +401,7 @@
             <div class="gallery-section-heading">
                 <span class="section-label">ALL MEDIA</span>
                 <h2>A Glimpse Inside CICE</h2>
-                <p>Explore photos and videos from across CICE, all brought together in one place.</p>
+                <p>Explore photos from across CICE, all brought together in one place.</p>
             </div>
             <div class="media-grid" data-gallery-grid="all"></div>
             <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="all">View All Media</button></div>
@@ -300,25 +504,110 @@
 /* Add each media item once. Its category controls the section where it appears.
    All Media automatically includes every item. */
 const CICE_MEDIA = [
-    {type:'image',category:'life',src:'assets/images/gallery/life-01.jpg',title:'CICE Learning Environment',alt:'CICE learning environment'},
-    {type:'image',category:'life',src:'assets/images/gallery/life-02.jpg',title:'Students at CICE',alt:'CICE students'},
-    {type:'image',category:'life',src:'assets/images/gallery/life-03.jpg',title:'Practical Computer Session',alt:'CICE practical computer session'},
-    {type:'video',category:'life',src:'videos/life-01.mp4',poster:'assets/images/gallery/life-03.jpg',title:'Learning at CICE',alt:'CICE learning video'},
-    {type:'video',category:'life',src:'videos/cice-advertisement-01.mp4',poster:'assets/images/gallery/life-01.jpg',title:'CICE Promotional Video',alt:'CICE promotional video'},
-    {type:'image',category:'moments',src:'assets/images/gallery/moments-01.jpg',title:'Moments of CICE',alt:'CICE event'},
-    {type:'image',category:'moments',src:'assets/images/gallery/moments-02.jpg',title:'CICE Picnic & Outing',alt:'CICE picnic or outing'},
-    {type:'image',category:'moments',src:'assets/images/gallery/moments-03.jpg',title:'CICE Activities',alt:'CICE activity'},
-    {type:'video',category:'moments',src:'videos/moments-01.mp4',poster:'assets/images/gallery/moments-01.jpg',title:'Moments of CICE',alt:'CICE moments video'},
-    {type:'image',category:'internship',src:'assets/images/gallery/internship-01.jpg',title:'Internship Program',alt:'CICE internship program'},
-    {type:'image',category:'internship',src:'assets/images/gallery/internship-02.jpg',title:'Practical Exposure',alt:'CICE internship practical exposure'},
-    {type:'video',category:'internship',src:'videos/internship-01.mp4',poster:'assets/images/gallery/internship-01.jpg',title:'Internship Program',alt:'CICE internship video'},
-    {type:'image',category:'recognition',src:'assets/images/gallery/iso-certificate.jpg',title:'ISO Certification',alt:'CICE ISO certification'},
-    {type:'image',category:'recognition',src:'assets/images/gallery/msme-registration.jpg',title:'MSME Registration',alt:'CICE MSME registration'},
-];
+    {
+        type: 'image',
+        category: 'life',
+        src: 'assets/images/gallery/life-01.jpg',
+        title: 'CICE Computer Lab',
+        alt: 'CICE computer lab'
+    },
+    {type:'image',category:'life',src:'assets/images/gallery/life-02.jpg',title:"Instructor's View of the Classroom",alt:"View of the CICE classroom from the instructor's desk"},
+    // Pinned: shows the CICE institute from outside.
+    {
+        type: 'image',
+        category: 'life',
+        src: 'assets/images/gallery/life-03.jpg',
+        title: 'CICE Institute Exterior',
+        alt: 'Exterior of CICE Computer Institute',
+        pinned: true
+    },
+    // Pinned: shows students learning through practical computer work.
+    {
+        type: 'image',
+        category: 'life',
+        src: 'assets/images/gallery/life-04.jpg',
+        title: 'Practical Learning at CICE',
+        alt: 'Practical learning session at CICE',
+        pinned: true
+    },
+    {
+        type: 'image',
+        category: 'life',
+        src: 'assets/images/gallery/life-05.jpg',
+        title: 'Students at CICE',
+        alt: 'CICE students gathered inside the computer lab'
+    },
+    // Pinned: highlights the grand opening and CICE community.
+    {
+        type: 'image',
+        category: 'moments',
+        src: 'assets/images/gallery/moments-grand-opening-01.jpg',
+        title: 'Grand Opening Gathering',
+        alt: 'Students and guests gathered inside CICE during the grand opening in 2024',
+        pinned: true
+    },
+    {
+        type: 'image',
+        category: 'moments',
+        src: 'assets/images/gallery/moments-grand-opening-02.jpg',
+        title: 'Grand Opening Group Photo',
+        alt: 'Students and guests gathered outside CICE during the grand opening in 2024'
+    },
+    {
+        type: 'image',
+        category: 'moments',
+        src: 'assets/images/gallery/moments-grand-opening-03.jpg',
+        title: 'Grand Opening Ceremony',
+        alt: 'Guests and CICE representatives taking part in the grand opening ceremony in 2024'
+    },
+    {
+        type: 'image',
+        category: 'moments',
+        src: 'assets/images/gallery/moments-grand-opening-04.jpg',
+        title: 'Grand Opening Celebration',
+        alt: 'Students and members of the CICE community gathered inside the decorated classroom during the grand opening in 2024'
+    },
+    {
+        type: 'image',
+        category: 'moments',
+        src: 'assets/images/gallery/moments-certificate-distribution.jpg',
+        title: 'Certificate Distribution Program',
+        alt: 'Students attending a certificate distribution program at CICE'
+    },
+    {
+        type: 'image',
+        category: 'moments',
+        src: 'assets/images/gallery/moments-certificate-presentation-01.jpg',
+        title: 'Certificate Presentation',
+        alt: 'Student receiving a certificate at CICE'
+    },
+    {
+        type: 'image',
+        category: 'moments',
+        src: 'assets/images/gallery/moments-certificate-presentation-02.jpg',
+        title: 'Certificate Presentation',
+        alt: 'Student receiving a certificate at CICE'
+    },
+    {
+        type: 'image',
+        category: 'moments',
+        src: 'assets/images/gallery/moments-celebrating-achievements.jpg',
+        title: 'Celebrating Achievements Together',
+        alt: 'Students and CICE team members celebrating achievements together'
+    }];
 const PREVIEW_LIMIT=6;
 const modal=document.getElementById('mediaModal'),stage=document.getElementById('mediaModalStage'),caption=document.getElementById('mediaModalCaption');
 let activeItems=[],activeIndex=0;
-function mediaFor(category){return category==='all'?CICE_MEDIA:CICE_MEDIA.filter(item=>item.category===category);}
+function mediaFor(category){
+    // All Media shows pinned images first.
+    if (category === 'all') {
+        return [...CICE_MEDIA].sort(
+            (a, b) => Number(Boolean(b.pinned))
+                - Number(Boolean(a.pinned))
+        );
+    }
+    return CICE_MEDIA.filter(item=>item.category===category);
+}
 function createMediaCard(item,index,collection){
     const card=document.createElement('button'); card.type='button'; card.className='media-card'; card.setAttribute('aria-label',`Open ${item.title}`);
     card.addEventListener('click',()=>openMedia(collection,index));
