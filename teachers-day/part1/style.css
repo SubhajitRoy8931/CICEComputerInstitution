@@ -1,0 +1,247 @@
+/* RESET */
+* {
+  box-sizing: border-box;
+}
+
+/* COLORS */
+:root {
+  --blue: #2457d6;
+  --black: #020711;
+  --white: #f5f7fb;
+}
+
+/* PAGE */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--black);
+}
+
+/* BOOT SECTION */
+.boot-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      #0a1d3a 0%,
+      #061329 34%,
+      #030b19 70%,
+      #020711 100%
+    );
+}
+
+/* BACKGROUND GLOW */
+.background-glow {
+  position: absolute;
+  width: 75vw;
+  height: 65vh;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(36, 87, 214, 0.12),
+      transparent 70%
+    );
+  pointer-events: none;
+}
+
+/* TERMINAL WINDOW */
+.terminal-window {
+  position: relative;
+  width: min(960px, 86vw);
+  height: min(510px, 62vh);
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(105, 137, 183, 0.55);
+  border-radius: 9px;
+  background: #030b18;
+  box-shadow:
+    0 35px 90px rgba(0, 0, 0, 0.45),
+    0 0 45px rgba(36, 87, 214, 0.08);
+}
+
+/* TERMINAL HEADER */
+.terminal-header {
+  position: relative;
+  height: 62px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(105, 137, 183, 0.25);
+  background: rgba(7, 20, 38, 0.92);
+}
+
+/* WINDOW BUTTONS */
+.window-buttons {
+  position: absolute;
+  left: 20px;
+  display: flex;
+  gap: 9px;
+}
+
+.window-buttons span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid rgba(115, 151, 199, 0.55);
+  background: rgba(17, 35, 59, 0.8);
+}
+
+/* TERMINAL NAME */
+.terminal-name {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(191, 207, 229, 0.72);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+}
+
+/* SYSTEM LABEL */
+.system-name {
+  position: absolute;
+  right: 20px;
+  color: rgba(91, 124, 168, 0.65);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+}
+
+/* TERMINAL SCREEN */
+.terminal-screen {
+  position: relative;
+  flex: 1;
+  padding:
+    clamp(45px, 6vh, 65px)
+    clamp(35px, 5vw, 55px);
+  background:
+    linear-gradient(
+      180deg,
+      #020914,
+      #020711
+    );
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.008) 0,
+      rgba(255, 255, 255, 0.008) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+}
+
+/* TERMINAL TEXT */
+#terminalText {
+  color: #dbe6f6;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: clamp(16px, 1.5vw, 22px);
+  line-height: 2;
+  letter-spacing: 0.015em;
+  white-space: pre-wrap;
+}
+
+/* TEXT TYPES */
+.command {
+  color: #e7edf7;
+}
+
+.boot-line {
+  color: rgba(218, 228, 242, 0.92);
+}
+
+.detected {
+  color: #ffffff;
+}
+
+.ready {
+  color: #e9effa;
+}
+
+/* CURSOR */
+.cursor {
+  display: inline-block;
+  width: 9px;
+  height: 20px;
+  margin-left: 4px;
+  vertical-align: -3px;
+  background: #dbe6f6;
+  opacity: 0.9;
+  animation: cursor-blink 0.9s steps(1) infinite;
+}
+
+@keyframes cursor-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* TERMINAL FOOTER */
+.terminal-footer {
+  height: 42px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-top: 1px solid rgba(105, 137, 183, 0.16);
+  background: rgba(4, 13, 26, 0.9);
+  color: rgba(75, 105, 146, 0.55);
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+  .terminal-window {
+    width: 92vw;
+    height: 58vh;
+    min-height: 350px;
+  }
+
+  .terminal-header {
+    height: 55px;
+  }
+
+  .terminal-name {
+    font-size: 11px;
+  }
+
+  .system-name {
+    display: none;
+  }
+
+  .terminal-screen {
+    padding: 35px 25px;
+  }
+
+  #terminalText {
+    font-size: 15px;
+    line-height: 1.9;
+  }
+
+  .terminal-footer {
+    height: 38px;
+  }
+}
+
+/* SHORT SCREENS */
+@media (max-height: 600px) {
+  .terminal-window {
+    height: 78vh;
+  }
+}
