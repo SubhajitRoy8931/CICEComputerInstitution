@@ -43,245 +43,467 @@
 
     <!-- ==================== GALLERY PAGE STYLES ==================== -->
     <style>
-.gallery-main {
-    padding-top: 20px
-}
-.gallery-section {
-    margin-bottom: 82px;
-    scroll-margin-top: 110px
-}
-.gallery-section:last-child {
-    margin-bottom: 25px
-}
-.gallery-section-heading {
-    margin-bottom: 24px
-}
-.gallery-section-heading .section-label {
-    display:block;
-    margin-bottom: 8px
-}
-.gallery-section-heading h2 {
-    margin:0;
-    font-size: clamp(1.7rem, 3vw, 2.35rem);
-    line-height:1.1
-}
-.gallery-section-heading p {
-    max-width: 620px;
-    margin: 10px 0 0;
-    color: var(--muted);
-    font-size: .82rem;
-    line-height:1.7
-}
-.media-grid {
-    display:grid;
-    grid-template-columns:repeat(3,minmax(0,1fr));
-    gap:16px
-}
-.media-card {
-    position:relative;
-    aspect-ratio:4/3;
-    overflow:hidden;
-    border:1px solid var(--border);
-    border-radius:18px;
-    background:linear-gradient(135deg,#eaf7ff,#f4fbff);
-    cursor:pointer;
-    padding:0;
-    transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease
-}
-.media-card:hover {
-    transform:translateY(-4px);
-    box-shadow:var(--shadow);
-    border-color:#b8d9f5
-}
-.media-card img,.media-card video {
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover
-}
-.media-card::after {
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(to top,rgba(5,20,40,.58),transparent 48%);
-    pointer-events:none
-}
-.media-placeholder {
-    position:absolute;
-    inset:0;
-    z-index:1;
-    display:grid;
-    place-items:center;
-    padding:20px;
-    text-align:center;
-    color:#56708b
-}
-.media-placeholder strong {
-    display:block;
-    color:#234b72;
-    font-size:1rem;
-    margin-bottom:5px
-}
-.media-placeholder span {
-    font-size:.7rem
-}
-.media-title {
-    position:absolute;
-    z-index:3;
-    left:14px;
-    right:14px;
-    bottom:13px;
-    color:#fff;
-    font-size:.74rem;
-    font-weight:700;
-    line-height:1.35;
-    text-shadow:0 1px 5px rgba(0,0,0,.28)
-}
-.media-type {
-    position:absolute;
-    z-index:4;
-    top:12px;
-    left:12px;
-    padding:6px 9px;
-    border-radius:999px;
-    background:rgba(255,255,255,.9);
-    color:#234b72;
-    font-size:.62rem;
-    font-weight:800;
-    letter-spacing:.04em;
-    text-transform:uppercase
-}
-.media-play {
-    position:absolute;
-    z-index:4;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    display:grid;
-    place-items:center;
-    background:rgba(7,26,51,.86);
-    color:#fff;
-    font-size:.8rem;
-    padding-left:2px;
-    box-shadow:0 10px 25px rgba(0,0,0,.22)
-}
-.media-card video {
-    pointer-events:none
-}
-.media-more {
-    display:flex;
-    justify-content:center;
-    margin-top:22px
-}
-.media-more button {
-    cursor:pointer
-}
-.media-empty {
-    grid-column:1/-1;
-    padding:35px 20px;
-    text-align:center;
-    border:1px dashed #c8d9e8;
-    border-radius:16px;
-    color:var(--muted);
-    font-size:.8rem
-}
-.media-modal {
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:22px;
-    background:rgba(4,14,28,.86);
-    backdrop-filter:blur(7px)
-}
-.media-modal.is-open {
-    display:flex
-}
-.media-modal-content {
-    position:relative;
-    width:min(1080px,96vw);
-    max-height:92vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center
-}
-.media-modal-close {
-    position:absolute;
-    right:-8px;
-    top:-46px;
-    width:40px;
-    height:40px;
-    border:0;
-    border-radius:50%;
-    background:#fff;
-    color:#13243a;
-    font-size:1.2rem;
-    cursor:pointer;
-    z-index:3
-}
-.media-modal-stage {
-    width:100%;
-    max-height:82vh;
-    display:grid;
-    place-items:center
-}
-.media-modal-stage img,.media-modal-stage video {
-    max-width:100%;
-    max-height:82vh;
-    border-radius:14px;
-    box-shadow:0 25px 70px rgba(0,0,0,.35);
-    background:#08182c
-}
-.media-modal-caption {
-    margin-top:12px;
-    color:#fff;
-    font-size:.8rem;
-    text-align:center
-}
-.media-modal-nav {
-    display:flex;
-    gap:10px;
-    margin-top:12px
-}
-.media-modal-nav button {
-    width:40px;
-    height:40px;
-    border:1px solid rgba(255,255,255,.35);
-    border-radius:50%;
-    background:rgba(255,255,255,.12);
-    color:#fff;
-    cursor:pointer;
-    font-size:1rem
-}
-.media-modal-nav button:hover {
-    background:rgba(255,255,255,.2)
-}
-        @media(max-width:800px){.media-grid {
-    grid-template-columns:repeat(2,minmax(0,1fr))
-}.gallery-section {
-    margin-bottom:65px
-} }
-        @media(max-width:560px){.media-grid {
-    grid-template-columns:1fr
-}.gallery-main {
-    padding-top:10px
-}.media-card {
-    aspect-ratio:16/11
-}.media-modal {
-    padding:14px
-}.media-modal-close {
-    right:0;
-    top:-48px
-} }
-        @media(prefers-reduced-motion:reduce){.media-card {
-    transition:none
-}}
+        /* Adds a little space below the gallery page heading. */
+        .gallery-main {
+            padding-top: 20px;
+        }
+
+        /* Creates separation between gallery categories. */
+        .gallery-section {
+            margin-bottom: 82px;
+            scroll-margin-top: 110px;
+        }
+
+        /* Reduces the gap after the final gallery category. */
+        .gallery-section:last-child {
+            margin-bottom: 25px;
+        }
+
+        /* Controls the spacing above each category heading. */
+        .gallery-section-heading {
+            margin-bottom: 24px;
+        }
+
+        /* Places the small category label on its own line. */
+        .gallery-section-heading .section-label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Styles each gallery category heading. */
+        .gallery-section-heading h2 {
+            margin: 0;
+            font-size: clamp(1.7rem, 3vw, 2.35rem);
+            line-height: 1.1;
+        }
+
+        /* Limits the width of each category description. */
+        .gallery-section-heading p {
+            max-width: 620px;
+            margin: 10px 0 0;
+            color: var(--muted);
+            font-size: .82rem;
+            line-height: 1.7;
+        }
+
+        /*
+         * The viewport hides the extra part of the carousel track.
+         * The JavaScript moves the track horizontally inside this area.
+         */
+        .media-carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 0 42px;
+            box-sizing: border-box;
+        }
+
+        /*
+         * The track contains all cards in one horizontal row.
+         * It is translated by JavaScript when the user moves the carousel.
+         */
+        .media-grid {
+            display: flex;
+            gap: 16px;
+            width: 100%;
+            min-width: 0;
+            margin: 0;
+            padding: 0;
+            overflow: visible;
+            transition: transform .35s ease;
+            will-change: transform;
+        }
+
+        /* Removes the animation when the carousel silently re-centers. */
+        .media-grid.no-transition {
+            transition: none;
+        }
+
+        /*
+         * Each card is one slide.
+         * Desktop shows three complete cards and partial cards at both sides.
+         */
+        .media-grid .media-card {
+            /*
+             * Desktop: three complete cards are visible.
+             * Extra space reveals a partial card at each side.
+             */
+            flex: 0 0 25%;
+        }
+
+        /* Keeps every photo card at a consistent shape. */
+        .media-card {
+            position: relative;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: linear-gradient(
+                135deg,
+                #eaf7ff,
+                #f4fbff
+            );
+            cursor: grab;
+            padding: 0;
+            transition:
+                transform .28s ease,
+                box-shadow .28s ease,
+                border-color .28s ease;
+        }
+
+        /* Gives a card a small lift when the mouse is over it. */
+        .media-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-color: #b8d9f5;
+        }
+
+        /* Changes the cursor while the user is dragging. */
+        .media-grid.is-dragging .media-card {
+            cursor: grabbing;
+        }
+
+        /* Prevents the image itself from starting a browser drag. */
+        .media-card img,
+        .media-card video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        /* Adds a dark gradient so image titles stay readable. */
+        .media-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(5, 20, 40, .58),
+                transparent 48%
+            );
+            pointer-events: none;
+        }
+
+        /* Placeholder shown when an image file cannot be loaded. */
+        .media-placeholder {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            text-align: center;
+            color: #56708b;
+        }
+
+        /* Styles the main placeholder message. */
+        .media-placeholder strong {
+            display: block;
+            color: #234b72;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        /* Styles the small placeholder instruction. */
+        .media-placeholder span {
+            font-size: .7rem;
+        }
+
+        /* Places the photo title over the bottom of the image. */
+        .media-title {
+            position: absolute;
+            z-index: 3;
+            left: 14px;
+            right: 14px;
+            bottom: 13px;
+            color: #fff;
+            font-size: .74rem;
+            font-weight: 700;
+            line-height: 1.35;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, .28);
+            pointer-events: none;
+        }
+
+        /* Shows whether the item is a photo or video. */
+        .media-type {
+            position: absolute;
+            z-index: 4;
+            top: 12px;
+            left: 12px;
+            padding: 6px 9px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .9);
+            color: #234b72;
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+        /* Shows a play symbol when a gallery item is a video. */
+        .media-play {
+            position: absolute;
+            z-index: 4;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: rgba(7, 26, 51, .86);
+            color: #fff;
+            font-size: .8rem;
+            padding-left: 2px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .22);
+        }
+
+        /* Prevents videos in cards from intercepting carousel gestures. */
+        .media-card video {
+            pointer-events: none;
+        }
+
+        /*
+         * Previous and next buttons sit inside the left and right
+         * padding areas of the carousel.
+         */
+        .media-carousel-button {
+            position: absolute;
+            top: 50%;
+            z-index: 5;
+            width: 42px;
+            height: 42px;
+            border: 0;
+            border-radius: 50%;
+            background: #243b55;
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transform: translateY(-50%);
+            box-shadow: 0 8px 22px rgba(5, 20, 40, .18);
+        }
+
+        /* Places the previous button on the left. */
+        .media-carousel-prev {
+            left: 0;
+        }
+
+        /* Places the next button on the right. */
+        .media-carousel-next {
+            right: 0;
+        }
+
+        /* Makes disabled arrow buttons look inactive. */
+        .media-carousel-button:disabled {
+            opacity: .45;
+            cursor: default;
+        }
+
+        /*
+         * Allows horizontal finger dragging while keeping normal
+         * vertical page scrolling available.
+         */
+        .media-carousel {
+            touch-action: pan-y;
+        }
+
+        /* Gives the browser a clear focus indicator for keyboard users. */
+        .media-carousel-button:focus-visible,
+        .media-card:focus-visible {
+            outline: 3px solid #1f6fff;
+            outline-offset: 3px;
+        }
+
+        /* Keeps the View All button centered below the carousel. */
+        .media-more {
+            display: flex;
+            justify-content: center;
+            margin-top: 22px;
+        }
+
+        /* Makes the View All button behave like a normal button. */
+        .media-more button {
+            cursor: pointer;
+        }
+
+        /* Message shown when a category has no media. */
+        .media-empty {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 35px 20px;
+            text-align: center;
+            border: 1px dashed #c8d9e8;
+            border-radius: 16px;
+            color: var(--muted);
+            font-size: .8rem;
+        }
+
+        /* Keeps an empty carousel from showing unnecessary controls. */
+        .media-carousel.is-empty {
+            padding: 0;
+        }
+
+        /* ==================== FULLSCREEN MEDIA VIEWER ==================== */
+
+        /* Covers the page while the selected image or video is open. */
+        .media-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 22px;
+            background: rgba(4, 14, 28, .86);
+            backdrop-filter: blur(7px);
+        }
+
+        /* Makes the media viewer visible. */
+        .media-modal.is-open {
+            display: flex;
+        }
+
+        /* Limits the size of the fullscreen viewer content. */
+        .media-modal-content {
+            position: relative;
+            width: min(1080px, 96vw);
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Close button for the fullscreen viewer. */
+        .media-modal-close {
+            position: absolute;
+            right: -8px;
+            top: -46px;
+            width: 40px;
+            height: 40px;
+            border: 0;
+            border-radius: 50%;
+            background: #fff;
+            color: #13243a;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        /* Centers the selected image or video. */
+        .media-modal-stage {
+            width: 100%;
+            max-height: 82vh;
+            display: grid;
+            place-items: center;
+        }
+
+        /* Limits the size of fullscreen media. */
+        .media-modal-stage img,
+        .media-modal-stage video {
+            max-width: 100%;
+            max-height: 82vh;
+            border-radius: 14px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, .35);
+            background: #08182c;
+        }
+
+        /* Shows the title below fullscreen media. */
+        .media-modal-caption {
+            margin-top: 12px;
+            color: #fff;
+            font-size: .8rem;
+            text-align: center;
+        }
+
+        /* Places fullscreen previous/next controls together. */
+        .media-modal-nav {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        /* Styles fullscreen previous/next controls. */
+        .media-modal-nav button {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, .35);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .12);
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        /* Gives fullscreen controls a visible hover state. */
+        .media-modal-nav button:hover {
+            background: rgba(255, 255, 255, .2);
+        }
+
+        /* ==================== TABLET LAYOUT ==================== */
+
+        @media (max-width: 800px) {
+            /*
+             * Tablet: two complete cards are visible.
+             * The carousel centers the space between those cards.
+             */
+            .media-grid .media-card {
+                flex-basis: 35%;
+            }
+
+            /* Leaves less vertical space between categories on tablets. */
+            .gallery-section {
+                margin-bottom: 65px;
+            }
+        }
+
+        /* ==================== MOBILE LAYOUT ==================== */
+
+        @media (max-width: 560px) {
+            /*
+             * Mobile: one complete card with a partial card
+             * visible on both the left and right.
+             */
+            .media-grid .media-card {
+                flex-basis: 70%;
+            }
+
+            /* Reduces the top spacing on small screens. */
+            .gallery-main {
+                padding-top: 10px;
+            }
+
+            /* Gives mobile cards a slightly wider shape. */
+            .media-card {
+                aspect-ratio: 16 / 11;
+            }
+
+            /* Makes the modal fit comfortably on a phone. */
+            .media-modal {
+                padding: 14px;
+            }
+
+            /* Repositions the modal close button on a phone. */
+            .media-modal-close {
+                right: 0;
+                top: -48px;
+            }
+        }
+
+        /* Removes unnecessary animation for users who prefer less motion. */
+        @media (prefers-reduced-motion: reduce) {
+            .media-grid {
+                transition: none;
+            }
+
+            .media-card {
+                transition: none;
+            }
+        }
     </style>
 
 <style id="gallery-final-media-rules">
@@ -403,7 +625,25 @@
                 <h2>A Glimpse Inside CICE</h2>
                 <p>Explore photos from across CICE, all brought together in one place.</p>
             </div>
-            <div class="media-grid" data-gallery-grid="all"></div>
+            <div class="media-carousel" data-carousel="all">
+                <button
+                    class="media-carousel-button media-carousel-prev"
+                    type="button"
+                    data-carousel-prev="all"
+                    aria-label="Previous all image">
+                    ←
+                </button>
+
+                <div class="media-grid" data-gallery-grid="all"></div>
+
+                <button
+                    class="media-carousel-button media-carousel-next"
+                    type="button"
+                    data-carousel-next="all"
+                    aria-label="Next all image">
+                    →
+                </button>
+            </div>
             <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="all">View All Media</button></div>
         </section>
         <section class="gallery-section" id="life-at-cice">
@@ -412,7 +652,25 @@
                 <h2>Life at CICE</h2>
                 <p>Classrooms, students, practical sessions, and the everyday learning environment at CICE.</p>
             </div>
-            <div class="media-grid" data-gallery-grid="life"></div>
+            <div class="media-carousel" data-carousel="life">
+                <button
+                    class="media-carousel-button media-carousel-prev"
+                    type="button"
+                    data-carousel-prev="life"
+                    aria-label="Previous life image">
+                    ←
+                </button>
+
+                <div class="media-grid" data-gallery-grid="life"></div>
+
+                <button
+                    class="media-carousel-button media-carousel-next"
+                    type="button"
+                    data-carousel-next="life"
+                    aria-label="Next life image">
+                    →
+                </button>
+            </div>
             <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="life">View All</button></div>
         </section>
         <section class="gallery-section" id="moments-of-cice">
@@ -421,7 +679,25 @@
                 <h2>Moments of CICE</h2>
                 <p>Events, activities, picnics, outings, celebrations, and other memorable moments.</p>
             </div>
-            <div class="media-grid" data-gallery-grid="moments"></div>
+            <div class="media-carousel" data-carousel="moments">
+                <button
+                    class="media-carousel-button media-carousel-prev"
+                    type="button"
+                    data-carousel-prev="moments"
+                    aria-label="Previous moments image">
+                    ←
+                </button>
+
+                <div class="media-grid" data-gallery-grid="moments"></div>
+
+                <button
+                    class="media-carousel-button media-carousel-next"
+                    type="button"
+                    data-carousel-next="moments"
+                    aria-label="Next moments image">
+                    →
+                </button>
+            </div>
             <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="moments">View All</button></div>
         </section>
         <section class="gallery-section" id="internship-experiences">
@@ -430,7 +706,25 @@
                 <h2>Internship Experiences</h2>
                 <p>Moments from CICE's college internship programs, where students strengthen their computer skills.</p>
             </div>
-            <div class="media-grid" data-gallery-grid="internship"></div>
+            <div class="media-carousel" data-carousel="internship">
+                <button
+                    class="media-carousel-button media-carousel-prev"
+                    type="button"
+                    data-carousel-prev="internship"
+                    aria-label="Previous internship image">
+                    ←
+                </button>
+
+                <div class="media-grid" data-gallery-grid="internship"></div>
+
+                <button
+                    class="media-carousel-button media-carousel-next"
+                    type="button"
+                    data-carousel-next="internship"
+                    aria-label="Next internship image">
+                    →
+                </button>
+            </div>
             <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="internship">View All</button></div>
         </section>
         <section class="gallery-section gallery-recognition" id="recognition-credentials">
@@ -439,7 +733,25 @@
                 <h2>Recognition &amp; Credentials</h2>
                 <p>Certificates, registrations, and other formal credentials or achievements associated with CICE.</p>
             </div>
-            <div class="media-grid" data-gallery-grid="recognition"></div>
+            <div class="media-carousel" data-carousel="recognition">
+                <button
+                    class="media-carousel-button media-carousel-prev"
+                    type="button"
+                    data-carousel-prev="recognition"
+                    aria-label="Previous recognition image">
+                    ←
+                </button>
+
+                <div class="media-grid" data-gallery-grid="recognition"></div>
+
+                <button
+                    class="media-carousel-button media-carousel-next"
+                    type="button"
+                    data-carousel-next="recognition"
+                    aria-label="Next recognition image">
+                    →
+                </button>
+            </div>
             <div class="media-more">
 </div>
         </section>
@@ -511,7 +823,13 @@ const CICE_MEDIA = [
         title: 'CICE Computer Lab',
         alt: 'CICE computer lab'
     },
-    {type:'image',category:'life',src:'assets/images/gallery/life-02.jpg',title:"Instructor's View of the Classroom",alt:"View of the CICE classroom from the instructor's desk"},
+    {
+        type: 'image',
+        category: 'life',
+        src: 'assets/images/gallery/life-02.jpg',
+        title: "Instructor's View of the Classroom",
+        alt: "View of the CICE classroom from the instructor's desk"
+    },
     // Pinned: shows the CICE institute from outside.
     {
         type: 'image',
@@ -594,51 +912,732 @@ const CICE_MEDIA = [
         src: 'assets/images/gallery/moments-celebrating-achievements.jpg',
         title: 'Celebrating Achievements Together',
         alt: 'Students and CICE team members celebrating achievements together'
-    }];
-const PREVIEW_LIMIT=6;
-const modal=document.getElementById('mediaModal'),stage=document.getElementById('mediaModalStage'),caption=document.getElementById('mediaModalCaption');
-let activeItems=[],activeIndex=0;
-function mediaFor(category){
-    // All Media shows pinned images first.
+    }
+];
+
+const modal = document.getElementById('mediaModal');
+const stage = document.getElementById('mediaModalStage');
+const caption = document.getElementById('mediaModalCaption');
+
+/*
+ * Stores the media currently open in the fullscreen viewer.
+ */
+let activeItems = [];
+let activeIndex = 0;
+
+/*
+ * Keeps the state of each category carousel separate.
+ */
+const carouselStates = new Map();
+
+/*
+ * All Media keeps pinned images at the beginning.
+ * Other categories keep their original order.
+ */
+function mediaFor(category) {
     if (category === 'all') {
         return [...CICE_MEDIA].sort(
             (a, b) => Number(Boolean(b.pinned))
                 - Number(Boolean(a.pinned))
         );
     }
-    return CICE_MEDIA.filter(item=>item.category===category);
+
+    return CICE_MEDIA.filter(
+        item => item.category === category
+    );
 }
-function createMediaCard(item,index,collection){
-    const card=document.createElement('button'); card.type='button'; card.className='media-card'; card.setAttribute('aria-label',`Open ${item.title}`);
-    card.addEventListener('click',()=>openMedia(collection,index));
-    const type=document.createElement('span'); type.className='media-type'; type.textContent=item.type==='video'?'Video':'Photo'; card.appendChild(type);
-    if(item.type==='video'){
-        const video=document.createElement('video'); video.src=item.src; video.muted=true; video.preload='metadata'; video.playsInline=true; if(item.poster)video.poster=item.poster; card.appendChild(video);
-        const play=document.createElement('span'); play.className='media-play'; play.setAttribute('aria-hidden','true'); play.textContent='▶'; card.appendChild(play);
+
+/*
+ * Creates one gallery card.
+ *
+ * The card keeps its normal click behavior so the
+ * existing fullscreen media viewer continues to work.
+ */
+function createMediaCard(item, index, collection) {
+    const card = document.createElement('button');
+
+    card.type = 'button';
+    card.className = 'media-card';
+    card.setAttribute(
+        'aria-label',
+        `Open ${item.title}`
+    );
+
+    card.addEventListener('click', event => {
+        /*
+         * A completed drag should move the carousel,
+         * not open the card underneath the pointer.
+         */
+        const carousel = card.closest('.media-carousel');
+        const category = carousel?.dataset.carousel;
+        const state = category
+            ? carouselStates.get(category)
+            : null;
+
+        if (state?.ignoreClick) {
+            state.ignoreClick = false;
+            event.preventDefault();
+            return;
+        }
+
+        openMedia(collection, index);
+    });
+
+    const type = document.createElement('span');
+
+    type.className = 'media-type';
+    type.textContent =
+        item.type === 'video' ? 'Video' : 'Photo';
+
+    card.appendChild(type);
+
+    if (item.type === 'video') {
+        const video = document.createElement('video');
+
+        video.src = item.src;
+        video.muted = true;
+        video.preload = 'metadata';
+        video.playsInline = true;
+
+        if (item.poster) {
+            video.poster = item.poster;
+        }
+
+        card.appendChild(video);
+
+        const play = document.createElement('span');
+
+        play.className = 'media-play';
+        play.setAttribute('aria-hidden', 'true');
+        play.textContent = '▶';
+
+        card.appendChild(play);
     } else {
-        const img=document.createElement('img'); img.src=item.src; img.alt=item.alt||item.title; img.loading='lazy';
-        img.onerror=()=>{img.style.display='none'; const ph=document.createElement('div'); ph.className='media-placeholder'; ph.innerHTML=`<div><strong>${item.title}</strong><span>Add the media file here</span></div>`; card.appendChild(ph);};
+        const img = document.createElement('img');
+
+        img.src = item.src;
+        img.alt = item.alt || item.title;
+        img.loading = 'lazy';
+        img.draggable = false;
+
+        img.onerror = () => {
+            img.style.display = 'none';
+
+            const placeholder = document.createElement('div');
+
+            placeholder.className = 'media-placeholder';
+            placeholder.innerHTML = `
+                <div>
+                    <strong>${item.title}</strong>
+                    <span>Add the media file here</span>
+                </div>
+            `;
+
+            card.appendChild(placeholder);
+        };
+
         card.appendChild(img);
     }
-    const title=document.createElement('span'); title.className='media-title'; title.textContent=item.title; card.appendChild(title); return card;
+
+    const title = document.createElement('span');
+
+    title.className = 'media-title';
+    title.textContent = item.title;
+
+    card.appendChild(title);
+
+    return card;
 }
-function renderSection(category){
-    const grid=document.querySelector(`[data-gallery-grid="${category}"]`); if(!grid)return; grid.innerHTML=''; const items=mediaFor(category); const preview=items.slice(0,PREVIEW_LIMIT);
-    preview.forEach((item,index)=>grid.appendChild(createMediaCard(item,index,items)));
-    if(!preview.length)grid.innerHTML='<div class="media-empty">Media will appear here when files are added.</div>';
-    const button=document.querySelector(`[data-view-all="${category}"]`); if(button)button.style.display=items.length>PREVIEW_LIMIT?'':(items.length?'none':'');
+
+/*
+ * Returns the number of cloned cards needed at each end.
+ *
+ * Three is enough for the widest desktop layout.
+ */
+function getCloneCount(itemCount) {
+    return Math.min(3, itemCount);
 }
-function renderAll(){['all','life','moments','internship','recognition'].forEach(renderSection);}
-function openMedia(items,index){activeItems=items;activeIndex=index;updateModal();modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
-function updateModal(){const item=activeItems[activeIndex];if(!item)return;stage.innerHTML='';if(item.type==='video'){const v=document.createElement('video');v.src=item.src;v.controls=true;v.autoplay=true;v.playsInline=true;if(item.poster)v.poster=item.poster;stage.appendChild(v);}else{const img=document.createElement('img');img.src=item.src;img.alt=item.alt||item.title;stage.appendChild(img);}caption.textContent=item.title;}
-function closeMedia(){modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');stage.innerHTML='';document.body.style.overflow='';}
-function stepMedia(direction){if(!activeItems.length)return;activeIndex=(activeIndex+direction+activeItems.length)%activeItems.length;updateModal();}
-document.querySelectorAll('[data-view-all]').forEach(button=>button.addEventListener('click',()=>{const items=mediaFor(button.dataset.viewAll);if(items.length)openMedia(items,0);}));
-document.querySelector('.media-modal-close').addEventListener('click',closeMedia);
-document.getElementById('mediaPrev').addEventListener('click',()=>stepMedia(-1));
-document.getElementById('mediaNext').addEventListener('click',()=>stepMedia(1));
-modal.addEventListener('click',e=>{if(e.target===modal)closeMedia();});
-document.addEventListener('keydown',e=>{if(!modal.classList.contains('is-open'))return;if(e.key==='Escape')closeMedia();if(e.key==='ArrowLeft')stepMedia(-1);if(e.key==='ArrowRight')stepMedia(1);});
+
+/*
+ * Centers the active card in the carousel.
+ *
+ * The card width is controlled by CSS for each screen size.
+ * This function only calculates the horizontal position.
+ */
+function positionCarousel(category, animate = true) {
+    const state = carouselStates.get(category);
+
+    if (!state || !state.items.length) {
+        return;
+    }
+
+    const slide = state.track.children[state.position];
+
+    if (!slide) {
+        return;
+    }
+
+    const trackWidth = state.track.clientWidth;
+    let focusPoint =
+        slide.offsetLeft + (slide.offsetWidth / 2);
+
+    /*
+     * Tablet shows two complete cards.
+     * Therefore the focus point is between the
+     * active card and the next card.
+     */
+    if (
+        window.innerWidth <= 800
+        && window.innerWidth > 560
+    ) {
+        const nextSlide =
+            state.track.children[state.position + 1];
+
+        if (nextSlide) {
+            const nextCenter =
+                nextSlide.offsetLeft
+                + (nextSlide.offsetWidth / 2);
+
+            focusPoint =
+                (focusPoint + nextCenter) / 2;
+        }
+    }
+
+    const target =
+        (trackWidth / 2) - focusPoint;
+
+    if (!animate) {
+        state.track.classList.add('no-transition');
+    } else {
+        state.track.classList.remove('no-transition');
+    }
+
+    state.currentTranslate = target;
+
+    state.track.style.transform =
+        `translate3d(${target}px, 0, 0)`;
+}
+
+/*
+ * Updates the arrow buttons for the current carousel.
+ *
+ * The carousel loops, so both buttons remain available
+ * whenever there is more than one media item.
+ */
+function updateCarouselButtons(category) {
+    const state = carouselStates.get(category);
+
+    if (!state) {
+        return;
+    }
+
+    const hasMultipleItems = state.items.length > 1;
+
+    state.prevButton.disabled = !hasMultipleItems;
+    state.nextButton.disabled = !hasMultipleItems;
+}
+
+/*
+ * Moves the carousel one image in the requested direction.
+ */
+function moveCarousel(category, direction) {
+    const state = carouselStates.get(category);
+
+    if (
+        !state
+        || state.items.length < 2
+        || state.isMoving
+    ) {
+        return;
+    }
+
+    state.isMoving = true;
+    state.position += direction;
+
+    positionCarousel(category, true);
+}
+
+/*
+ * After a transition reaches a cloned slide, jump to the
+ * matching real slide without showing a visible jump.
+ */
+function handleCarouselTransition(category) {
+    const state = carouselStates.get(category);
+
+    if (!state || !state.isMoving) {
+        return;
+    }
+
+    const firstReal = state.cloneCount;
+    const lastReal =
+        state.cloneCount + state.items.length - 1;
+
+    if (state.position > lastReal) {
+        state.position = firstReal;
+        positionCarousel(category, false);
+    }
+
+    if (state.position < firstReal) {
+        state.position = lastReal;
+        positionCarousel(category, false);
+    }
+
+    state.isMoving = false;
+}
+
+/*
+ * Finds the real media index for a slide.
+ *
+ * Cloned slides point back to the original media array.
+ */
+function getRealMediaIndex(state, slide) {
+    const rawIndex = Number(slide.dataset.index);
+
+    return (
+        (rawIndex % state.items.length)
+        + state.items.length
+    ) % state.items.length;
+}
+
+/*
+ * Adds mouse dragging and touch swiping to one carousel.
+ *
+ * Pointer Events let the same code handle:
+ * mouse, touch, and stylus input.
+ */
+function enableCarouselDrag(category) {
+    const state = carouselStates.get(category);
+
+    if (!state) {
+        return;
+    }
+
+    const viewport = state.carousel;
+    let pointerId = null;
+    let startX = 0;
+    let startTranslate = 0;
+    let moved = false;
+    let captured = false;
+
+    viewport.addEventListener('pointerdown', event => {
+        /*
+         * Arrow buttons use normal button clicks.
+         * They must not start a drag operation.
+         */
+        if (
+            event.target.closest('.media-carousel-button')
+        ) {
+            return;
+        }
+
+        if (event.button !== undefined && event.button !== 0) {
+            return;
+        }
+
+        if (state.items.length < 2) {
+            return;
+        }
+
+        pointerId = event.pointerId;
+        startX = event.clientX;
+        startTranslate = state.currentTranslate;
+        moved = false;
+        captured = false;
+
+        state.track.classList.remove('is-dragging');
+    });
+
+    viewport.addEventListener('pointermove', event => {
+        if (pointerId !== event.pointerId) {
+            return;
+        }
+
+        const distance = event.clientX - startX;
+
+        /*
+         * A tiny movement is still treated as a click.
+         * Start dragging only after the threshold is crossed.
+         */
+        if (!moved && Math.abs(distance) <= 6) {
+            return;
+        }
+
+        if (!moved) {
+            moved = true;
+            captured = true;
+
+            viewport.setPointerCapture(pointerId);
+            state.track.classList.add('is-dragging');
+        }
+
+        event.preventDefault();
+
+        state.track.style.transform =
+            `translate3d(
+                ${startTranslate + distance}px,
+                0,
+                0
+            )`;
+    });
+
+    const finishDrag = event => {
+        if (pointerId !== event.pointerId) {
+            return;
+        }
+
+        const distance = event.clientX - startX;
+
+        if (captured && viewport.hasPointerCapture(pointerId)) {
+            viewport.releasePointerCapture(pointerId);
+        }
+
+        state.track.classList.remove('is-dragging');
+
+        pointerId = null;
+        captured = false;
+
+        /*
+         * A real drag moves one image.
+         * A normal click leaves the carousel where it is.
+         */
+        if (moved) {
+            state.ignoreClick = true;
+
+            if (Math.abs(distance) > 45) {
+                moveCarousel(
+                    category,
+                    distance < 0 ? 1 : -1
+                );
+            } else {
+                positionCarousel(category, true);
+            }
+
+            window.setTimeout(() => {
+                state.ignoreClick = false;
+            }, 0);
+        }
+    };
+
+    viewport.addEventListener('pointerup', finishDrag);
+    viewport.addEventListener('pointercancel', finishDrag);
+}
+
+/*
+ * Builds one complete carousel for a gallery category.
+ */
+function renderSection(category) {
+    const grid = document.querySelector(
+        `[data-gallery-grid="${category}"]`
+    );
+
+    const carousel = document.querySelector(
+        `[data-carousel="${category}"]`
+    );
+
+    if (!grid || !carousel) {
+        return;
+    }
+
+    const items = mediaFor(category);
+    const prevButton = carousel.querySelector(
+        '[data-carousel-prev]'
+    );
+    const nextButton = carousel.querySelector(
+        '[data-carousel-next]'
+    );
+
+    grid.innerHTML = '';
+    carousel.classList.remove('is-empty');
+
+    if (!items.length) {
+        grid.innerHTML = `
+            <div class="media-empty">
+                Media will appear here when files are added.
+            </div>
+        `;
+
+        carousel.classList.add('is-empty');
+        prevButton.hidden = true;
+        nextButton.hidden = true;
+
+        const button = document.querySelector(
+            `[data-view-all="${category}"]`
+        );
+
+        if (button) {
+            button.style.display = 'none';
+        }
+
+        return;
+    }
+
+    prevButton.hidden = false;
+    nextButton.hidden = false;
+
+    /*
+     * The carousel uses cloned cards at both ends.
+     * This keeps a partial card visible on both sides,
+     * even when the visitor reaches the first or last image.
+     */
+    const cloneCount = getCloneCount(items.length);
+    const extendedItems = [];
+
+    for (
+        let i = items.length - cloneCount;
+        i < items.length;
+        i += 1
+    ) {
+        extendedItems.push({
+            item: items[i],
+            index: i
+        });
+    }
+
+    items.forEach((item, index) => {
+        extendedItems.push({
+            item,
+            index
+        });
+    });
+
+    for (
+        let i = 0;
+        i < cloneCount;
+        i += 1
+    ) {
+        extendedItems.push({
+            item: items[i],
+            index: i
+        });
+    }
+
+    extendedItems.forEach(entry => {
+        const card = createMediaCard(
+            entry.item,
+            entry.index,
+            items
+        );
+
+        card.dataset.index = entry.index;
+        grid.appendChild(card);
+    });
+
+    const state = {
+        category,
+        items,
+        carousel,
+        track: grid,
+        prevButton,
+        nextButton,
+        cloneCount,
+        position: cloneCount,
+        currentTranslate: 0,
+        isMoving: false,
+        ignoreClick: false
+    };
+
+    carouselStates.set(category, state);
+
+    prevButton.addEventListener(
+        'click',
+        () => moveCarousel(category, -1)
+    );
+
+    nextButton.addEventListener(
+        'click',
+        () => moveCarousel(category, 1)
+    );
+
+    grid.addEventListener(
+        'transitionend',
+        event => {
+            if (event.propertyName !== 'transform') {
+                return;
+            }
+
+            handleCarouselTransition(category);
+        }
+    );
+
+    enableCarouselDrag(category);
+    updateCarouselButtons(category);
+    positionCarousel(category, false);
+
+    /*
+     * View All opens the existing fullscreen viewer
+     * using every image in this category.
+     */
+    const button = document.querySelector(
+        `[data-view-all="${category}"]`
+    );
+
+    if (button) {
+        button.style.display = '';
+
+        button.onclick = () => {
+            openMedia(items, 0);
+        };
+    }
+}
+
+/*
+ * Re-centers every carousel after a browser resize.
+ */
+function refreshCarousels() {
+    carouselStates.forEach((state, category) => {
+        positionCarousel(category, false);
+    });
+}
+
+/*
+ * Renders every gallery category.
+ */
+function renderAll() {
+    [
+        'all',
+        'life',
+        'moments',
+        'internship',
+        'recognition'
+    ].forEach(renderSection);
+}
+
+/*
+ * Opens the fullscreen media viewer.
+ */
+function openMedia(items, index) {
+    activeItems = items;
+    activeIndex = index;
+
+    updateModal();
+
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+}
+
+/*
+ * Updates the fullscreen image or video.
+ */
+function updateModal() {
+    const item = activeItems[activeIndex];
+
+    if (!item) {
+        return;
+    }
+
+    stage.innerHTML = '';
+
+    if (item.type === 'video') {
+        const video = document.createElement('video');
+
+        video.src = item.src;
+        video.controls = true;
+        video.autoplay = true;
+        video.playsInline = true;
+
+        if (item.poster) {
+            video.poster = item.poster;
+        }
+
+        stage.appendChild(video);
+    } else {
+        const img = document.createElement('img');
+
+        img.src = item.src;
+        img.alt = item.alt || item.title;
+
+        stage.appendChild(img);
+    }
+
+    caption.textContent = item.title;
+}
+
+/*
+ * Closes the fullscreen media viewer.
+ */
+function closeMedia() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    stage.innerHTML = '';
+    document.body.style.overflow = '';
+}
+
+/*
+ * Moves to the next or previous item in the fullscreen viewer.
+ */
+function stepMedia(direction) {
+    if (!activeItems.length) {
+        return;
+    }
+
+    activeIndex = (
+        activeIndex
+        + direction
+        + activeItems.length
+    ) % activeItems.length;
+
+    updateModal();
+}
+
+/*
+ * Connects the fullscreen viewer controls.
+ */
+document
+    .querySelectorAll('.media-modal-close')
+    .forEach(button => {
+        button.addEventListener('click', closeMedia);
+    });
+
+document
+    .getElementById('mediaPrev')
+    .addEventListener(
+        'click',
+        () => stepMedia(-1)
+    );
+
+document
+    .getElementById('mediaNext')
+    .addEventListener(
+        'click',
+        () => stepMedia(1)
+    );
+
+/*
+ * Clicking the dark area outside the media closes the viewer.
+ */
+modal.addEventListener('click', event => {
+    if (event.target === modal) {
+        closeMedia();
+    }
+});
+
+/*
+ * Keyboard controls for the fullscreen viewer.
+ */
+document.addEventListener('keydown', event => {
+    if (!modal.classList.contains('is-open')) {
+        return;
+    }
+
+    if (event.key === 'Escape') {
+        closeMedia();
+    }
+
+    if (event.key === 'ArrowLeft') {
+        stepMedia(-1);
+    }
+
+    if (event.key === 'ArrowRight') {
+        stepMedia(1);
+    }
+});
+
+/*
+ * Re-center carousels when the viewport changes size.
+ */
+window.addEventListener('resize', refreshCarousels);
+
 renderAll();
 </script>
 </body>
