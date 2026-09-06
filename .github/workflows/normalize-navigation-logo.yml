@@ -1,6 +1,9 @@
 name: Normalize navigation logo
 
 on:
+  push:
+    paths:
+      - '.github/workflows/normalize-navigation-logo.yml'
   workflow_dispatch:
 
 permissions:
