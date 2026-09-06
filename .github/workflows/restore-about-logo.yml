@@ -1,0 +1,38 @@
+name: Restore About Page Logo
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  restore-about-logo:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore About page navigation logo
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('about.html')
+          s = p.read_text(encoding='utf-8')
+          old = 'assets/images/cice-logo-nav.png'
+          new = 'assets/images/cice-logo.png'
+          if old not in s:
+              raise SystemExit('Expected navigation logo reference not found in about.html')
+          s = s.replace(old, new, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit change and remove temporary workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add about.html
+          git commit -m 'Restore original logo on About page'
+          rm .github/workflows/restore-about-logo.yml
+          git add .github/workflows/restore-about-logo.yml
+          git commit -m 'Remove temporary logo workflow'
+          git push
