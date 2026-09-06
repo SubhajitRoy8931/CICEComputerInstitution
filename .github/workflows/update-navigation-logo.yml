@@ -1,0 +1,50 @@
+name: Update navigation logo
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update-navigation-logo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Change only navigation logo references
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          old = 'assets/images/cice-logo.png'
+          new = 'assets/images/cice-logo-nav.png'
+
+          changed = []
+          for path in Path('.').glob('*.html'):
+              text = path.read_text(encoding='utf-8')
+              updated = text.replace(
+                  '<img src="assets/images/cice-logo.png" alt="CICE Computer Institute official logo" class="brand-logo">',
+                  '<img src="assets/images/cice-logo-nav.png" alt="CICE Computer Institute official logo" class="brand-logo">'
+              )
+              if updated != text:
+                  path.write_text(updated, encoding='utf-8')
+                  changed.append(str(path))
+
+          print('Updated navigation logo in:', ', '.join(changed) if changed else 'no files')
+          PY
+
+      - name: Commit navigation logo change and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/update-navigation-logo.yml
+          git add '*.html' .github/workflows/update-navigation-logo.yml
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Use navigation-specific CICE logo"
+          git push
