@@ -119,26 +119,52 @@
 
 <style id="founder-credentials-refinement">
 .founder-credentials {
-    display:flex;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:9px;
-    margin-bottom:18px;
-    color:var(--muted);
-    font-size:.78rem;
-    font-weight:700;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    max-width: 540px;
+    margin-bottom: 18px;
 }
-.founder-credential:first-child {
-    color:var(--blue);
-    font-weight:800;
+.founder-credential {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 68px;
+    padding: 12px 14px;
+    background: linear-gradient(135deg, #f7fbff, #eef7ff);
+    border: 1px solid #d7e8f8;
+    border-radius: 12px;
+    box-shadow: 0 5px 14px rgba(18, 61, 96, .07);
 }
-.founder-credential-separator {
-    color:#a9b7c7;
-    font-weight:600;
+.founder-credential-icon {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    border-radius: 9px;
+    background: #e3f1ff;
+    font-size: 18px;
 }
-@media (max-width:600px) {
+.founder-credential-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.founder-credential-copy strong {
+    color: var(--navy);
+    font-size: .95rem;
+    line-height: 1.2;
+}
+.founder-credential-copy small {
+    color: var(--muted);
+    font-size: .72rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+@media (max-width: 520px) {
     .founder-credentials {
-        row-gap:5px;
+        grid-template-columns: 1fr;
     }
 }
 </style>
@@ -333,10 +359,21 @@
                 <h3 class="founder-name">Mihir Chandra Roy</h3>
                 <div class="founder-role">Founder &amp; Instructor</div>
                 <div class="founder-credentials" aria-label="Founder credentials">
-                    <span class="founder-credential">🎓 MSc IT</span>
-                    <span class="founder-credential-separator" aria-hidden="true">·</span>
-                    <span class="founder-credential">10+ Years of Teaching Experience</span>
-                </div>
+        <div class="founder-credential">
+            <span class="founder-credential-icon" aria-hidden="true">🎓</span>
+            <span class="founder-credential-copy">
+                <strong>MSc IT</strong>
+                <small>Qualification</small>
+            </span>
+        </div>
+        <div class="founder-credential">
+            <span class="founder-credential-icon" aria-hidden="true">◷</span>
+            <span class="founder-credential-copy">
+                <strong>10+ Years</strong>
+                <small>Teaching Experience</small>
+            </span>
+        </div>
+    </div>
                 <p>Mihir Chandra Roy is the founder and instructor of CICE Computer Institute. His involvement in computer education began before the establishment of CICE in 2016, giving him more than a decade of teaching experience.</p>
                 <p>He established CICE with the aim of providing practical computer education and helping learners build skills they can confidently apply beyond the classroom.</p>
                 <p>As the founder and instructor, he remains directly involved in teaching students and guiding them through their learning journey.</p>
