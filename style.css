@@ -330,13 +330,13 @@ button {
 .hero-brand-cice,
 .hero-brand-institute {
     display:block;
-    font-size:clamp(3.25rem,6.4vw,5.5rem);
     font-weight:900;
     letter-spacing:0;
     line-height:.98;
 }
 
 .hero-brand-cice {
+    font-size:clamp(4.5rem,8vw,7rem);
     background:linear-gradient(135deg,#ffffff 12%,#62cfff 88%);
     -webkit-background-clip:text;
     background-clip:text;
@@ -345,8 +345,8 @@ button {
 }
 
 .hero-brand-institute {
-    margin-top:2px;
-    font-size:clamp(3.6rem,7vw,6.1rem);
+    margin-top:3px;
+    font-size:clamp(3.1rem,5.7vw,5.1rem);
     color:#fff !important;
     text-transform:uppercase;
 }
@@ -442,156 +442,29 @@ button {
 }
 
 /* ==================== HERO VISUAL ELEMENTS ==================== */
-/* Controls decorative circles, accents and the visual area beside the hero text. */
-
-.hero-visual {
-    min-height:470px;
-    position:relative;
-    display:grid;
-    place-items:center;
-}
-
-.hero-orbit {
-    position:absolute;
-    border:1px solid rgba(37,200,255,.16);
-    border-radius:50%;
-}
-
-.orbit-one {
-    width:470px;
-    height:470px;
-}
-
-.orbit-two {
-    width:340px;
-    height:340px;
-}
-
-.hero-accent {
-    position:absolute;
-    width:120px;
-    height:120px;
-    border:1px solid rgba(37,200,255,.18);
-    transform:rotate(45deg);
-}
-
-.accent-top {
-    top:35px;
-    right:45px;
-}
-
-.accent-bottom {
-    bottom:35px;
-    left:45px;
-}
-
-/* ==================== HERO IDENTITY CARD ==================== */
-/* Styles the information card used in the hero visual area. */
-
-.identity-card {
-    position:relative;
-    z-index:2;
-    width:min(470px,92%);
-    padding:28px 30px;
-    border:1px solid rgba(255,255,255,.16);
-    border-radius:24px;
-    background:rgba(10,31,53,.78);
-    box-shadow:0 30px 80px rgba(0,0,0,.28);
-    backdrop-filter:blur(10px);
-}
-
-.identity-top {
-    display:flex;
-    align-items:center;
-    gap:9px;
-    color:#7f9ab5;
-    font-size:.54rem;
-    font-weight:800;
-    letter-spacing:1.5px;
-}
-
-.identity-dot {
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:#53cfff;
-    box-shadow:0 0 16px rgba(83,207,255,.65);
-}
-
-.identity-year {
-    margin-left:auto;
-    color:#6f879f;
-}
-
-.identity-main {
-    display:flex;
-    align-items:center;
-    gap:22px;
-    padding:55px 0 38px;
-}
-
-.identity-monogram {
-    width:92px;
-    height:92px;
-    flex:0 0 92px;
-    display:grid;
-    place-items:center;
-    border-radius:22px;
-    background:linear-gradient(145deg,#1769ff,#25c8ff);
-    color:#fff;
-    font:800 3.7rem/1 Poppins;
-    box-shadow:0 18px 40px rgba(23,105,255,.25);
-}
-
-.identity-small {
-    color:#53cfff;
-    font-size:.62rem;
-    font-weight:900;
-    letter-spacing:2px;
-}
-
-.identity-main h2 {
-    color:#fff;
-    font-size:1.65rem;
-    line-height:1.08;
-    letter-spacing:1px;
-    margin:7px 0 10px;
-}
-
-.identity-main p {
-    color:#8ea8c2;
-    font-size:.54rem;
-    font-weight:800;
-    letter-spacing:1.3px;
-}
-
-.identity-line {
-    height:1px;
-    background:linear-gradient(90deg,rgba(83,207,255,.7),rgba(255,255,255,.08),transparent);
-}
-
-.identity-bottom {
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding-top:20px;
-    color:#8ea8c2;
-    font-size:.56rem;
-    font-weight:900;
-    letter-spacing:1.3px;
-}
-
-.identity-bottom span:nth-child(1) {
-    color:#53cfff;
-}
-
-.identity-bottom span:nth-child(3) {
-    color:#fff;
-}
-
-.identity-bottom span:nth-child(5) {
-    color:#53cfff;
-}
+/* Uses authentic CICE photographs as the hero's identity-building visual. */
+.hero-visual { min-height:470px; position:relative; display:grid; place-items:center; }
+.hero-location { display:inline-flex; align-items:center; gap:9px; margin:0 0 22px; padding:8px 12px; border:1px solid rgba(98,207,255,.28); border-radius:999px; background:rgba(37,200,255,.08); color:#d9f5ff; font-size:.66rem; font-weight:800; letter-spacing:1.1px; }
+.hero-location-pin { display:grid; place-items:center; width:19px; height:19px; border-radius:50%; background:rgba(98,207,255,.18); color:#62cfff; font-size:.82rem; line-height:1; }
+.hero-photo-carousel { width:min(520px,100%); position:relative; z-index:2; }
+.hero-photo-stage { position:relative; width:100%; aspect-ratio:4 / 3; overflow:hidden; border:1px solid rgba(255,255,255,.18); border-radius:22px; background:#08223a; box-shadow:0 30px 70px rgba(0,0,0,.3); }
+.hero-photo-slide { position:absolute; inset:0; margin:0; opacity:0; visibility:hidden; transform:scale(1.025); transition:opacity .65s ease, transform 1.1s ease, visibility .65s; }
+.hero-photo-slide.is-active { opacity:1; visibility:visible; transform:scale(1); z-index:1; }
+.hero-photo-slide img { display:block; width:100%; height:100%; object-fit:cover; }
+.hero-photo-slide::after { content:""; position:absolute; inset:45% 0 0; background:linear-gradient(180deg,transparent,rgba(3,18,33,.88)); pointer-events:none; }
+.hero-photo-slide figcaption { position:absolute; left:24px; right:24px; bottom:22px; z-index:2; display:flex; flex-direction:column; gap:4px; color:#fff; }
+.hero-photo-slide figcaption strong { font-size:1rem; line-height:1.2; letter-spacing:.2px; }
+.hero-photo-slide figcaption span { color:#d1e2f0; font-size:.67rem; line-height:1.4; }
+.hero-photo-controls { display:flex; align-items:center; justify-content:center; gap:12px; margin-top:15px; }
+.hero-photo-arrow { width:36px; height:36px; flex:0 0 36px; display:grid; place-items:center; border:1px solid rgba(255,255,255,.18); border-radius:50%; background:rgba(255,255,255,.07); color:#fff; cursor:pointer; font-size:.9rem; transition:.2s; }
+.hero-photo-arrow:hover { background:rgba(255,255,255,.13); transform:translateY(-1px); }
+.hero-photo-dots { display:flex; align-items:center; justify-content:center; gap:7px; }
+.hero-photo-dot { width:8px; height:8px; padding:0; border:0; border-radius:50%; background:rgba(255,255,255,.3); cursor:pointer; transition:.2s; }
+.hero-photo-dot.is-active { width:24px; border-radius:999px; background:#62cfff; }
+.hero-photo-arrow:focus-visible, .hero-photo-dot:focus-visible { outline:2px solid #62cfff; outline-offset:3px; }
+@media(max-width:850px) { .hero-visual { min-height:auto; } .hero-photo-carousel { width:min(560px,100%); } }
+@media(max-width:600px) { .hero-location { margin-bottom:18px; font-size:.58rem; letter-spacing:.8px; } .hero-photo-stage { aspect-ratio:4 / 3; border-radius:18px; } .hero-photo-slide figcaption { left:17px; right:17px; bottom:17px; } .hero-photo-slide figcaption strong { font-size:.88rem; } .hero-photo-slide figcaption span { font-size:.6rem; } }
+@media(prefers-reduced-motion:reduce) { .hero-photo-slide { transition:none; } }
 
 /* ==================== GENERAL SECTIONS ==================== */
 /* Provides shared section spacing and heading styles. */
@@ -1682,214 +1555,6 @@ button {
     }
 }
 
-/* ==================== LAPTOP HERO ILLUSTRATION ==================== */
-/* Styles the custom laptop illustration in the homepage hero. */
-
-.laptop-hero {
-    width:520px;
-    position:relative;
-    z-index:3;
-    transform:rotate(-2deg);
-    filter:drop-shadow(0 30px 40px rgba(0,0,0,.28));
-}
-
-.laptop-lid {
-    padding:12px 12px 9px;
-    background:linear-gradient(145deg,#183d5f,#0d2945);
-    border-radius:18px 18px 7px 7px;
-    box-shadow:0 7px 0 rgba(2,15,28,.45);
-}
-
-.laptop-bezel {
-    height:335px;
-    position:relative;
-    overflow:hidden;
-    border-radius:10px 10px 4px 4px;
-    background:#061a2d;
-    border:1px solid rgba(255,255,255,.08);
-    box-shadow:inset 0 0 0 7px #102f4c;
-}
-
-.laptop-camera {
-    position:absolute;
-    top:6px;
-    left:50%;
-    width:5px;
-    height:5px;
-    transform:translateX(-50%);
-    border-radius:50%;
-    background:#4c718d;
-}
-
-.laptop-topbar {
-    height:34px;
-    display:flex;
-    align-items:center;
-    padding:0 14px;
-    border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.laptop-topbar>span {
-    margin-left:auto;
-    color:#6c8ba5;
-    font-size:6px;
-    font-weight:800;
-    letter-spacing:1px;
-}
-
-.laptop-dots {
-    display:flex;
-    gap:5px;
-}
-
-.laptop-dots i {
-    width:6px;
-    height:6px;
-    border-radius:50%;
-    background:#4d708b;
-}
-
-.laptop-content {
-    padding:43px 43px;
-}
-
-.laptop-content>small {
-    color:#55d8ff;
-    font-size:7px;
-    font-weight:900;
-    letter-spacing:1.7px;
-}
-
-.laptop-content h2 {
-    margin-top:8px;
-    color:#fff;
-    font:700 27px/1.1 Poppins,Arial,sans-serif;
-}
-
-.laptop-lines {
-    margin-top:25px;
-}
-
-.laptop-lines i {
-    display:block;
-    height:7px;
-    margin:10px 0;
-    border-radius:10px;
-}
-
-.laptop-lines i:nth-child(1) {
-    width:78%;
-    background:#3185ff;
-}
-
-.laptop-lines i:nth-child(2) {
-    width:60%;
-    background:#285a80;
-}
-
-.laptop-lines i:nth-child(3) {
-    width:43%;
-    background:#2dc5ee;
-}
-
-.laptop-cards {
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-    margin-top:28px;
-}
-
-.laptop-cards div {
-    height:68px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    border:1px solid rgba(75,196,255,.17);
-    border-radius:9px;
-    background:#0d2d4a;
-}
-
-.laptop-cards b {
-    font-size:9px;
-    color:#83b6d6;
-}
-
-.laptop-cards span {
-    font-size:6px;
-    color:#5b7890;
-    margin-top:4px;
-}
-
-.laptop-progress {
-    height:7px;
-    margin-top:24px;
-    overflow:hidden;
-    border-radius:10px;
-    background:#153a5a;
-}
-
-.laptop-progress span {
-    display:block;
-    width:73%;
-    height:100%;
-    background:linear-gradient(90deg,#2374ff,#42d2ff);
-}
-
-.laptop-hinge {
-    width:120px;
-    height:7px;
-    margin:-1px auto 0;
-    border-radius:0 0 5px 5px;
-    background:#071c2e;
-}
-
-.laptop-base {
-    height:58px;
-    position:relative;
-    background:linear-gradient(#123653,#0a243c);
-    border-radius:3px 3px 14px 14px;
-    box-shadow:0 9px 0 #041524;
-}
-
-.keyboard {
-    width:310px;
-    margin:auto;
-    padding:9px 8px;
-    display:grid;
-    grid-template-columns:repeat(10,1fr);
-    gap:4px;
-}
-
-.keyboard i {
-    height:6px;
-    border-radius:2px;
-    background:#315774;
-}
-
-.keyboard i:nth-child(3n) {
-    background:#4385a8;
-}
-
-.trackpad {
-    position:absolute;
-    width:78px;
-    height:22px;
-    left:50%;
-    bottom:5px;
-    transform:translateX(-50%);
-    border:1px solid rgba(145,191,215,.25);
-    border-radius:4px;
-}
-
-.laptop-front {
-    width:92%;
-    height:7px;
-    margin:-1px auto 0;
-    border-radius:0 0 14px 14px;
-    background:#0a2035;
-}
-
 /* ==================== FACILITY ICON OVERRIDES ==================== */
 /* Enlarges and restyles the facility symbols used in the current design. */
 
@@ -1904,54 +1569,6 @@ button {
     place-items:center !important;
     border-radius:13px !important;
     margin-bottom:20px !important;
-}
-
-/* ==================== LAPTOP RESPONSIVE SIZING ==================== */
-/* Shrinks the laptop illustration at tablet and mobile widths. */
-
-@media(max-width:1000px) {
-    .laptop-hero {
-        width:440px;
-    }
-
-    .laptop-bezel {
-        height:300px;
-    }
-}
-
-@media(max-width:600px) {
-    .laptop-hero {
-        width:305px;
-    }
-
-    .laptop-bezel {
-        height:220px;
-    }
-
-    .laptop-content {
-        padding:25px;
-    }
-
-    .laptop-content h2 {
-        font-size:19px;
-    }
-
-    .laptop-cards div {
-        height:45px;
-    }
-
-    .laptop-cards span {
-        display:none;
-    }
-
-    .keyboard {
-        width:190px;
-        gap:3px;
-    }
-
-    .keyboard i {
-        height:5px;
-    }
 }
 
 /* ==================== FINAL MOBILE HERO / ABOUT FIX ==================== */
@@ -1976,13 +1593,13 @@ button {
     }
 
     .hero-brand-cice {
-        font-size:clamp(3rem,16vw,4.5rem);
+        font-size:clamp(3.8rem,18vw,5.4rem);
         letter-spacing:0;
     }
 
     .hero-brand-institute {
         margin-top:4px;
-        font-size:clamp(2.7rem,14vw,4rem);
+        font-size:clamp(2.45rem,12.2vw,3.7rem);
         letter-spacing:0;
         color:#fff !important;
         text-transform:uppercase;
@@ -2888,6 +2505,32 @@ button {
         width:26px;
         height:26px;
         font-size:.84rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .navbar .brand-logo {
+        width: 46px !important;
+        height: 46px !important;
+    }
+
+    .navbar .brand-info strong {
+        font-size: .7rem !important;
+    }
+
+    .navbar .brand-info small {
+        font-size: .5rem !important;
+        letter-spacing: 0 !important;
+    }
+
+    .navbar .menu-toggle {
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    .navbar .nav-action {
+        width: 38px !important;
+        height: 38px !important;
     }
 }
 
@@ -4300,6 +3943,33 @@ button {
     flex: 0 0 auto !important;
 }
 
+.navbar .brand-info {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    min-width: 0 !important;
+    line-height: 1.15 !important;
+}
+
+.navbar .brand-info strong {
+    display: block !important;
+    color: var(--navy) !important;
+    font-size: .9rem !important;
+    font-weight: 800 !important;
+    letter-spacing: .1px !important;
+    white-space: nowrap !important;
+}
+
+.navbar .brand-info small {
+    display: block !important;
+    margin-top: 4px !important;
+    color: #75869a !important;
+    font-size: .62rem !important;
+    font-weight: 700 !important;
+    letter-spacing: .15px !important;
+    white-space: nowrap !important;
+}
+
 .navbar .nav-links {
     display: flex !important;
     align-items: center !important;
@@ -4469,6 +4139,15 @@ button {
     .navbar .brand {
         margin-right: 0 !important;
         justify-self: start !important;
+    }
+
+    .navbar .brand-info strong {
+        font-size: .78rem !important;
+    }
+
+    .navbar .brand-info small {
+        margin-top: 3px !important;
+        font-size: .55rem !important;
     }
 
     .navbar .menu-toggle {
