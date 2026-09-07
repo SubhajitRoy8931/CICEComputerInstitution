@@ -41,3 +41,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+
+# This workflow is intentionally kept as a user-authored push so GitHub Pages
+# redeploys the current main branch after bot-authored content commits.
