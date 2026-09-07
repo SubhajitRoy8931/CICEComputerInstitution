@@ -46,4 +46,4 @@ FINAL PREVIEW BUILD:
 - The new hero uses a clean CICE identity card and subtle educational geometry.
 - The full Gallery remains a separate gallery.html page with photo/video support.
 
-<!-- Trigger founder credentials redesign -->
+<!-- Trigger founder credentials redesign v2 -->
