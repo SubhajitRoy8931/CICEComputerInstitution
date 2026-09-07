@@ -73,8 +73,12 @@
 <header class="site-header">
     <nav class="navbar container">
     <a href="index.html" class="brand" aria-label="CICE Computer Institute - Home">
-    <img src="assets/images/cice-logo-nav.png" alt="CICE Computer Institute official logo" class="brand-logo">
-</a>
+        <img src="assets/images/cice-logo-nav.png" alt="CICE Computer Institute official logo" class="brand-logo">
+        <span class="brand-info">
+            <strong>CICE Computer Institute</strong>
+            <small>Halakura, Dhubri, Assam</small>
+        </span>
+    </a>
 
     <button class="menu-toggle" id="menuToggle" type="button"
             aria-label="Open menu" aria-expanded="false">☰</button>
@@ -156,14 +160,19 @@
         <div class="hero-content">
             <div class="hero-kicker">Learn, Practice &amp; Grow with CICE</div>
 
-            <!-- Main CICE heading. CSS controls its size and responsive appearance. -->
+            <!-- Main CICE heading. The location badge below identifies this specific institute. -->
             <h1 class="hero-brand">
                 <span class="hero-brand-cice">CICE</span>
                 <span class="hero-brand-institute">COMPUTER</span>
                 <span class="hero-brand-institute">INSTITUTE</span>
             </h1>
 
-            <p>Computer education and practical training for students, job seekers and aspiring professionals in Halakura and surrounding areas.</p>
+            <div class="hero-location" aria-label="CICE location">
+                <span class="hero-location-pin" aria-hidden="true">⌖</span>
+                <span>HALAKURA, DHUBRI, ASSAM</span>
+            </div>
+
+            <p>Computer education and practical training for students, job seekers and aspiring professionals.</p>
 
             <!-- Primary actions for exploring courses and contacting CICE. -->
             <div class="hero-actions">
@@ -173,60 +182,38 @@
 
             <div class="hero-note">
                 <span>Established 2016</span>
-                <span>•</span>
-                <span>Halakura, Dhubri, Assam</span>
             </div>
         </div>
 
-        <!-- Decorative laptop illustration. It is hidden from assistive technologies because it is decorative. -->
-        <div class="hero-visual" aria-hidden="true">
-            <div class="hero-orbit orbit-one"></div>
-            <div class="hero-orbit orbit-two"></div>
-            <div class="hero-accent accent-top"></div>
-            <div class="hero-accent accent-bottom"></div>
-
-            <div class="laptop-hero">
-                <div class="laptop-lid">
-                    <div class="laptop-bezel">
-                        <div class="laptop-camera"></div>
-
-                        <div class="laptop-topbar">
-                            <div class="laptop-dots">
-                                <i></i><i></i><i></i>
-                            </div>
-                            <span>CICE · COMPUTER LEARNING</span>
-                        </div>
-
-                        <div class="laptop-content">
-                            <small>COMPUTER EDUCATION</small>
-                            <h2>Learn by doing</h2>
-                            <div class="laptop-lines">
-                                <i></i><i></i><i></i>
-                            </div>
-                            <div class="laptop-cards">
-                                <div><b>DOC</b><span>Documents</span></div>
-                                <div><b>DATA</b><span>Spreadsheets</span></div>
-                                <div><b>WEB</b><span>Digital skills</span></div>
-                            </div>
-                            <div class="laptop-progress"><span></span></div>
-                        </div>
-                    </div>
+        <!-- Authentic photographs from the CICE gallery identify the physical institute and its learning environment. -->
+        <div class="hero-visual">
+            <div class="hero-photo-carousel" data-hero-carousel aria-label="CICE Institute photo showcase">
+                <div class="hero-photo-stage">
+                    <figure class="hero-photo-slide is-active">
+                        <img src="assets/images/gallery/life-03.jpg" alt="Exterior of CICE Computer Institute in Halakura with the institute signboard visible" loading="eager" decoding="async">
+                        <figcaption><strong>Our Institute</strong><span>CICE Computer Institute, Halakura</span></figcaption>
+                    </figure>
+                    <figure class="hero-photo-slide">
+                        <img src="assets/images/gallery/life-01.jpg" alt="CICE computer classroom with rows of computers" loading="lazy" decoding="async">
+                        <figcaption><strong>Our Classroom</strong><span>A dedicated environment for computer learning</span></figcaption>
+                    </figure>
+                    <figure class="hero-photo-slide">
+                        <img src="assets/images/gallery/life-04.jpg" alt="Students attending a computer learning session at CICE" loading="lazy" decoding="async">
+                        <figcaption><strong>Our Students</strong><span>Learning through practical work</span></figcaption>
+                    </figure>
                 </div>
 
-                <div class="laptop-hinge"></div>
-
-                <div class="laptop-base">
-                    <div class="keyboard">
-                        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-                        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-                        <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                <div class="hero-photo-controls">
+                    <button class="hero-photo-arrow" type="button" data-hero-prev aria-label="Previous CICE photo">←</button>
+                    <div class="hero-photo-dots" role="tablist" aria-label="Choose a CICE photo">
+                        <button class="hero-photo-dot is-active" type="button" role="tab" aria-selected="true" aria-label="Show photo 1" data-hero-dot="0"></button>
+                        <button class="hero-photo-dot" type="button" role="tab" aria-selected="false" aria-label="Show photo 2" data-hero-dot="1"></button>
+                        <button class="hero-photo-dot" type="button" role="tab" aria-selected="false" aria-label="Show photo 3" data-hero-dot="2"></button>
                     </div>
-                    <div class="trackpad"></div>
+                    <button class="hero-photo-arrow" type="button" data-hero-next aria-label="Next CICE photo">→</button>
                 </div>
-                <div class="laptop-front"></div>
             </div>
         </div>
-    </div>
     </div>
 </section>
 
@@ -653,6 +640,85 @@
 
 
 
+
+<script>
+(function () {
+    function initHeroCarousel() {
+        const carousel = document.querySelector('[data-hero-carousel]');
+        if (!carousel) return;
+
+        const slides = Array.from(carousel.querySelectorAll('.hero-photo-slide'));
+        const dots = Array.from(carousel.querySelectorAll('[data-hero-dot]'));
+        const previous = carousel.querySelector('[data-hero-prev]');
+        const next = carousel.querySelector('[data-hero-next]');
+        if (!slides.length || !dots.length || !previous || !next) return;
+
+        let current = 0;
+        let timer = null;
+        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function showSlide(index) {
+            current = (index + slides.length) % slides.length;
+            slides.forEach(function (slide, i) {
+                slide.classList.toggle('is-active', i === current);
+                slide.setAttribute('aria-hidden', i === current ? 'false' : 'true');
+            });
+            dots.forEach(function (dot, i) {
+                const active = i === current;
+                dot.classList.toggle('is-active', active);
+                dot.setAttribute('aria-selected', active ? 'true' : 'false');
+                dot.tabIndex = active ? 0 : -1;
+            });
+        }
+
+        function stopAutoPlay() {
+            if (timer) {
+                window.clearInterval(timer);
+                timer = null;
+            }
+        }
+
+        function startAutoPlay() {
+            stopAutoPlay();
+            if (reduceMotion) return;
+            timer = window.setInterval(function () {
+                showSlide(current + 1);
+            }, 5000);
+        }
+
+        previous.addEventListener('click', function () {
+            showSlide(current - 1);
+            startAutoPlay();
+        });
+        next.addEventListener('click', function () {
+            showSlide(current + 1);
+            startAutoPlay();
+        });
+        dots.forEach(function (dot, index) {
+            dot.addEventListener('click', function () {
+                showSlide(index);
+                startAutoPlay();
+            });
+        });
+
+        carousel.addEventListener('mouseenter', stopAutoPlay);
+        carousel.addEventListener('mouseleave', startAutoPlay);
+        carousel.addEventListener('focusin', stopAutoPlay);
+        carousel.addEventListener('focusout', function (event) {
+            if (!carousel.contains(event.relatedTarget)) startAutoPlay();
+        });
+
+        showSlide(0);
+        startAutoPlay();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHeroCarousel, {once:true});
+    } else {
+        initHeroCarousel();
+    }
+})();
+</script>
 
 <script>
 (function () {
