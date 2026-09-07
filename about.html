@@ -117,8 +117,31 @@
 }
 </style>
 
-
-
+<style id="founder-credentials-refinement">
+.founder-credentials {
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:9px;
+    margin-bottom:18px;
+    color:var(--muted);
+    font-size:.78rem;
+    font-weight:700;
+}
+.founder-credential:first-child {
+    color:var(--blue);
+    font-weight:800;
+}
+.founder-credential-separator {
+    color:#a9b7c7;
+    font-weight:600;
+}
+@media (max-width:600px) {
+    .founder-credentials {
+        row-gap:5px;
+    }
+}
+</style>
 
 </head>
 <body>
@@ -309,13 +332,14 @@
             <div class="founder-copy">
                 <h3 class="founder-name">Mihir Chandra Roy</h3>
                 <div class="founder-role">Founder &amp; Instructor</div>
-                <div class="experience-chip"><strong>10+ Years</strong><span>Teaching Experience</span></div>
+                <div class="founder-credentials" aria-label="Founder credentials">
+                    <span class="founder-credential">🎓 MSc IT</span>
+                    <span class="founder-credential-separator" aria-hidden="true">·</span>
+                    <span class="founder-credential">10+ Years of Teaching Experience</span>
+                </div>
                 <p>Mihir Chandra Roy is the founder and instructor of CICE Computer Institute. His involvement in computer education began before the establishment of CICE in 2016, giving him more than a decade of teaching experience.</p>
                 <p>He established CICE with the aim of providing practical computer education and helping learners build skills they can confidently apply beyond the classroom.</p>
                 <p>As the founder and instructor, he remains directly involved in teaching students and guiding them through their learning journey.</p>
-                <div class="founder-details">
-                    <div class="founder-detail"><small>QUALIFICATION</small><strong>To Be Added Later</strong></div>
-                </div>
             </div>
         </div>
     </div>
