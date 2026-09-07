@@ -45,3 +45,5 @@ FINAL PREVIEW BUILD:
 - The hero visual was redesigned to remove the previous fake software dashboard.
 - The new hero uses a clean CICE identity card and subtle educational geometry.
 - The full Gallery remains a separate gallery.html page with photo/video support.
+
+<!-- Trigger founder credentials redesign -->
