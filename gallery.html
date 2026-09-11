@@ -1,1679 +1,770 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Declares the document character encoding. -->
     <meta charset="UTF-8">
-
-    <!-- Makes the gallery responsive on phones and tablets. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    
-    <!-- ==================== FAVICON ==================== -->
-    <!-- Uses the official CICE logo as the browser tab icon. -->
     <link rel="icon" type="image/png" href="assets/images/cice-logo.png">
     <link rel="apple-touch-icon" href="assets/images/cice-logo.png">
-
-    <!-- ==================== SOCIAL / META IMAGE ==================== -->
-    <!-- Uses the official CICE logo when this page is shared. -->
     <meta property="og:image" content="https://subhajitroy8931.github.io/CICEComputerInstitution/assets/images/cice-logo.png">
     <meta property="og:image:width" content="1254">
     <meta property="og:image:height" content="1254">
     <meta name="twitter:image" content="https://subhajitroy8931.github.io/CICEComputerInstitution/assets/images/cice-logo.png">
-<!-- Describes the gallery page for search engines. -->
     <meta name="description" content="Gallery of CICE Computer Institute, Halakura, Dhubri, Assam — institute environment, students, practical training, internship programs and events.">
-
-    <!-- Identifies the preferred URL for this page. -->
     <link rel="canonical" href="https://subhajitroy8931.github.io/CICEComputerInstitution/gallery.html">
-
-    <!-- Open Graph metadata controls the basic information used when the gallery is shared. -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Gallery | CICE Computer Institute">
     <meta property="og:description" content="Explore CICE Computer Institute, Halakura through photographs, practical learning, internship programs and events.">
     <meta property="og:url" content="https://subhajitroy8931.github.io/CICEComputerInstitution/gallery.html">
-
-    <!-- Provides a simple sharing card for X (formerly Twitter). -->
     <meta name="twitter:card" content="summary_large_image">
-
-    <!-- Text shown in the browser tab and commonly used as the search-result title. -->
     <title>Gallery | CICE Computer Institute</title>
-
-    <!-- Loads the shared stylesheet used throughout the website. -->
     <link rel="stylesheet" href="style.css">
 
-
-    <!-- ==================== GALLERY PAGE STYLES ==================== -->
     <style>
-        /* Adds a little space below the gallery page heading. */
-        .gallery-main {
-            padding-top: 20px;
-        }
+        .gallery-main { padding-top: 20px; }
+        .gallery-section { margin-bottom: 78px; scroll-margin-top: 100px; }
+        .gallery-section:last-child { margin-bottom: 25px; }
+        .gallery-section-heading { margin-bottom: 24px; }
+        .gallery-section-heading .section-label { display:block; margin-bottom:8px; }
+        .gallery-section-heading h2 { margin:0; font-size:clamp(1.7rem,3vw,2.35rem); line-height:1.1; }
+        .gallery-section-heading p { max-width:620px; margin:10px 0 0; color:var(--muted); font-size:.82rem; line-height:1.7; }
 
-        /* Creates separation between gallery categories. */
-        .gallery-section {
-            margin-bottom: 82px;
-            scroll-margin-top: 110px;
-        }
-
-        /* Reduces the gap after the final gallery category. */
-        .gallery-section:last-child {
-            margin-bottom: 25px;
-        }
-
-        /* Controls the spacing above each category heading. */
-        .gallery-section-heading {
-            margin-bottom: 24px;
-        }
-
-        /* Places the small category label on its own line. */
-        .gallery-section-heading .section-label {
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        /* Styles each gallery category heading. */
-        .gallery-section-heading h2 {
-            margin: 0;
-            font-size: clamp(1.7rem, 3vw, 2.35rem);
-            line-height: 1.1;
-        }
-
-        /* Limits the width of each category description. */
-        .gallery-section-heading p {
-            max-width: 620px;
-            margin: 10px 0 0;
-            color: var(--muted);
-            font-size: .82rem;
-            line-height: 1.7;
-        }
-
-        /*
-         * The viewport hides the extra part of the carousel track.
-         * The JavaScript moves the track horizontally inside this area.
-         */
         .media-carousel {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            padding: 0 42px;
-            box-sizing: border-box;
+            position:relative;
+            width:100%;
+            overflow:hidden;
+            padding:0 44px;
+            box-sizing:border-box;
+            touch-action:pan-y;
         }
-
-        /*
-         * The track contains all cards in one horizontal row.
-         * It is translated by JavaScript when the user moves the carousel.
-         */
         .media-grid {
-            display: flex;
-            gap: 16px;
-            width: 100%;
-            min-width: 0;
-            margin: 0;
-            padding: 0;
-            overflow: visible;
-            transition: transform .35s ease;
-            will-change: transform;
+            display:flex;
+            gap:16px;
+            width:100%;
+            min-width:0;
+            margin:0;
+            padding:0;
+            overflow:visible;
+            transition:transform .35s ease;
+            will-change:transform;
         }
+        .media-grid.no-transition { transition:none; }
+        .media-grid .media-card { flex:0 0 32%; }
 
-        /* Removes the animation when the carousel silently re-centers. */
-        .media-grid.no-transition {
-            transition: none;
-        }
-
-        /*
-         * Each card is one slide.
-         * Desktop shows three complete cards and partial cards at both sides.
-         */
-        .media-grid .media-card {
-            /*
-             * Desktop: three complete cards are visible.
-             * Extra space reveals a partial card at each side.
-             */
-            flex: 0 0 25%;
-        }
-
-        /* Keeps every photo card at a consistent shape. */
         .media-card {
-            position: relative;
-            aspect-ratio: 4 / 3;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            background: linear-gradient(
-                135deg,
-                #eaf7ff,
-                #f4fbff
-            );
-            cursor: grab;
-            padding: 0;
-            transition:
-                transform .28s ease,
-                box-shadow .28s ease,
-                border-color .28s ease;
+            position:relative;
+            aspect-ratio:4 / 3;
+            overflow:hidden;
+            border:1px solid var(--border);
+            border-radius:18px;
+            background:linear-gradient(135deg,#eaf7ff,#f4fbff);
+            cursor:grab;
+            padding:0;
+            color:inherit;
+            transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease;
         }
-
-        /* Gives a card a small lift when the mouse is over it. */
-        .media-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow);
-            border-color: #b8d9f5;
-        }
-
-        /* Changes the cursor while the user is dragging. */
-        .media-grid.is-dragging .media-card {
-            cursor: grabbing;
-        }
-
-        /* Prevents the image itself from starting a browser drag. */
+        .media-card:hover { transform:translateY(-4px); box-shadow:var(--shadow); border-color:#b8d9f5; }
+        .media-grid.is-dragging .media-card { cursor:grabbing; }
         .media-card img,
         .media-card video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            user-select: none;
-            -webkit-user-drag: none;
+            position:absolute;
+            inset:0;
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            user-select:none;
+            -webkit-user-drag:none;
         }
-
-        /* Adds a dark gradient so image titles stay readable. */
         .media-card::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to top,
-                rgba(5, 20, 40, .58),
-                transparent 48%
-            );
-            pointer-events: none;
+            content:"";
+            position:absolute;
+            inset:0;
+            background:linear-gradient(to top,rgba(5,20,40,.62),transparent 48%);
+            pointer-events:none;
         }
-
-        /* Placeholder shown when an image file cannot be loaded. */
+        .media-card video { pointer-events:none; }
         .media-placeholder {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            display: grid;
-            place-items: center;
-            padding: 20px;
-            text-align: center;
-            color: #56708b;
+            position:absolute;
+            inset:0;
+            z-index:2;
+            display:grid;
+            place-items:center;
+            padding:20px;
+            text-align:center;
+            color:#56708b;
+            background:#eef7ff;
         }
-
-        /* Styles the main placeholder message. */
-        .media-placeholder strong {
-            display: block;
-            color: #234b72;
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-
-        /* Styles the small placeholder instruction. */
-        .media-placeholder span {
-            font-size: .7rem;
-        }
-
-        /* Places the photo title over the bottom of the image. */
+        .media-placeholder strong { display:block; color:#234b72; font-size:1rem; margin-bottom:5px; }
+        .media-placeholder span { font-size:.7rem; }
         .media-title {
-            position: absolute;
-            z-index: 3;
-            left: 14px;
-            right: 14px;
-            bottom: 13px;
-            color: #fff;
-            font-size: .74rem;
-            font-weight: 700;
-            line-height: 1.35;
-            text-shadow: 0 1px 5px rgba(0, 0, 0, .28);
-            pointer-events: none;
+            position:absolute;
+            z-index:3;
+            left:14px;
+            right:14px;
+            bottom:13px;
+            color:#fff;
+            font-size:.74rem;
+            font-weight:700;
+            line-height:1.35;
+            text-shadow:0 1px 5px rgba(0,0,0,.28);
+            pointer-events:none;
         }
-
-        /* Shows whether the item is a photo or video. */
         .media-type {
-            position: absolute;
-            z-index: 4;
-            top: 12px;
-            left: 12px;
-            padding: 6px 9px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, .9);
-            color: #234b72;
-            font-size: .62rem;
-            font-weight: 800;
-            letter-spacing: .04em;
-            text-transform: uppercase;
+            position:absolute;
+            z-index:4;
+            top:12px;
+            left:12px;
+            padding:6px 9px;
+            border-radius:999px;
+            background:rgba(255,255,255,.9);
+            color:#234b72;
+            font-size:.62rem;
+            font-weight:800;
+            letter-spacing:.04em;
+            text-transform:uppercase;
         }
-
-        /* Shows a play symbol when a gallery item is a video. */
         .media-play {
-            position: absolute;
-            z-index: 4;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            background: rgba(7, 26, 51, .86);
-            color: #fff;
-            font-size: .8rem;
-            padding-left: 2px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .22);
+            position:absolute;
+            z-index:4;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            width:48px;
+            height:48px;
+            border-radius:50%;
+            display:grid;
+            place-items:center;
+            background:rgba(7,26,51,.86);
+            color:#fff;
+            font-size:.8rem;
+            padding-left:2px;
+            box-shadow:0 10px 25px rgba(0,0,0,.22);
+            pointer-events:none;
         }
-
-        /* Prevents videos in cards from intercepting carousel gestures. */
-        .media-card video {
-            pointer-events: none;
-        }
-
-        /*
-         * Previous and next buttons sit inside the left and right
-         * padding areas of the carousel.
-         */
         .media-carousel-button {
-            position: absolute;
-            top: 50%;
-            z-index: 5;
-            width: 42px;
-            height: 42px;
-            border: 0;
-            border-radius: 50%;
-            background: #243b55;
-            color: #fff;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transform: translateY(-50%);
-            box-shadow: 0 8px 22px rgba(5, 20, 40, .18);
+            position:absolute;
+            top:50%;
+            z-index:5;
+            width:42px;
+            height:42px;
+            border:0;
+            border-radius:50%;
+            background:#243b55;
+            color:#fff;
+            font-size:1.1rem;
+            cursor:pointer;
+            transform:translateY(-50%);
+            box-shadow:0 8px 22px rgba(5,20,40,.18);
         }
-
-        /* Places the previous button on the left. */
-        .media-carousel-prev {
-            left: 0;
-        }
-
-        /* Places the next button on the right. */
-        .media-carousel-next {
-            right: 0;
-        }
-
-        /* Makes disabled arrow buttons look inactive. */
-        .media-carousel-button:disabled {
-            opacity: .45;
-            cursor: default;
-        }
-
-        /*
-         * Allows horizontal finger dragging while keeping normal
-         * vertical page scrolling available.
-         */
-        .media-carousel {
-            touch-action: pan-y;
-        }
-
-        /* Gives the browser a clear focus indicator for keyboard users. */
+        .media-carousel-prev { left:0; }
+        .media-carousel-next { right:0; }
+        .media-carousel-button:disabled { opacity:.45; cursor:default; }
         .media-carousel-button:focus-visible,
-        .media-card:focus-visible {
-            outline: 3px solid #1f6fff;
-            outline-offset: 3px;
-        }
-
-        /* Keeps the View All button centered below the carousel. */
-        .media-more {
-            display: flex;
-            justify-content: center;
-            margin-top: 22px;
-        }
-
-        /* Makes the View All button behave like a normal button. */
-        .media-more button {
-            cursor: pointer;
-        }
-
-        /* Message shown when a category has no media. */
+        .media-card:focus-visible { outline:3px solid #1f6fff; outline-offset:3px; }
+        .media-more { display:flex; justify-content:center; margin-top:22px; }
+        .media-more button { cursor:pointer; }
         .media-empty {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 35px 20px;
-            text-align: center;
-            border: 1px dashed #c8d9e8;
-            border-radius: 16px;
-            color: var(--muted);
-            font-size: .8rem;
+            width:100%;
+            box-sizing:border-box;
+            padding:35px 20px;
+            text-align:center;
+            border:1px dashed #c8d9e8;
+            border-radius:16px;
+            color:var(--muted);
+            font-size:.8rem;
         }
+        .media-carousel.is-empty { padding:0; }
 
-        /* Keeps an empty carousel from showing unnecessary controls. */
-        .media-carousel.is-empty {
-            padding: 0;
-        }
-
-        /* ==================== FULLSCREEN MEDIA VIEWER ==================== */
-
-        /* Covers the page while the selected image or video is open. */
         .media-modal {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 22px;
-            background: rgba(4, 14, 28, .86);
-            backdrop-filter: blur(7px);
+            position:fixed;
+            inset:0;
+            z-index:9999;
+            display:none;
+            align-items:center;
+            justify-content:center;
+            padding:22px;
+            background:rgba(4,14,28,.86);
+            backdrop-filter:blur(7px);
         }
-
-        /* Makes the media viewer visible. */
-        .media-modal.is-open {
-            display: flex;
-        }
-
-        /* Limits the size of the fullscreen viewer content. */
+        .media-modal.is-open { display:flex; }
         .media-modal-content {
-            position: relative;
-            width: min(1080px, 96vw);
-            max-height: 92vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            position:relative;
+            width:min(1080px,96vw);
+            max-height:92vh;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
         }
-
-        /* Close button for the fullscreen viewer. */
         .media-modal-close {
-            position: absolute;
-            right: -8px;
-            top: -46px;
-            width: 40px;
-            height: 40px;
-            border: 0;
-            border-radius: 50%;
-            background: #fff;
-            color: #13243a;
-            font-size: 1.2rem;
-            cursor: pointer;
-            z-index: 3;
+            position:absolute;
+            right:-8px;
+            top:-46px;
+            width:40px;
+            height:40px;
+            border:0;
+            border-radius:50%;
+            background:#fff;
+            color:#13243a;
+            font-size:1.2rem;
+            cursor:pointer;
+            z-index:3;
         }
-
-        /* Centers the selected image or video. */
         .media-modal-stage {
-            width: 100%;
-            max-height: 82vh;
-            display: grid;
-            place-items: center;
+            width:100%;
+            max-height:82vh;
+            display:grid;
+            place-items:center;
         }
-
-        /* Limits the size of fullscreen media. */
         .media-modal-stage img,
         .media-modal-stage video {
-            max-width: 100%;
-            max-height: 82vh;
-            border-radius: 14px;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, .35);
-            background: #08182c;
+            max-width:100%;
+            max-height:82vh;
+            border-radius:14px;
+            box-shadow:0 25px 70px rgba(0,0,0,.35);
+            background:#08182c;
         }
-
-        /* Shows the title below fullscreen media. */
-        .media-modal-caption {
-            margin-top: 12px;
-            color: #fff;
-            font-size: .8rem;
-            text-align: center;
-        }
-
-        /* Places fullscreen previous/next controls together. */
-        .media-modal-nav {
-            display: flex;
-            gap: 10px;
-            margin-top: 12px;
-        }
-
-        /* Styles fullscreen previous/next controls. */
+        .media-modal-caption { margin-top:12px; color:#fff; font-size:.8rem; text-align:center; }
+        .media-modal-nav { display:flex; gap:10px; margin-top:12px; }
         .media-modal-nav button {
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(255, 255, 255, .35);
-            border-radius: 50%;
-            background: rgba(255, 255, 255, .12);
-            color: #fff;
-            cursor: pointer;
-            font-size: 1rem;
+            width:40px;
+            height:40px;
+            border:1px solid rgba(255,255,255,.35);
+            border-radius:50%;
+            background:rgba(255,255,255,.12);
+            color:#fff;
+            cursor:pointer;
+            font-size:1rem;
+        }
+        .media-modal-nav button:hover { background:rgba(255,255,255,.2); }
+
+        @media (max-width:800px) {
+            .media-grid .media-card { flex-basis:40%; }
+            .gallery-section { margin-bottom:65px; }
+        }
+        @media (max-width:560px) {
+            .media-grid .media-card { flex-basis:65%; }
+            .gallery-main { padding-top:10px; }
+            .media-card { aspect-ratio:16 / 11; }
+            .media-modal { padding:14px; }
+            .media-modal-close { right:0; top:-48px; }
+        }
+        @media (prefers-reduced-motion:reduce) {
+            .media-grid,.media-card { transition:none !important; }
         }
 
-        /* Gives fullscreen controls a visible hover state. */
-        .media-modal-nav button:hover {
-            background: rgba(255, 255, 255, .2);
-        }
-
-        /* ==================== TABLET LAYOUT ==================== */
-
-        @media (max-width: 800px) {
-            /*
-             * Tablet: two complete cards are visible.
-             * The carousel centers the space between those cards.
-             */
-            .media-grid .media-card {
-                flex-basis: 35%;
-            }
-
-            /* Leaves less vertical space between categories on tablets. */
-            .gallery-section {
-                margin-bottom: 65px;
-            }
-        }
-
-        /* ==================== MOBILE LAYOUT ==================== */
-
-        @media (max-width: 560px) {
-            /*
-             * Mobile: one complete card with a partial card
-             * visible on both the left and right.
-             */
-            .media-grid .media-card {
-                flex-basis: 70%;
-            }
-
-            /* Reduces the top spacing on small screens. */
-            .gallery-main {
-                padding-top: 10px;
-            }
-
-            /* Gives mobile cards a slightly wider shape. */
-            .media-card {
-                aspect-ratio: 16 / 11;
-            }
-
-            /* Makes the modal fit comfortably on a phone. */
-            .media-modal {
-                padding: 14px;
-            }
-
-            /* Repositions the modal close button on a phone. */
-            .media-modal-close {
-                right: 0;
-                top: -48px;
-            }
-        }
-
-        /* Removes unnecessary animation for users who prefer less motion. */
-        @media (prefers-reduced-motion: reduce) {
-            .media-grid {
-                transition: none;
-            }
-
-            .media-card {
-                transition: none;
-            }
-        }
+        /* Recognition & Credentials is intentionally document/photo-only. */
+        .gallery-recognition .media-play,
+        .gallery-recognition .media-type,
+        .gallery-recognition video { display:none !important; }
     </style>
-
-<style id="gallery-final-media-rules">
-/* Recognition & Credentials is intentionally document/photo-only. */
-.gallery-recognition .video-badge,
-.gallery-recognition .play-icon,
-.gallery-recognition [data-media-type="video"],
-.gallery-recognition video {
-  display: none !important;
-}
-
-/* Keep the first four collections eligible for their View All controls. */
-.gallery-all-media .view-all,
-.gallery-life .view-all,
-.gallery-moments .view-all,
-.gallery-internships .view-all {
-  display: inline-flex;
-}
-</style>
-
 </head>
 <body>
-<!-- ==================== HEADER / NAVIGATION ==================== -->
-<!-- Reuses the same navigation structure as the homepage. -->
 <header class="site-header">
     <nav class="navbar container">
-    <a href="index.html" class="brand" aria-label="CICE Computer Institute - Home">
-        <img src="assets/images/cice-logo-nav.png" alt="CICE Computer Institute official logo" class="brand-logo">
-        <span class="brand-info">
-            <strong class="brand-cice-name">CICE</strong>
-            <span class="brand-institute-name">Computer Institute</span>
-        </span>
-    </a>
-
-    <button class="menu-toggle" id="menuToggle" type="button"
-            aria-label="Open menu" aria-expanded="false">☰</button>
-
-    <ul class="nav-links" id="navLinks">
-        <li class="nav-dropdown">
-            <div class="nav-item-with-dropdown">
-                <a href="index.html">Home</a>
-                <button class="nav-arrow" type="button"
-                        aria-label="Open Home menu" aria-expanded="false">⌄</button>
-            </div>
-            <ul class="nav-dropdown-menu" aria-label="Home sections">
-                <li><a href="index.html#notices">Notice &amp; Updates</a></li>
-                <li><a href="index.html#courses">Courses</a></li>
-                <li><a href="index.html#why">Why CICE</a></li>
-                <li><a href="index.html#testimonials">Testimonials</a></li>
-                <li><a href="index.html#gallery">Gallery</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
-        </li>
-
-        <li class="nav-dropdown">
-            <div class="nav-item-with-dropdown">
-                <a href="about.html">About CICE</a>
-                <button class="nav-arrow" type="button"
-                        aria-label="Open About CICE menu" aria-expanded="false">⌄</button>
-            </div>
-            <ul class="nav-dropdown-menu" aria-label="About CICE sections">
-                <li><a href="about.html#story">Our Story</a></li>
-                <li><a href="about.html#founder">Founder &amp; Instructor</a></li>
-                <li><a href="about.html#certificates">Certificates &amp; Registration</a></li>
-            </ul>
-        </li>
-
-        <li><a href="courses.html">Courses</a></li>
-
-        <li class="nav-dropdown">
-            <div class="nav-item-with-dropdown">
-                <a href="gallery.html">Gallery</a>
-                <button class="nav-arrow" type="button"
-                        aria-label="Open Gallery menu" aria-expanded="false">⌄</button>
-            </div>
-            <ul class="nav-dropdown-menu" aria-label="Gallery sections">
-                <li><a href="gallery.html#all-media">All Media</a></li>
-                <li><a href="gallery.html#life-at-cice">Life at CICE</a></li>
-                <li><a href="gallery.html#moments-of-cice">Moments</a></li>
-                <li><a href="gallery.html#internship-experiences">Internship</a></li>
-                <li><a href="gallery.html#recognition-credentials">Recognition</a></li>
-            </ul>
-        </li>
-    </ul>
-
-    <div class="nav-actions" aria-label="Contact actions">
-        <a class="nav-action nav-whatsapp" href="https://wa.me/917002641470"
-           target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
-            <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-                <path d="M16 3.5a12.3 12.3 0 0 0-10.7 18.4L4 28l6.3-1.2A12.3 12.3 0 1 0 16 3.5Zm0 22.2a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.7.7.7-3.6-.2-.4A9.9 9.9 0 1 1 16 25.7Zm5.5-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.5-.7-2.5-1.3-3.5-2.9-.3-.5.3-.5.8-1.6.1-.2.1-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.7.9 3.7.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.3-.6-.5Z"/>
-            </svg>
-            <span class="sr-only">WhatsApp</span>
+        <a href="index.html" class="brand" aria-label="CICE Computer Institute - Home">
+            <img src="assets/images/cice-logo-nav.png" alt="CICE Computer Institute official logo" class="brand-logo">
+            <span class="brand-info">
+                <strong class="brand-cice-name">CICE</strong>
+                <span class="brand-institute-name">Computer Institute</span>
+            </span>
         </a>
-
-        <a class="nav-action nav-call" href="tel:+917002641470"
-           aria-label="Call CICE" title="Call CICE">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M6.6 2.8 4.4 3.9c-.9.5-1.4 1.5-1.2 2.5 1.1 6.4 6.1 11.4 12.5 12.5 1 .2 2-.3 2.5-1.2l1.1-2.2c.3-.7.1-1.5-.5-1.9l-2.5-1.7c-.6-.4-1.4-.3-1.9.2l-1.2 1.2c-2.2-1.1-4-2.9-5.1-5.1l1.2-1.2c.5-.5.6-1.3.2-1.9L8.5 3.3c-.4-.6-.1-1.2-.5-1.7-.4-.6-1.2-.8-1.9-.5Z"/>
-            </svg>
-            <span class="sr-only">Call CICE</span>
-        </a>
-    </div>
-</nav>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li class="nav-dropdown">
+                <div class="nav-item-with-dropdown"><a href="index.html">Home</a><button class="nav-arrow" type="button" aria-label="Open Home menu" aria-expanded="false">⌄</button></div>
+                <ul class="nav-dropdown-menu" aria-label="Home sections">
+                    <li><a href="index.html#notices">Notice &amp; Updates</a></li>
+                    <li><a href="index.html#courses">Courses</a></li>
+                    <li><a href="index.html#why">Why CICE</a></li>
+                    <li><a href="index.html#testimonials">Testimonials</a></li>
+                    <li><a href="index.html#gallery">Gallery</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <div class="nav-item-with-dropdown"><a href="about.html">About CICE</a><button class="nav-arrow" type="button" aria-label="Open About CICE menu" aria-expanded="false">⌄</button></div>
+                <ul class="nav-dropdown-menu" aria-label="About CICE sections">
+                    <li><a href="about.html#story">Our Story</a></li>
+                    <li><a href="about.html#founder">Founder &amp; Instructor</a></li>
+                    <li><a href="about.html#certificates">Certificates &amp; Registration</a></li>
+                </ul>
+            </li>
+            <li><a href="courses.html">Courses</a></li>
+            <li class="nav-dropdown">
+                <div class="nav-item-with-dropdown"><a href="gallery.html">Gallery</a><button class="nav-arrow" type="button" aria-label="Open Gallery menu" aria-expanded="false">⌄</button></div>
+                <ul class="nav-dropdown-menu" aria-label="Gallery sections">
+                    <li><a href="gallery.html#all-media">All Media</a></li>
+                    <li><a href="gallery.html#life-at-cice">Life at CICE</a></li>
+                    <li><a href="gallery.html#moments-of-cice">Moments</a></li>
+                    <li><a href="gallery.html#internship-experiences">Internship</a></li>
+                    <li><a href="gallery.html#recognition-credentials">Recognition</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="nav-actions" aria-label="Contact actions">
+            <a class="nav-action nav-whatsapp" href="https://wa.me/917002641470" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+                <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M16 3.5a12.3 12.3 0 0 0-10.7 18.4L4 28l6.3-1.2A12.3 12.3 0 1 0 16 3.5Zm0 22.2a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.7.7.7-3.6-.2-.4A9.9 9.9 0 1 1 16 25.7Zm5.5-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.5-.7-2.5-1.3-3.5-2.9-.3-.5.3-.5.8-1.6.1-.2.1-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.7.9 3.7.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.3-.6-.5Z"/></svg>
+                <span class="sr-only">WhatsApp</span>
+            </a>
+            <a class="nav-action nav-call" href="tel:+917002641470" aria-label="Call CICE" title="Call CICE">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.6 2.8 4.4 3.9c-.9.5-1.4 1.5-1.2 2.5 1.1 6.4 6.1 11.4 12.5 12.5 1 .2 2-.3 2.5-1.2l1.1-2.2c.3-.7.1-1.5-.5-1.9l-2.5-1.7c-.6-.4-1.4-.3-1.9.2l-1.2 1.2c-2.2-1.1-4-2.9-5.1-5.1l1.2-1.2c.5-.5.6-1.3.2-1.9L8.5 3.3c-.4-.6-.1-1.2-.5-1.7-.4-.6-1.2-.8-1.9-.5Z"/></svg>
+                <span class="sr-only">Call CICE</span>
+            </a>
+        </div>
+    </nav>
 </header>
 
 <main>
-<!-- ==================== GALLERY HERO ==================== -->
-<!-- Introduces the purpose of the full gallery page. -->
-<section class="courses-list-hero gallery-page-hero">
-    <div class="container">
-        <div class="courses-breadcrumb"><a href="index.html">Home</a><span>/</span><strong>Gallery</strong></div>
-        <span class="section-label">CICE GALLERY</span>
-        <h1>See CICE<br><span>in action.</span></h1>
-        <p>Explore photographs from the institute, classroom activities, practical learning and events.</p>
-    </div>
-</section>
+    <section class="courses-list-hero gallery-page-hero">
+        <div class="container">
+            <div class="courses-breadcrumb"><a href="index.html">Home</a><span>/</span><strong>Gallery</strong></div>
+            <span class="section-label">CICE GALLERY</span>
+            <h1>See CICE<br><span>in action.</span></h1>
+            <p>Explore photographs and video from the institute, classroom activities, practical learning and events.</p>
+        </div>
+    </section>
 
-<section class="section gallery-main" id="gallery-content">
-    <div class="container">
-        <section class="gallery-section" id="all-media">
-            <div class="gallery-section-heading">
-                <span class="section-label">ALL MEDIA</span>
-                <h2>A Glimpse Inside CICE</h2>
-                <p>Explore photos from across CICE, all brought together in one place.</p>
+    <section class="section gallery-main" id="gallery-content">
+        <div class="container">
+            <section class="gallery-section" id="all-media">
+                <div class="gallery-section-heading">
+                    <span class="section-label">ALL MEDIA</span>
+                    <h2>A Glimpse Inside CICE</h2>
+                    <p>Explore photos and video from across CICE, all brought together in one place.</p>
+                </div>
+                <div class="media-carousel" data-carousel="all">
+                    <button class="media-carousel-button media-carousel-prev" type="button" data-carousel-prev="all" aria-label="Previous all media">←</button>
+                    <div class="media-grid" data-gallery-grid="all"></div>
+                    <button class="media-carousel-button media-carousel-next" type="button" data-carousel-next="all" aria-label="Next all media">→</button>
+                </div>
+                <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="all">View All Media</button></div>
+            </section>
+
+            <section class="gallery-section" id="life-at-cice">
+                <div class="gallery-section-heading">
+                    <span class="section-label">01 · LIFE</span>
+                    <h2>Life at CICE</h2>
+                    <p>Classrooms, students, practical sessions, and the everyday learning environment at CICE.</p>
+                </div>
+                <div class="media-carousel" data-carousel="life">
+                    <button class="media-carousel-button media-carousel-prev" type="button" data-carousel-prev="life" aria-label="Previous life media">←</button>
+                    <div class="media-grid" data-gallery-grid="life"></div>
+                    <button class="media-carousel-button media-carousel-next" type="button" data-carousel-next="life" aria-label="Next life media">→</button>
+                </div>
+                <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="life">View All</button></div>
+            </section>
+
+            <section class="gallery-section" id="moments-of-cice">
+                <div class="gallery-section-heading">
+                    <span class="section-label">02 · MOMENTS</span>
+                    <h2>Moments of CICE</h2>
+                    <p>Events, activities, celebrations, certificate programs, and other memorable moments.</p>
+                </div>
+                <div class="media-carousel" data-carousel="moments">
+                    <button class="media-carousel-button media-carousel-prev" type="button" data-carousel-prev="moments" aria-label="Previous moments media">←</button>
+                    <div class="media-grid" data-gallery-grid="moments"></div>
+                    <button class="media-carousel-button media-carousel-next" type="button" data-carousel-next="moments" aria-label="Next moments media">→</button>
+                </div>
+                <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="moments">View All</button></div>
+            </section>
+
+            <section class="gallery-section" id="internship-experiences">
+                <div class="gallery-section-heading">
+                    <span class="section-label">03 · INTERNSHIP</span>
+                    <h2>Internship Experiences</h2>
+                    <p>Moments from CICE's college internship programs, where students strengthen their computer skills.</p>
+                </div>
+                <div class="media-carousel" data-carousel="internship">
+                    <button class="media-carousel-button media-carousel-prev" type="button" data-carousel-prev="internship" aria-label="Previous internship media">←</button>
+                    <div class="media-grid" data-gallery-grid="internship"></div>
+                    <button class="media-carousel-button media-carousel-next" type="button" data-carousel-next="internship" aria-label="Next internship media">→</button>
+                </div>
+                <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="internship">View All</button></div>
+            </section>
+
+            <section class="gallery-section gallery-recognition" id="recognition-credentials">
+                <div class="gallery-section-heading">
+                    <span class="section-label">04 · RECOGNITION</span>
+                    <h2>Recognition &amp; Credentials</h2>
+                    <p>Certificates, registrations, and other formal credentials or achievements associated with CICE.</p>
+                </div>
+                <div class="media-carousel" data-carousel="recognition">
+                    <button class="media-carousel-button media-carousel-prev" type="button" data-carousel-prev="recognition" aria-label="Previous recognition media">←</button>
+                    <div class="media-grid" data-gallery-grid="recognition"></div>
+                    <button class="media-carousel-button media-carousel-next" type="button" data-carousel-next="recognition" aria-label="Next recognition media">→</button>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <div class="media-modal" id="mediaModal" aria-hidden="true">
+        <div class="media-modal-content" role="dialog" aria-modal="true" aria-label="Media viewer">
+            <button class="media-modal-close" type="button" aria-label="Close media viewer">×</button>
+            <div class="media-modal-stage" id="mediaModalStage"></div>
+            <div class="media-modal-caption" id="mediaModalCaption"></div>
+            <div class="media-modal-nav">
+                <button type="button" id="mediaPrev" aria-label="Previous media">←</button>
+                <button type="button" id="mediaNext" aria-label="Next media">→</button>
             </div>
-            <div class="media-carousel" data-carousel="all">
-                <button
-                    class="media-carousel-button media-carousel-prev"
-                    type="button"
-                    data-carousel-prev="all"
-                    aria-label="Previous all image">
-                    ←
-                </button>
-
-                <div class="media-grid" data-gallery-grid="all"></div>
-
-                <button
-                    class="media-carousel-button media-carousel-next"
-                    type="button"
-                    data-carousel-next="all"
-                    aria-label="Next all image">
-                    →
-                </button>
-            </div>
-            <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="all">View All Media</button></div>
-        </section>
-        <section class="gallery-section" id="life-at-cice">
-            <div class="gallery-section-heading">
-                <span class="section-label">01 · LIFE</span>
-                <h2>Life at CICE</h2>
-                <p>Classrooms, students, practical sessions, and the everyday learning environment at CICE.</p>
-            </div>
-            <div class="media-carousel" data-carousel="life">
-                <button
-                    class="media-carousel-button media-carousel-prev"
-                    type="button"
-                    data-carousel-prev="life"
-                    aria-label="Previous life image">
-                    ←
-                </button>
-
-                <div class="media-grid" data-gallery-grid="life"></div>
-
-                <button
-                    class="media-carousel-button media-carousel-next"
-                    type="button"
-                    data-carousel-next="life"
-                    aria-label="Next life image">
-                    →
-                </button>
-            </div>
-            <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="life">View All</button></div>
-        </section>
-        <section class="gallery-section" id="moments-of-cice">
-            <div class="gallery-section-heading">
-                <span class="section-label">02 · MOMENTS</span>
-                <h2>Moments of CICE</h2>
-                <p>Events, activities, picnics, outings, celebrations, and other memorable moments.</p>
-            </div>
-            <div class="media-carousel" data-carousel="moments">
-                <button
-                    class="media-carousel-button media-carousel-prev"
-                    type="button"
-                    data-carousel-prev="moments"
-                    aria-label="Previous moments image">
-                    ←
-                </button>
-
-                <div class="media-grid" data-gallery-grid="moments"></div>
-
-                <button
-                    class="media-carousel-button media-carousel-next"
-                    type="button"
-                    data-carousel-next="moments"
-                    aria-label="Next moments image">
-                    →
-                </button>
-            </div>
-            <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="moments">View All</button></div>
-        </section>
-        <section class="gallery-section" id="internship-experiences">
-            <div class="gallery-section-heading">
-                <span class="section-label">INTERNSHIP</span>
-                <h2>Internship Experiences</h2>
-                <p>Moments from CICE's college internship programs, where students strengthen their computer skills.</p>
-            </div>
-            <div class="media-carousel" data-carousel="internship">
-                <button
-                    class="media-carousel-button media-carousel-prev"
-                    type="button"
-                    data-carousel-prev="internship"
-                    aria-label="Previous internship image">
-                    ←
-                </button>
-
-                <div class="media-grid" data-gallery-grid="internship"></div>
-
-                <button
-                    class="media-carousel-button media-carousel-next"
-                    type="button"
-                    data-carousel-next="internship"
-                    aria-label="Next internship image">
-                    →
-                </button>
-            </div>
-            <div class="media-more"><button class="btn btn-secondary" type="button" data-view-all="internship">View All</button></div>
-        </section>
-        <section class="gallery-section gallery-recognition" id="recognition-credentials">
-            <div class="gallery-section-heading">
-                <span class="section-label">04 · RECOGNITION</span>
-                <h2>Recognition &amp; Credentials</h2>
-                <p>Certificates, registrations, and other formal credentials or achievements associated with CICE.</p>
-            </div>
-            <div class="media-carousel" data-carousel="recognition">
-                <button
-                    class="media-carousel-button media-carousel-prev"
-                    type="button"
-                    data-carousel-prev="recognition"
-                    aria-label="Previous recognition image">
-                    ←
-                </button>
-
-                <div class="media-grid" data-gallery-grid="recognition"></div>
-
-                <button
-                    class="media-carousel-button media-carousel-next"
-                    type="button"
-                    data-carousel-next="recognition"
-                    aria-label="Next recognition image">
-                    →
-                </button>
-            </div>
-            <div class="media-more">
-</div>
-        </section>
-    </div>
-</section>
-
-<div class="media-modal" id="mediaModal" aria-hidden="true">
-    <div class="media-modal-content" role="dialog" aria-modal="true" aria-label="Media viewer">
-        <button class="media-modal-close" type="button" aria-label="Close media viewer">×</button>
-        <div class="media-modal-stage" id="mediaModalStage"></div>
-        <div class="media-modal-caption" id="mediaModalCaption"></div>
-        <div class="media-modal-nav">
-            <button type="button" id="mediaPrev" aria-label="Previous media">←</button>
-            <button type="button" id="mediaNext" aria-label="Next media">→</button>
         </div>
     </div>
-</div>
-
 </main>
-<!-- ==================== FOOTER ==================== -->
+
 <footer class="site-footer">
     <div class="footer-inner container">
         <div class="footer-identity">
             <a href="index.html" class="footer-brand" aria-label="CICE Computer Institute - Home">
                 <img src="assets/images/cice-logo.png" alt="CICE Computer Institute official logo" class="footer-brand-logo">
-                <span class="footer-brand-info">
-                    <strong>CICE</strong>
-                    <small>COMPUTER INSTITUTE</small>
-                </span>
+                <span class="footer-brand-info"><strong>CICE</strong><small>COMPUTER INSTITUTE</small></span>
             </a>
             <p>Computer education and practical training for students, job seekers and aspiring professionals.</p>
             <div class="footer-social" aria-label="Social media">
-                <a href="https://www.facebook.com/p/CICE-Computer-Institute-Halakura-100089602022179/" target="_blank" rel="noopener" aria-label="CICE on Facebook">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V5h-3c-3 0-5 2-5 5v2H6v3h3v6h3v-6h3l1-3h-4v-2c0-1.2.8-2 2-2Z"/></svg>
-                </a>
-                <a href="https://www.instagram.com/cice_computer_halakura/" target="_blank" rel="noopener" aria-label="CICE on Instagram">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.3" cy="6.8" r="1" class="icon-fill"/></svg>
-                </a>
+                <a href="https://www.facebook.com/p/CICE-Computer-Institute-Halakura-100089602022179/" target="_blank" rel="noopener" aria-label="CICE on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V5h-3c-3 0-5 2-5 5v2H6v3h3v6h3v-6h3l1-3h-4v-2c0-1.2.8-2 2-2Z"/></svg></a>
+                <a href="https://www.instagram.com/cice_computer_halakura/" target="_blank" rel="noopener" aria-label="CICE on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.3" cy="6.8" r="1" class="icon-fill"/></svg></a>
             </div>
         </div>
-
         <nav class="footer-column footer-links" aria-label="Footer navigation">
             <a href="index.html"><span class="footer-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 10 8-6 8 6v9a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-9Z"/></svg></span>Home</a>
             <a href="about.html"><span class="footer-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M5 20c.8-3.4 3.2-5 7-5s6.2 1.6 7 5"/></svg></span>About CICE</a>
             <a href="courses.html"><span class="footer-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M8 10h8M8 14h5"/></svg></span>Courses</a>
             <a href="gallery.html"><span class="footer-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="m6 17 4-4 3 3 2-2 3 3"/></svg></span>Gallery</a>
         </nav>
-
         <div class="footer-column footer-contact">
-            <a href="https://www.google.com/maps/search/?api=1&query=CICE+Computer+Institute+Halakura" target="_blank" rel="noopener" aria-label="Open CICE Computer Institute in Google Maps">
-                <span class="footer-contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-12A7 7 0 0 0 5 9c0 5.9 7 12 7 12Z"/><circle cx="12" cy="9" r="2.3"/></svg></span>
-                <span>Halakura, Dhubri, Assam</span>
-            </a>
-            <a href="tel:+917002641470" aria-label="Call CICE Computer Institute">
-                <span class="footer-contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4h3l1.5 4-2 1.5a14 14 0 0 0 5 5l1.5-2 4 1.5v3c0 1.1-.9 2-2 2C11.4 19 5 12.6 5 5.9 5 4.9 5.9 4 7 4Z"/></svg></span>
-                <span>+91 70026 41470</span>
-            </a>
-            <a href="https://wa.me/917002641470" target="_blank" rel="noopener" aria-label="Contact CICE on WhatsApp">
-                <span class="footer-contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11.5A8 8 0 0 1 8.2 19L4 20l1-4.1A8 8 0 1 1 20 11.5Z"/><path d="M9 8.5c.3-.6.7-.6 1-.2l.8 1.1c.2.3.2.6 0 .8l-.5.6c.7 1.1 1.5 1.8 2.7 2.4l.6-.5c.2-.2.5-.2.8 0l1.1.7c.4.3.4.7 0 1.1-.5.6-1.1.8-1.8.6-2.9-.8-5.3-3.1-6.2-5.9-.2-.7 0-1.3.5-1.7Z"/></svg></span>
-                <span>WhatsApp</span>
-            </a>
-            <a href="mailto:roymihir78@gmail.com" aria-label="Email CICE Computer Institute">
-                <span class="footer-contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="m5 8 7 5 7-5"/></svg></span>
-                <span>roymihir78@gmail.com</span>
-            </a>
-            <div class="footer-contact-item">
-                <span class="footer-contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg></span>
-                <span>Mon–Sat · 9:00 AM–6:00 PM</span>
-            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=CICE+Computer+Institute+Halakura" target="_blank" rel="noopener" aria-label="Open CICE Computer Institute in Google Maps"><span class="footer-contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-12A7 7 0 0 0 5 9c0 5.9 7 12 7 12Z"/><circle cx="12" cy="9" r="2.3"/></svg></span><span>Halakura, Dhubri, Assam</span></a>
+            <a href="tel:+917002641470" aria-label="Call CICE Computer Institute"><span class="footer-contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4h3l1.5 4-2 1.5a14 14 0 0 0 5 5l1.5-2 4 1.5v3c0 1.1-.9 2-2 2C11.4 19 5 12.6 5 5.9 5 4.9 5.9 4 7 4Z"/></svg></span><span>+91 70026 41470</span></a>
+            <a href="https://wa.me/917002641470" target="_blank" rel="noopener" aria-label="Contact CICE on WhatsApp"><span class="footer-contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11.5A8 8 0 0 1 8.2 19L4 20l1-4.1A8 8 0 1 1 20 11.5Z"/><path d="M9 8.5c.3-.6.7-.6 1-.2l.8 1.1c.2.3.2.6 0 .8l-.5.6c.7 1.1 1.5 1.8 2.7 2.4l.6-.5c.2-.2.5-.2.8 0l1.1.7c.4.3.4.7 0 1.1-.5.6-1.1.8-1.8.6-2.9-.8-5.3-3.1-6.2-5.9-.2-.7 0-1.3.5-1.7Z"/></svg></span><span>WhatsApp</span></a>
+            <a href="mailto:roymihir78@gmail.com" aria-label="Email CICE Computer Institute"><span class="footer-contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="m5 8 7 5 7-5"/></svg></span><span>roymihir78@gmail.com</span></a>
+            <div class="footer-contact-item"><span class="footer-contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg></span><span>Mon–Sat · 9:00 AM–6:00 PM</span></div>
         </div>
     </div>
-    <div class="footer-bottom container">
-        <span>© <span id="year"></span> CICE Computer Institute. All rights reserved.</span>
-    </div>
+    <div class="footer-bottom container"><span>© <span id="year"></span> CICE Computer Institute. All rights reserved.</span></div>
 </footer>
 
-<!-- Loads the shared JavaScript for the mobile menu and footer year. -->
-
 <script src="script.js"></script>
-</body>
-</html>
-
 <script>
-/* Add each media item once. Its category controls the section where it appears.
-   All Media automatically includes every item. */
 const CICE_MEDIA = [
     {
-        type: 'video',
-        category: 'life',
-        src: 'assets/videos/a-glimpse-of-cice.mp4',
-        poster: 'assets/images/gallery/life-03.jpg',
-        title: 'A Glimpse of CICE',
-        alt: 'A short video showcasing CICE Computer Institute, its computer lab, learning environment and students',
-        pinned: true
+        type:'video', category:'life', src:'assets/videos/a-glimpse-of-cice.mp4',
+        poster:'assets/images/gallery/a-glimpse-of-cice-poster.jpg',
+        title:'A Glimpse of CICE',
+        alt:'A short video showcasing CICE Computer Institute, its computer lab, learning environment and students',
+        pinned:true
     },
-    {
-        type: 'image',
-        category: 'life',
-        src: 'assets/images/gallery/life-01.jpg',
-        title: 'CICE Computer Lab',
-        alt: 'CICE computer lab'
-    },
-    {
-        type: 'image',
-        category: 'life',
-        src: 'assets/images/gallery/life-02.jpg',
-        title: "Instructor's View of the Classroom",
-        alt: "View of the CICE classroom from the instructor's desk"
-    },
-    // Pinned: shows the CICE institute from outside.
-    {
-        type: 'image',
-        category: 'life',
-        src: 'assets/images/gallery/life-03.jpg',
-        title: 'CICE Institute Exterior',
-        alt: 'Exterior of CICE Computer Institute',
-        pinned: true
-    },
-    // Pinned: shows students learning through practical computer work.
-    {
-        type: 'image',
-        category: 'life',
-        src: 'assets/images/gallery/life-04.jpg',
-        title: 'Practical Learning at CICE',
-        alt: 'Practical learning session at CICE',
-        pinned: true
-    },
-    {
-        type: 'image',
-        category: 'life',
-        src: 'assets/images/gallery/life-05.jpg',
-        title: 'Students at CICE',
-        alt: 'CICE students gathered inside the computer lab'
-    },
-    // Pinned: highlights the grand opening and CICE community.
-    {
-        type: 'image',
-        category: 'moments',
-        src: 'assets/images/gallery/moments-grand-opening-01.jpg',
-        title: 'Grand Opening Gathering',
-        alt: 'Students and guests gathered inside CICE during the grand opening in 2024',
-        pinned: true
-    },
-    {
-        type: 'image',
-        category: 'moments',
-        src: 'assets/images/gallery/moments-grand-opening-02.jpg',
-        title: 'Grand Opening Group Photo',
-        alt: 'Students and guests gathered outside CICE during the grand opening in 2024'
-    },
-    {
-        type: 'image',
-        category: 'moments',
-        src: 'assets/images/gallery/moments-grand-opening-03.jpg',
-        title: 'Grand Opening Ceremony',
-        alt: 'Guests and CICE representatives taking part in the grand opening ceremony in 2024'
-    },
-    {
-        type: 'image',
-        category: 'moments',
-        src: 'assets/images/gallery/moments-grand-opening-04.jpg',
-        title: 'Grand Opening Celebration',
-        alt: 'Students and members of the CICE community gathered inside the decorated classroom during the grand opening in 2024'
-    },
-    {
-        type: 'image',
-        category: 'moments',
-        src: 'assets/images/gallery/moments-certificate-distribution.jpg',
-        title: 'Certificate Distribution Program',
-        alt: 'Students attending a certificate distribution program at CICE'
-    },
-    {
-        type: 'image',
-        category: 'moments',
-        src: 'assets/images/gallery/moments-certificate-presentation-01.jpg',
-        title: 'Certificate Presentation',
-        alt: 'Student receiving a certificate at CICE'
-    },
-    {
-        type: 'image',
-        category: 'moments',
-        src: 'assets/images/gallery/moments-certificate-presentation-02.jpg',
-        title: 'Certificate Presentation',
-        alt: 'Student receiving a certificate at CICE'
-    },
-    {
-        type: 'image',
-        category: 'moments',
-        src: 'assets/images/gallery/moments-celebrating-achievements.jpg',
-        title: 'Celebrating Achievements Together',
-        alt: 'Students and CICE team members celebrating achievements together'
-    }
+    { type:'image', category:'life', src:'assets/images/gallery/life-01.jpg', title:'CICE Computer Lab', alt:'CICE computer lab' },
+    { type:'image', category:'life', src:'assets/images/gallery/life-02.jpg', title:"Instructor's View of the Classroom", alt:"View of the CICE classroom from the instructor's desk" },
+    { type:'image', category:'life', src:'assets/images/gallery/life-03.jpg', title:'CICE Institute Exterior', alt:'Exterior of CICE Computer Institute', pinned:true },
+    { type:'image', category:'life', src:'assets/images/gallery/life-04.jpg', title:'Practical Learning at CICE', alt:'Practical learning session at CICE', pinned:true },
+    { type:'image', category:'life', src:'assets/images/gallery/life-05.jpg', title:'Students at CICE', alt:'CICE students gathered inside the computer lab' },
+    { type:'image', category:'moments', src:'assets/images/gallery/moments-grand-opening-01.jpg', title:'Grand Opening Gathering', alt:'Students and guests gathered inside CICE during the grand opening in 2024', pinned:true },
+    { type:'image', category:'moments', src:'assets/images/gallery/moments-grand-opening-02.jpg', title:'Grand Opening Group Photo', alt:'Students and guests gathered outside CICE during the grand opening in 2024' },
+    { type:'image', category:'moments', src:'assets/images/gallery/moments-grand-opening-03.jpg', title:'Grand Opening Ceremony', alt:'Guests and CICE representatives taking part in the grand opening ceremony in 2024' },
+    { type:'image', category:'moments', src:'assets/images/gallery/moments-grand-opening-04.jpg', title:'Grand Opening Celebration', alt:'Students and members of the CICE community gathered inside the decorated classroom during the grand opening in 2024' },
+    { type:'image', category:'moments', src:'assets/images/gallery/moments-certificate-distribution.jpg', title:'Certificate Distribution Program', alt:'Students attending a certificate distribution program at CICE' },
+    { type:'image', category:'moments', src:'assets/images/gallery/moments-certificate-presentation-01.jpg', title:'Certificate Presentation', alt:'Student receiving a certificate at CICE' },
+    { type:'image', category:'moments', src:'assets/images/gallery/moments-certificate-presentation-02.jpg', title:'Certificate Presentation', alt:'Student receiving a certificate at CICE' },
+    { type:'image', category:'moments', src:'assets/images/gallery/moments-celebrating-achievements.jpg', title:'Celebrating Achievements Together', alt:'Students and CICE team members celebrating achievements together' }
 ];
 
 const modal = document.getElementById('mediaModal');
 const stage = document.getElementById('mediaModalStage');
 const caption = document.getElementById('mediaModalCaption');
-
-/*
- * Stores the media currently open in the fullscreen viewer.
- */
 let activeItems = [];
 let activeIndex = 0;
-
-/*
- * Keeps the state of each category carousel separate.
- */
 const carouselStates = new Map();
 
-/*
- * All Media keeps pinned images at the beginning.
- * Other categories keep their original order.
- */
 function mediaFor(category) {
     if (category === 'all') {
-        return [...CICE_MEDIA].sort(
-            (a, b) => Number(Boolean(b.pinned))
-                - Number(Boolean(a.pinned))
-        );
+        return [...CICE_MEDIA].sort((a,b) => Number(Boolean(b.pinned)) - Number(Boolean(a.pinned)));
     }
-
-    return CICE_MEDIA.filter(
-        item => item.category === category
-    );
+    return CICE_MEDIA.filter(item => item.category === category);
 }
 
-/*
- * Creates one gallery card.
- *
- * The card keeps its normal click behavior so the
- * existing fullscreen media viewer continues to work.
- */
 function createMediaCard(item, index, collection) {
     const card = document.createElement('button');
-
     card.type = 'button';
     card.className = 'media-card';
-    card.setAttribute(
-        'aria-label',
-        `Open ${item.title}`
-    );
+    card.setAttribute('aria-label', `Open ${item.title}`);
 
     card.addEventListener('click', event => {
-        /*
-         * A completed drag should move the carousel,
-         * not open the card underneath the pointer.
-         */
-        const carousel = card.closest('.media-carousel');
-        const category = carousel?.dataset.carousel;
-        const state = category
-            ? carouselStates.get(category)
-            : null;
-
+        const category = card.closest('.media-carousel')?.dataset.carousel;
+        const state = category ? carouselStates.get(category) : null;
         if (state?.ignoreClick) {
             state.ignoreClick = false;
             event.preventDefault();
             return;
         }
-
-        openMedia(collection, index);
+        openMedia(collection,index);
     });
 
     const type = document.createElement('span');
-
     type.className = 'media-type';
-    type.textContent =
-        item.type === 'video' ? 'Video' : 'Photo';
-
+    type.textContent = item.type === 'video' ? 'Video' : 'Photo';
     card.appendChild(type);
 
     if (item.type === 'video') {
         const video = document.createElement('video');
-
         video.src = item.src;
         video.muted = true;
         video.preload = 'metadata';
         video.playsInline = true;
-
-        if (item.poster) {
-            video.poster = item.poster;
-        }
-
+        if (item.poster) video.poster = item.poster;
+        video.onerror = () => {
+            video.style.display = 'none';
+            const placeholder = document.createElement('div');
+            placeholder.className = 'media-placeholder';
+            placeholder.innerHTML = `<div><strong>${item.title}</strong><span>Video could not be loaded.</span></div>`;
+            card.appendChild(placeholder);
+        };
         card.appendChild(video);
-
         const play = document.createElement('span');
-
         play.className = 'media-play';
-        play.setAttribute('aria-hidden', 'true');
+        play.setAttribute('aria-hidden','true');
         play.textContent = '▶';
-
         card.appendChild(play);
     } else {
         const img = document.createElement('img');
-
         img.src = item.src;
         img.alt = item.alt || item.title;
         img.loading = 'lazy';
         img.draggable = false;
-
         img.onerror = () => {
             img.style.display = 'none';
-
             const placeholder = document.createElement('div');
-
             placeholder.className = 'media-placeholder';
-            placeholder.innerHTML = `
-                <div>
-                    <strong>${item.title}</strong>
-                    <span>Add the media file here</span>
-                </div>
-            `;
-
+            placeholder.innerHTML = `<div><strong>${item.title}</strong><span>Media file could not be loaded.</span></div>`;
             card.appendChild(placeholder);
         };
-
         card.appendChild(img);
     }
 
     const title = document.createElement('span');
-
     title.className = 'media-title';
     title.textContent = item.title;
-
     card.appendChild(title);
-
     return card;
 }
 
-/*
- * Returns the number of cloned cards needed at each end.
- *
- * Three is enough for the widest desktop layout.
- */
-function getCloneCount(itemCount) {
-    return Math.min(3, itemCount);
-}
+function cloneCount(count) { return Math.min(3,count); }
 
-/*
- * Centers the active card in the carousel.
- *
- * The card width is controlled by CSS for each screen size.
- * This function only calculates the horizontal position.
- */
-function positionCarousel(category, animate = true) {
+function positionCarousel(category, animate=true) {
     const state = carouselStates.get(category);
-
-    if (!state || !state.items.length) {
-        return;
-    }
-
+    if (!state || !state.items.length) return;
     const slide = state.track.children[state.position];
+    if (!slide) return;
 
-    if (!slide) {
-        return;
+    let focusPoint = slide.offsetLeft + slide.offsetWidth / 2;
+    if (window.innerWidth <= 800 && window.innerWidth > 560) {
+        const next = state.track.children[state.position + 1];
+        if (next) focusPoint = (focusPoint + next.offsetLeft + next.offsetWidth / 2) / 2;
     }
 
-    const trackWidth = state.track.clientWidth;
-    let focusPoint =
-        slide.offsetLeft + (slide.offsetWidth / 2);
-
-    /*
-     * Tablet shows two complete cards.
-     * Therefore the focus point is between the
-     * active card and the next card.
-     */
-    if (
-        window.innerWidth <= 800
-        && window.innerWidth > 560
-    ) {
-        const nextSlide =
-            state.track.children[state.position + 1];
-
-        if (nextSlide) {
-            const nextCenter =
-                nextSlide.offsetLeft
-                + (nextSlide.offsetWidth / 2);
-
-            focusPoint =
-                (focusPoint + nextCenter) / 2;
-        }
-    }
-
-    const target =
-        (trackWidth / 2) - focusPoint;
-
-    if (!animate) {
-        state.track.classList.add('no-transition');
-    } else {
-        state.track.classList.remove('no-transition');
-    }
-
+    const target = state.carousel.clientWidth / 2 - focusPoint;
+    state.track.classList.toggle('no-transition',!animate);
     state.currentTranslate = target;
-
-    state.track.style.transform =
-        `translate3d(${target}px, 0, 0)`;
+    state.track.style.transform = `translate3d(${target}px,0,0)`;
 }
 
-/*
- * Updates the arrow buttons for the current carousel.
- *
- * The carousel loops, so both buttons remain available
- * whenever there is more than one media item.
- */
 function updateCarouselButtons(category) {
     const state = carouselStates.get(category);
-
-    if (!state) {
-        return;
-    }
-
-    const hasMultipleItems = state.items.length > 1;
-
-    state.prevButton.disabled = !hasMultipleItems;
-    state.nextButton.disabled = !hasMultipleItems;
+    if (!state) return;
+    const enabled = state.items.length > 1;
+    state.prevButton.disabled = !enabled;
+    state.nextButton.disabled = !enabled;
 }
 
-/*
- * Moves the carousel one image in the requested direction.
- */
-function moveCarousel(category, direction) {
+function moveCarousel(category,direction) {
     const state = carouselStates.get(category);
-
-    if (
-        !state
-        || state.items.length < 2
-        || state.isMoving
-    ) {
-        return;
-    }
-
+    if (!state || state.items.length < 2 || state.isMoving) return;
     state.isMoving = true;
     state.position += direction;
-
-    positionCarousel(category, true);
+    positionCarousel(category,true);
 }
 
-/*
- * After a transition reaches a cloned slide, jump to the
- * matching real slide without showing a visible jump.
- */
 function handleCarouselTransition(category) {
     const state = carouselStates.get(category);
-
-    if (!state || !state.isMoving) {
-        return;
+    if (!state || !state.isMoving) return;
+    const first = state.cloneCount;
+    const last = first + state.items.length - 1;
+    if (state.position > last) {
+        state.position = first;
+        positionCarousel(category,false);
+    } else if (state.position < first) {
+        state.position = last;
+        positionCarousel(category,false);
     }
-
-    const firstReal = state.cloneCount;
-    const lastReal =
-        state.cloneCount + state.items.length - 1;
-
-    if (state.position > lastReal) {
-        state.position = firstReal;
-        positionCarousel(category, false);
-    }
-
-    if (state.position < firstReal) {
-        state.position = lastReal;
-        positionCarousel(category, false);
-    }
-
     state.isMoving = false;
 }
 
-/*
- * Finds the real media index for a slide.
- *
- * Cloned slides point back to the original media array.
- */
-function getRealMediaIndex(state, slide) {
-    const rawIndex = Number(slide.dataset.index);
-
-    return (
-        (rawIndex % state.items.length)
-        + state.items.length
-    ) % state.items.length;
-}
-
-/*
- * Adds mouse dragging and touch swiping to one carousel.
- *
- * Pointer Events let the same code handle:
- * mouse, touch, and stylus input.
- */
 function enableCarouselDrag(category) {
     const state = carouselStates.get(category);
-
-    if (!state) {
-        return;
-    }
-
+    if (!state) return;
     const viewport = state.carousel;
     let pointerId = null;
     let startX = 0;
     let startTranslate = 0;
     let moved = false;
-    let captured = false;
 
-    viewport.addEventListener('pointerdown', event => {
-        /*
-         * Arrow buttons use normal button clicks.
-         * They must not start a drag operation.
-         */
-        if (
-            event.target.closest('.media-carousel-button')
-        ) {
-            return;
-        }
-
-        if (event.button !== undefined && event.button !== 0) {
-            return;
-        }
-
-        if (state.items.length < 2) {
-            return;
-        }
-
+    viewport.addEventListener('pointerdown',event => {
+        if (event.target.closest('.media-carousel-button')) return;
+        if (event.button !== undefined && event.button !== 0) return;
+        if (state.items.length < 2) return;
         pointerId = event.pointerId;
         startX = event.clientX;
         startTranslate = state.currentTranslate;
         moved = false;
-        captured = false;
-
-        state.track.classList.remove('is-dragging');
     });
 
-    viewport.addEventListener('pointermove', event => {
-        if (pointerId !== event.pointerId) {
-            return;
-        }
-
+    viewport.addEventListener('pointermove',event => {
+        if (pointerId !== event.pointerId) return;
         const distance = event.clientX - startX;
-
-        /*
-         * A tiny movement is still treated as a click.
-         * Start dragging only after the threshold is crossed.
-         */
-        if (!moved && Math.abs(distance) <= 6) {
-            return;
-        }
-
+        if (!moved && Math.abs(distance) <= 6) return;
         if (!moved) {
             moved = true;
-            captured = true;
-
             viewport.setPointerCapture(pointerId);
             state.track.classList.add('is-dragging');
         }
-
         event.preventDefault();
-
-        state.track.style.transform =
-            `translate3d(
-                ${startTranslate + distance}px,
-                0,
-                0
-            )`;
+        state.track.classList.add('no-transition');
+        state.track.style.transform = `translate3d(${startTranslate + distance}px,0,0)`;
     });
 
-    const finishDrag = event => {
-        if (pointerId !== event.pointerId) {
-            return;
-        }
-
+    const finish = event => {
+        if (pointerId !== event.pointerId) return;
         const distance = event.clientX - startX;
-
-        if (captured && viewport.hasPointerCapture(pointerId)) {
-            viewport.releasePointerCapture(pointerId);
-        }
-
-        state.track.classList.remove('is-dragging');
-
+        if (viewport.hasPointerCapture(pointerId)) viewport.releasePointerCapture(pointerId);
+        state.track.classList.remove('is-dragging','no-transition');
         pointerId = null;
-        captured = false;
-
-        /*
-         * A real drag moves one image.
-         * A normal click leaves the carousel where it is.
-         */
-        if (moved) {
-            state.ignoreClick = true;
-
-            if (Math.abs(distance) > 45) {
-                moveCarousel(
-                    category,
-                    distance < 0 ? 1 : -1
-                );
-            } else {
-                positionCarousel(category, true);
-            }
-
-            window.setTimeout(() => {
-                state.ignoreClick = false;
-            }, 0);
-        }
+        if (!moved) return;
+        state.ignoreClick = true;
+        if (Math.abs(distance) > 45) moveCarousel(category,distance < 0 ? 1 : -1);
+        else positionCarousel(category,true);
+        window.setTimeout(() => { state.ignoreClick = false; },0);
     };
 
-    viewport.addEventListener('pointerup', finishDrag);
-    viewport.addEventListener('pointercancel', finishDrag);
+    viewport.addEventListener('pointerup',finish);
+    viewport.addEventListener('pointercancel',finish);
 }
 
-/*
- * Builds one complete carousel for a gallery category.
- */
 function renderSection(category) {
-    const grid = document.querySelector(
-        `[data-gallery-grid="${category}"]`
-    );
-
-    const carousel = document.querySelector(
-        `[data-carousel="${category}"]`
-    );
-
-    if (!grid || !carousel) {
-        return;
-    }
+    const grid = document.querySelector(`[data-gallery-grid="${category}"]`);
+    const carousel = document.querySelector(`[data-carousel="${category}"]`);
+    if (!grid || !carousel) return;
 
     const items = mediaFor(category);
-    const prevButton = carousel.querySelector(
-        '[data-carousel-prev]'
-    );
-    const nextButton = carousel.querySelector(
-        '[data-carousel-next]'
-    );
-
+    const prev = carousel.querySelector('[data-carousel-prev]');
+    const next = carousel.querySelector('[data-carousel-next]');
     grid.innerHTML = '';
-    carousel.classList.remove('is-empty');
 
     if (!items.length) {
-        grid.innerHTML = `
-            <div class="media-empty">
-                Media will appear here when files are added.
-            </div>
-        `;
-
+        grid.innerHTML = '<div class="media-empty">Media will appear here when files are added.</div>';
         carousel.classList.add('is-empty');
-        prevButton.hidden = true;
-        nextButton.hidden = true;
-
-        const button = document.querySelector(
-            `[data-view-all="${category}"]`
-        );
-
-        if (button) {
-            button.style.display = 'none';
-        }
-
+        prev.hidden = true;
+        next.hidden = true;
+        const viewAll = document.querySelector(`[data-view-all="${category}"]`);
+        if (viewAll) viewAll.style.display = 'none';
         return;
     }
 
-    prevButton.hidden = false;
-    nextButton.hidden = false;
+    carousel.classList.remove('is-empty');
+    prev.hidden = false;
+    next.hidden = false;
 
-    /*
-     * The carousel uses cloned cards at both ends.
-     * This keeps a partial card visible on both sides,
-     * even when the visitor reaches the first or last image.
-     */
-    const cloneCount = getCloneCount(items.length);
-    const extendedItems = [];
+    const clones = cloneCount(items.length);
+    const extended = [];
+    for (let i=items.length-clones;i<items.length;i++) extended.push({item:items[i],index:i});
+    items.forEach((item,index) => extended.push({item,index}));
+    for (let i=0;i<clones;i++) extended.push({item:items[i],index:i});
 
-    for (
-        let i = items.length - cloneCount;
-        i < items.length;
-        i += 1
-    ) {
-        extendedItems.push({
-            item: items[i],
-            index: i
-        });
-    }
-
-    items.forEach((item, index) => {
-        extendedItems.push({
-            item,
-            index
-        });
-    });
-
-    for (
-        let i = 0;
-        i < cloneCount;
-        i += 1
-    ) {
-        extendedItems.push({
-            item: items[i],
-            index: i
-        });
-    }
-
-    extendedItems.forEach(entry => {
-        const card = createMediaCard(
-            entry.item,
-            entry.index,
-            items
-        );
-
+    extended.forEach(entry => {
+        const card = createMediaCard(entry.item,entry.index,items);
         card.dataset.index = entry.index;
         grid.appendChild(card);
     });
 
     const state = {
-        category,
-        items,
-        carousel,
-        track: grid,
-        prevButton,
-        nextButton,
-        cloneCount,
-        position: cloneCount,
-        currentTranslate: 0,
-        isMoving: false,
-        ignoreClick: false
+        category,items,carousel,track:grid,prevButton:prev,nextButton:next,
+        cloneCount:clones,position:clones,currentTranslate:0,isMoving:false,ignoreClick:false
     };
+    carouselStates.set(category,state);
 
-    carouselStates.set(category, state);
-
-    prevButton.addEventListener(
-        'click',
-        () => moveCarousel(category, -1)
-    );
-
-    nextButton.addEventListener(
-        'click',
-        () => moveCarousel(category, 1)
-    );
-
-    grid.addEventListener(
-        'transitionend',
-        event => {
-            if (event.propertyName !== 'transform') {
-                return;
-            }
-
-            handleCarouselTransition(category);
-        }
-    );
+    prev.onclick = () => moveCarousel(category,-1);
+    next.onclick = () => moveCarousel(category,1);
+    grid.addEventListener('transitionend',event => {
+        if (event.propertyName === 'transform') handleCarouselTransition(category);
+    });
 
     enableCarouselDrag(category);
     updateCarouselButtons(category);
-    positionCarousel(category, false);
+    positionCarousel(category,false);
 
-    /*
-     * View All opens the existing fullscreen viewer
-     * using every image in this category.
-     */
-    const button = document.querySelector(
-        `[data-view-all="${category}"]`
-    );
-
-    if (button) {
-        button.style.display = '';
-
-        button.onclick = () => {
-            openMedia(items, 0);
-        };
+    const viewAll = document.querySelector(`[data-view-all="${category}"]`);
+    if (viewAll) {
+        viewAll.style.display = '';
+        viewAll.onclick = () => openMedia(items,0);
     }
 }
 
-/*
- * Re-centers every carousel after a browser resize.
- */
-function refreshCarousels() {
-    carouselStates.forEach((state, category) => {
-        positionCarousel(category, false);
-    });
-}
-
-/*
- * Renders every gallery category.
- */
-function renderAll() {
-    [
-        'all',
-        'life',
-        'moments',
-        'internship',
-        'recognition'
-    ].forEach(renderSection);
-}
-
-/*
- * Opens the fullscreen media viewer.
- */
-function openMedia(items, index) {
+function openMedia(items,index) {
     activeItems = items;
     activeIndex = index;
-
     updateModal();
-
     modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden', 'false');
+    modal.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
 }
 
-/*
- * Updates the fullscreen image or video.
- */
 function updateModal() {
     const item = activeItems[activeIndex];
-
-    if (!item) {
-        return;
-    }
-
+    if (!item) return;
     stage.innerHTML = '';
-
     if (item.type === 'video') {
         const video = document.createElement('video');
-
         video.src = item.src;
         video.controls = true;
         video.autoplay = true;
         video.playsInline = true;
-
-        if (item.poster) {
-            video.poster = item.poster;
-        }
-
+        if (item.poster) video.poster = item.poster;
+        video.addEventListener('error',() => {
+            stage.innerHTML = '';
+            const fallback = document.createElement('p');
+            fallback.className = 'media-modal-caption';
+            fallback.textContent = 'This video could not be played in this browser.';
+            stage.appendChild(fallback);
+        });
         stage.appendChild(video);
     } else {
         const img = document.createElement('img');
-
         img.src = item.src;
         img.alt = item.alt || item.title;
-
         stage.appendChild(img);
     }
-
     caption.textContent = item.title;
 }
 
-/*
- * Closes the fullscreen media viewer.
- */
 function closeMedia() {
     modal.classList.remove('is-open');
-    modal.setAttribute('aria-hidden', 'true');
+    modal.setAttribute('aria-hidden','true');
     stage.innerHTML = '';
     document.body.style.overflow = '';
 }
 
-/*
- * Moves to the next or previous item in the fullscreen viewer.
- */
 function stepMedia(direction) {
-    if (!activeItems.length) {
-        return;
-    }
-
-    activeIndex = (
-        activeIndex
-        + direction
-        + activeItems.length
-    ) % activeItems.length;
-
+    if (!activeItems.length) return;
+    activeIndex = (activeIndex + direction + activeItems.length) % activeItems.length;
     updateModal();
 }
 
-/*
- * Connects the fullscreen viewer controls.
- */
-document
-    .querySelectorAll('.media-modal-close')
-    .forEach(button => {
-        button.addEventListener('click', closeMedia);
-    });
-
-document
-    .getElementById('mediaPrev')
-    .addEventListener(
-        'click',
-        () => stepMedia(-1)
-    );
-
-document
-    .getElementById('mediaNext')
-    .addEventListener(
-        'click',
-        () => stepMedia(1)
-    );
-
-/*
- * Clicking the dark area outside the media closes the viewer.
- */
-modal.addEventListener('click', event => {
-    if (event.target === modal) {
-        closeMedia();
-    }
+document.querySelector('.media-modal-close').addEventListener('click',closeMedia);
+document.getElementById('mediaPrev').addEventListener('click',() => stepMedia(-1));
+document.getElementById('mediaNext').addEventListener('click',() => stepMedia(1));
+modal.addEventListener('click',event => { if (event.target === modal) closeMedia(); });
+document.addEventListener('keydown',event => {
+    if (!modal.classList.contains('is-open')) return;
+    if (event.key === 'Escape') closeMedia();
+    if (event.key === 'ArrowLeft') stepMedia(-1);
+    if (event.key === 'ArrowRight') stepMedia(1);
 });
-
-/*
- * Keyboard controls for the fullscreen viewer.
- */
-document.addEventListener('keydown', event => {
-    if (!modal.classList.contains('is-open')) {
-        return;
-    }
-
-    if (event.key === 'Escape') {
-        closeMedia();
-    }
-
-    if (event.key === 'ArrowLeft') {
-        stepMedia(-1);
-    }
-
-    if (event.key === 'ArrowRight') {
-        stepMedia(1);
-    }
-});
-
-/*
- * Re-center carousels when the viewport changes size.
- */
-window.addEventListener('resize', refreshCarousels);
-
-renderAll();
+window.addEventListener('resize',() => carouselStates.forEach((_,category) => positionCarousel(category,false)));
+['all','life','moments','internship','recognition'].forEach(renderSection);
 </script>
 </body>
 </html>
