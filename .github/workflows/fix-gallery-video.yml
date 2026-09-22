@@ -2,31 +2,24 @@ name: Fix CICE gallery video compatibility
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
   fix-video:
-    if: github.actor == 'SubhajitRoy8931'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
       - name: Re-encode video for broad browser compatibility
-        shell: bash
         run: |
           set -euo pipefail
           VIDEO="assets/videos/a-glimpse-of-cice.mp4"
-          if [ ! -f "$VIDEO" ]; then
-            echo "Video not found: $VIDEO"
-            exit 1
-          fi
-
-          ffprobe -v error -show_entries stream=index,codec_type,codec_name,pix_fmt,profile,width,height -of default=noprint_wrappers=1 "$VIDEO" || true
-
+          test -f "$VIDEO"
           TMP="${VIDEO%.mp4}.compatible.mp4"
           ffmpeg -y -i "$VIDEO" \
             -map 0:v:0 -map 0:a? \
@@ -37,70 +30,68 @@ jobs:
             "$TMP"
           mv "$TMP" "$VIDEO"
 
-      - name: Generate a real video poster
-        shell: bash
+      - name: Generate video poster
         run: |
           set -euo pipefail
           VIDEO="assets/videos/a-glimpse-of-cice.mp4"
           POSTER="assets/images/gallery/a-glimpse-of-cice-poster.jpg"
           mkdir -p "$(dirname "$POSTER")"
-
           ffmpeg -y -ss 00:00:01 -i "$VIDEO" -frames:v 1 -q:v 2 "$POSTER" || \
           ffmpeg -y -ss 00:00:00 -i "$VIDEO" -frames:v 1 -q:v 2 "$POSTER"
 
-      - name: Harden gallery video playback
-        shell: python
+      - name: Harden gallery playback
         run: |
+          python3 - <<'PY'
           from pathlib import Path
 
           path = Path("gallery.html")
           text = path.read_text(encoding="utf-8")
 
           old_thumb = """        const video = document.createElement('video');
-        video.src = item.src;
-        video.muted = true;
-        video.preload = 'metadata';
-        video.playsInline = true;
-        if (item.poster) video.poster = item.poster;"""
+          video.src = item.src;
+          video.muted = true;
+          video.preload = 'metadata';
+          video.playsInline = true;
+          if (item.poster) video.poster = item.poster;"""
 
           new_thumb = """        const video = document.createElement('video');
-        video.muted = true;
-        video.preload = 'metadata';
-        video.playsInline = true;
-        video.setAttribute('playsinline','');
-        video.setAttribute('webkit-playsinline','');
-        if (item.poster) video.poster = item.poster;
-        const thumbSource = document.createElement('source');
-        thumbSource.src = item.src;
-        thumbSource.type = 'video/mp4';
-        video.appendChild(thumbSource);
-        video.load();"""
+          video.muted = true;
+          video.preload = 'metadata';
+          video.playsInline = true;
+          video.setAttribute('playsinline','');
+          video.setAttribute('webkit-playsinline','');
+          if (item.poster) video.poster = item.poster;
+          const thumbSource = document.createElement('source');
+          thumbSource.src = item.src;
+          thumbSource.type = 'video/mp4';
+          video.appendChild(thumbSource);
+          video.load();"""
 
           old_modal = """        const video = document.createElement('video');
-        video.src = item.src;
-        video.controls = true;
-        video.autoplay = true;
-        video.playsInline = true;
-        if (item.poster) video.poster = item.poster;
-        video.addEventListener('error',() => {"""
+          video.src = item.src;
+          video.controls = true;
+          video.autoplay = true;
+          video.playsInline = true;
+          if (item.poster) video.poster = item.poster;
+          video.addEventListener('error',() => {"""
 
           new_modal = """        const video = document.createElement('video');
-        video.controls = true;
-        video.autoplay = true;
-        video.muted = true;
-        video.playsInline = true;
-        video.setAttribute('playsinline','');
-        video.setAttribute('webkit-playsinline','');
-        video.preload = 'metadata';
-        if (item.poster) video.poster = item.poster;
-        const modalSource = document.createElement('source');
-        modalSource.src = item.src;
-        modalSource.type = 'video/mp4';
-        video.appendChild(modalSource);
-        video.addEventListener('loadedmetadata', () => {
-            video.play().catch(() => {});
-        });
-        video.addEventListener('error',() => {"""
+          video.controls = true;
+          video.autoplay = true;
+          video.muted = true;
+          video.playsInline = true;
+          video.setAttribute('playsinline','');
+          video.setAttribute('webkit-playsinline','');
+          video.preload = 'metadata';
+          if (item.poster) video.poster = item.poster;
+          const modalSource = document.createElement('source');
+          modalSource.src = item.src;
+          modalSource.type = 'video/mp4';
+          video.appendChild(modalSource);
+          video.addEventListener('loadedmetadata', () => {
+              video.play().catch(() => {});
+          });
+          video.addEventListener('error',() => {"""
 
           if old_thumb not in text:
               raise SystemExit('Thumbnail video block was not found; aborting.')
@@ -110,18 +101,14 @@ jobs:
           text = text.replace(old_thumb, new_thumb, 1)
           text = text.replace(old_modal, new_modal, 1)
           path.write_text(text, encoding="utf-8")
+          PY
 
-      - name: Commit the compatibility fix and remove this one-time workflow
-        shell: bash
+      - name: Commit compatibility fix and remove temporary workflow files
         run: |
           set -euo pipefail
-          rm -f .github/workflows/fix-gallery-video.yml
+          rm -f .github/workflows/fix-gallery-video.yml .video-fix-trigger
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add gallery.html assets/videos/a-glimpse-of-cice.mp4 assets/images/gallery/a-glimpse-of-cice-poster.jpg .github/workflows/fix-gallery-video.yml
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-            exit 0
-          fi
+          git add gallery.html assets/videos/a-glimpse-of-cice.mp4 assets/images/gallery/a-glimpse-of-cice-poster.jpg .github/workflows/fix-gallery-video.yml .video-fix-trigger
           git commit -m "Fix gallery video compatibility"
           git push origin main
