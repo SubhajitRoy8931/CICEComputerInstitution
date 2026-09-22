@@ -720,8 +720,10 @@ function updateModal() {
         const video = document.createElement('video');
         video.src = item.src;
         video.controls = true;
+        video.muted = true;
         video.autoplay = true;
         video.playsInline = true;
+        video.preload = 'metadata';
         if (item.poster) video.poster = item.poster;
         video.addEventListener('error',() => {
             stage.innerHTML = '';
