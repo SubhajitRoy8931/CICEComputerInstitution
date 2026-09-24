@@ -322,16 +322,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (moving) return;
                 moving = true;
                 index += direction;
-
-                const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-                if (reduceMotion) {
-                    render(false);
-                    normalize();
-                    moving = false;
-                    return;
-                }
-
                 render(true);
             };
 
@@ -384,7 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 startX = e.clientX;
                 startTranslate = centeredX(index);
                 testimonialGrid.classList.add("is-dragging");
-                viewport.setPointerCapture?.(e.pointerId);
+                testimonialGrid.setPointerCapture?.(e.pointerId);
             });
 
             viewport.addEventListener("pointermove", e => {
@@ -405,7 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     render(true);
                 }
                 pauseAndResume();
-                viewport.releasePointerCapture?.(e.pointerId);
+                testimonialGrid.releasePointerCapture?.(e.pointerId);
             };
 
             viewport.addEventListener("pointerup", endDrag);
