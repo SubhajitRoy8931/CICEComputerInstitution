@@ -5088,3 +5088,57 @@ button {
 .hero .btn:hover .hero-btn-arrow {
     transform: translateX(3px);
 }
+
+/* Mobile hero image treatment */
+@media (max-width: 768px) {
+    .hero .hero-slide img {
+        object-fit: cover;
+        object-position: center center;
+        transform: scale(1.01);
+        animation: ciceHeroMobileZoom 18s ease-in-out infinite;
+    }
+
+    .hero .hero-slide-1 img { object-position: 50% 42%; }
+    .hero .hero-slide-2 img { object-position: 50% 38%; }
+    .hero .hero-slide-3 img { object-position: 50% 45%; }
+
+    .hero .hero-content {
+        width: min(92%, 620px);
+        padding: 92px 0 64px;
+    }
+
+    .hero .hero-brand {
+        font-size: clamp(4rem, 17vw, 5.5rem);
+        line-height: .9;
+    }
+
+    .hero .hero-name {
+        font-size: clamp(2.5rem, 10vw, 3.8rem);
+        line-height: .95;
+    }
+
+    .hero .hero-description {
+        max-width: 92%;
+    }
+
+    .hero .hero-location {
+        max-width: 92%;
+    }
+
+    .hero .hero-actions {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero .hero-actions .btn,
+    .hero .hero-actions .btn-secondary {
+        width: min(100%, 280px);
+    }
+}
+
+@keyframes ciceHeroMobileZoom {
+    0%, 28% { transform: scale(1.01); }
+    38%, 90% { transform: scale(1.05); }
+    100% { transform: scale(1.01); }
+}
