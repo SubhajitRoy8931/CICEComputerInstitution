@@ -4446,3 +4446,10 @@ button {
         font-size: .58rem !important;
     }
 }
+
+
+/* ==================== CICE performance helpers ==================== */
+/* Avoid rendering off-screen media until it approaches the viewport. */
+.gallery-page img {
+    content-visibility: auto;
+}
