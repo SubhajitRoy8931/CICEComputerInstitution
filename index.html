@@ -65,6 +65,7 @@
         "foundingDate": "2016"
     }
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
@@ -102,7 +103,7 @@
 
         <li class="nav-dropdown">
             <div class="nav-item-with-dropdown">
-                <a href="about.html">About CICE</a>
+                <a href="about.html">About CICE <span class="hero-btn-arrow" aria-hidden="true">→</span></a>
                 <button class="nav-arrow" type="button"
                         aria-label="Open About CICE menu" aria-expanded="false">⌄</button>
             </div>
@@ -156,64 +157,39 @@
 <!-- ==================== HERO SECTION ==================== -->
 <!-- First section visitors see. It introduces CICE and provides the main calls to action. -->
 <section class="hero" id="home">
-    <div class="hero-grid container">
-        <div class="hero-content">
-            <div class="hero-kicker">Learn, Practice &amp; Grow with CICE</div>
+    <div class="hero-background" aria-hidden="true">
+        <div class="hero-slide hero-slide-1">
+            <img src="assets/images/gallery/life-03.jpg" alt="" fetchpriority="high" decoding="async">
+        </div>
+        <div class="hero-slide hero-slide-2">
+            <img src="assets/images/gallery/life-01.jpg" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="hero-slide hero-slide-3">
+            <img src="assets/images/gallery/life-04.jpg" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="hero-overlay"></div>
+    </div>
 
-            <!-- Main CICE heading. The location badge below identifies this specific institute. -->
-            <h1 class="hero-brand">
-                <span class="hero-brand-cice">CICE</span>
-                <span class="hero-brand-institute">COMPUTER</span>
-                <span class="hero-brand-institute">INSTITUTE</span>
-            </h1>
+    <div class="hero-content">
+        <p class="hero-eyebrow">LEARN • PRACTISE • GROW</p>
 
-            <div class="hero-location" aria-label="CICE location">
-                <span class="hero-location-pin" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" focusable="false">
-                        <path d="M12 21s7-6.1 7-12A7 7 0 0 0 5 9c0 5.9 7 12 7 12Zm0-9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/>
-                    </svg>
-                </span>
-                <span>HALAKURA, DHUBRI, ASSAM</span>
-            </div>
+        <h1 class="hero-title">
+            <span class="hero-brand">CICE</span>
+            <span class="hero-name">COMPUTER</span>
+            <span class="hero-name">INSTITUTE</span>
+        </h1>
 
-            <p>Computer education and practical training for students, job seekers and aspiring professionals.</p>
+        <p class="hero-description">Building practical digital skills for learning, work and the future.</p>
 
-            <!-- Primary actions for exploring courses and contacting CICE. -->
-            <div class="hero-actions">
-                <a class="btn btn-primary" href="about.html">About CICE <span>→</span></a>
-                <a class="btn btn-light-outline" href="#contact">Contact Us</a>
-            </div>
-
+        <div class="hero-location">
+            <span class="hero-location-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+            <span>Halakura, Dhubri, Assam</span>
         </div>
 
-        <!-- Authentic photographs from the CICE gallery identify the physical institute and its learning environment. -->
-        <div class="hero-visual">
-            <div class="hero-photo-carousel" data-hero-carousel aria-label="CICE Institute photo showcase">
-                <div class="hero-photo-stage">
-                    <figure class="hero-photo-slide is-active">
-                        <img src="assets/images/gallery/life-03.jpg" alt="Exterior of CICE Computer Institute in Halakura with the institute signboard visible" loading="eager" decoding="async">
-                        <figcaption><strong>Our Institute</strong><span>CICE Computer Institute, Halakura</span></figcaption>
-                    </figure>
-                    <figure class="hero-photo-slide">
-                        <img src="assets/images/gallery/life-01.jpg" alt="CICE computer classroom with rows of computers" loading="lazy" decoding="async">
-                        <figcaption><strong>Our Classroom</strong><span>A dedicated environment for computer learning</span></figcaption>
-                    </figure>
-                    <figure class="hero-photo-slide">
-                        <img src="assets/images/gallery/life-04.jpg" alt="Students attending a computer learning session at CICE" loading="lazy" decoding="async">
-                        <figcaption><strong>Our Students</strong><span>Learning through practical work</span></figcaption>
-                    </figure>
-                </div>
-
-                <div class="hero-photo-controls">
-                    <button class="hero-photo-arrow" type="button" data-hero-prev aria-label="Previous CICE photo">←</button>
-                    <div class="hero-photo-dots" role="tablist" aria-label="Choose a CICE photo">
-                        <button class="hero-photo-dot is-active" type="button" role="tab" aria-selected="true" aria-label="Show photo 1" data-hero-dot="0"></button>
-                        <button class="hero-photo-dot" type="button" role="tab" aria-selected="false" aria-label="Show photo 2" data-hero-dot="1"></button>
-                        <button class="hero-photo-dot" type="button" role="tab" aria-selected="false" aria-label="Show photo 3" data-hero-dot="2"></button>
-                    </div>
-                    <button class="hero-photo-arrow" type="button" data-hero-next aria-label="Next CICE photo">→</button>
-                </div>
-            </div>
+        <div class="hero-actions">
+            <a class="btn btn-primary" href="about.html">About CICE <span class="hero-btn-arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn-primary" href="courses.html">Explore Courses <span class="hero-btn-arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn-primary" href="#contact">Contact Us <span class="hero-btn-arrow" aria-hidden="true">→</span></a>
         </div>
     </div>
 </section>
@@ -579,10 +555,17 @@
         <p>Explore the institute, learning environment, practical sessions, internship programs and events.</p>
     </div>
     <div class="gallery-grid container">
-        <a class="gallery-item large" href="gallery.html"><img src="assets/images/gallery/life-04.jpg" alt="Practical learning at CICE" loading="lazy" onerror="this.style.display='none';"><span>Practical Learning at CICE</span></a>
+        <div class="gallery-item large gallery-video">
+            <video controls preload="metadata" poster="assets/images/gallery/a-glimpse-of-cice-poster.jpg">
+                <source src="assets/videos/a-glimpse-of-cice.mp4" type="video/mp4">
+                Your browser does not support the video element.
+            </video>
+            <span>A Glimpse of CICE</span>
+        </div>
         <a class="gallery-item" href="gallery.html"><img src="assets/images/gallery/life-05.jpg" alt="Students at CICE" loading="lazy" onerror="this.style.display='none';"><span>Students</span></a>
         <a class="gallery-item" href="gallery.html"><img src="assets/images/gallery/moments-grand-opening-01.jpg" alt="Grand Opening Gathering at CICE" loading="lazy"><span>Grand Opening Gathering</span></a>
         <a class="gallery-item" href="gallery.html"><img src="assets/images/gallery/moments-certificate-distribution.jpg" alt="Certificate distribution program at CICE" loading="lazy"><span>Certificate Distribution</span></a>
+        <a class="gallery-item" href="gallery.html"><img src="assets/images/gallery/life-04.jpg" alt="Practical learning at CICE" loading="lazy" onerror="this.style.display='none';"><span>Practical Learning at CICE</span></a>
     </div>
     <div style="text-align:center;margin-top:32px;"><a class="btn btn-primary" href="gallery.html">View Full Gallery →</a></div>
 </section>
