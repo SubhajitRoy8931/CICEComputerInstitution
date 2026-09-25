@@ -2,6 +2,12 @@
 // The homepage gallery video only plays while the visitor is actively viewing it.
 document.addEventListener("DOMContentLoaded", () => {
     const video = document.querySelector(".gallery-video video");
+
+    // Keep the About CICE navigation label clean.
+    // The arrow is intended for hero/action buttons, not the main navigation.
+    document.querySelectorAll(".nav-links .nav-item-with-dropdown > a .hero-btn-arrow")
+        .forEach(arrow => arrow.remove());
+
     if (!video) return;
 
     // Never allow accidental autoplay and avoid downloading the full video.
