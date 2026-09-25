@@ -1,10 +1,10 @@
 // CICE gallery video controls.
-// Pauses the homepage gallery video when it leaves the viewport or the tab becomes hidden.
+// The homepage gallery video only plays while the visitor is actively viewing it.
 document.addEventListener("DOMContentLoaded", () => {
     const video = document.querySelector(".gallery-video video");
     if (!video) return;
 
-    // Never allow an accidental autoplay attribute to keep the video running.
+    // Never allow accidental autoplay and avoid downloading the full video.
     video.autoplay = false;
     video.removeAttribute("autoplay");
     video.preload = "metadata";
@@ -13,21 +13,62 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!video.paused) video.pause();
     };
 
-    // Pause when the browser tab is hidden or the window loses visibility.
+    // Pause immediately when the browser tab/page is hidden.
     document.addEventListener("visibilitychange", () => {
         if (document.hidden) pauseVideo();
     });
 
     window.addEventListener("pagehide", pauseVideo);
 
-    // Pause when the video is mostly outside the viewport.
-    const observer = new IntersectionObserver(
-        entries => {
-            const entry = entries[0];
-            if (!entry || entry.intersectionRatio < 0.5) pauseVideo();
-        },
-        { threshold: [0, 0.5, 1] }
-    );
+    // Pause as soon as the video is no longer fully visible on screen.
+    const checkVideoVisibility = () => {
+        if (document.hidden) {
+            pauseVideo();
+            return;
+        }
 
-    observer.observe(video);
+        const rect = video.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+
+        const fullyVisible =
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= viewportHeight &&
+            rect.right <= viewportWidth;
+
+        if (!fullyVisible) pauseVideo();
+    };
+
+    // Use the actual scroll position as the primary check. This is more reliable
+    // than depending only on IntersectionObserver thresholds.
+    let ticking = false;
+    const handleScroll = () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                checkVideoVisibility();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", checkVideoVisibility, { passive: true });
+
+    // Keep IntersectionObserver as a second layer for browsers and layout changes
+    // that can alter visibility without a normal window scroll event.
+    if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+            entries => {
+                const entry = entries[0];
+                if (!entry || entry.intersectionRatio < 0.99) pauseVideo();
+            },
+            { threshold: [0, 0.5, 0.99, 1] }
+        );
+        observer.observe(video);
+    }
+
+    // Run once after layout is ready.
+    checkVideoVisibility();
 });
