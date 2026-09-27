@@ -291,16 +291,6 @@ button {
         linear-gradient(135deg,#06172d,#0a3157 60%,#063b64);
 }
 
-.hero::before {
-    content:"";
-    position:absolute;
-    inset:0;
-    opacity:.1;
-    background-image:
-        linear-gradient(rgba(255,255,255,.25) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.25) 1px,transparent 1px);
-    background-size:52px 52px;
-}
 
 .hero-grid {
     position:relative;
@@ -4761,19 +4751,6 @@ button {
     animation-delay: 12s;
 }
 
-.hero .hero-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 4;
-    background:
-        radial-gradient(circle at center,
-            rgba(3, 18, 34, 0.38) 0%,
-            rgba(3, 18, 34, 0.58) 62%,
-            rgba(3, 18, 34, 0.72) 100%),
-        linear-gradient(180deg,
-            rgba(3, 18, 34, 0.24) 0%,
-            rgba(3, 18, 34, 0.52) 100%);
-}
 
 .hero .hero-content {
     position: relative;
